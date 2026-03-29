@@ -43,7 +43,7 @@ export default function ContactPage() {
                  </div>
                  <div>
                    <p className="text-sm font-bold uppercase tracking-widest text-on-surface-variant font-headline">Email Direct</p>
-                   <p className="text-xl font-extrabold text-primary font-body">nimcaz22@gmail.com</p>
+                   <p className="text-xl font-extrabold text-primary font-body">bukhariabdiaziz22@gmail.com</p>
                  </div>
                </div>
                
