@@ -3,6 +3,7 @@ import { createSupabaseServerClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 import DashboardSidebar from '@/components/layout/DashboardSidebar';
 import Link from 'next/link';
+import AssignWorkerSelect from './AssignWorkerSelect';
 
 export default async function AdminBookingsPage() {
   const supabase = await createSupabaseServerClient();
@@ -18,12 +19,19 @@ export default async function AdminBookingsPage() {
 
   if (profile?.role !== 'admin') redirect('/dashboard');
 
+  // Fetch all qualified professionals for assignment
+  const { data: workerProfiles } = await supabase
+    .from('profiles')
+    .select('id, full_name')
+    .eq('role', 'worker');
+
   const { data: allBookings } = await supabase
     .from('bookings')
     .select(`
       *,
       service:services(name),
-      customer:profiles!bookings_customer_id_fkey(full_name, phone, email)
+      customer:profiles!bookings_customer_id_fkey(full_name, phone, email),
+      worker:profiles!bookings_worker_id_fkey(full_name)
     `)
     .order('created_at', { ascending: false });
 
@@ -53,7 +61,7 @@ export default async function AdminBookingsPage() {
                   <tr className="bg-surface-container-high/30 text-on-surface-variant text-[10px] uppercase tracking-widest font-extrabold font-headline">
                     <th className="px-8 py-5">Customer Connection</th>
                     <th className="px-8 py-5">Service Details</th>
-                    <th className="px-8 py-5">Booking ID</th>
+                    <th className="px-8 py-5">Dispatch Assigned</th>
                     <th className="px-8 py-5">Value</th>
                     <th className="px-8 py-5 text-right">Status</th>
                   </tr>
@@ -77,7 +85,11 @@ export default async function AdminBookingsPage() {
                         <p className="text-xs text-on-surface-variant font-body">{booking.scheduled_date} @ {booking.scheduled_time}</p>
                       </td>
                       <td className="px-8 py-6">
-                        <span className="text-[10px] font-mono bg-slate-100 px-2 py-1 rounded text-slate-500 uppercase">SD-{booking.id.slice(0, 8)}</span>
+                        <AssignWorkerSelect 
+                           bookingId={booking.id} 
+                           currentWorkerId={booking.worker_id} 
+                           workers={workerProfiles || []} 
+                        />
                       </td>
                       <td className="px-8 py-6 font-bold text-slate-900 font-headline">
                         KES {parseInt(booking.total_amount).toLocaleString()}
@@ -86,9 +98,10 @@ export default async function AdminBookingsPage() {
                         <span className={`inline-flex px-4 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest border border-current opacity-90 ${
                           booking.status === 'completed' ? 'bg-secondary/10 text-secondary' :
                           booking.status === 'cancelled' ? 'bg-error/10 text-error' :
+                          booking.status === 'worker_assigned' ? 'bg-blue-500/10 text-blue-600' :
                           'bg-amber-500/10 text-amber-600'
                         }`}>
-                          {booking.status}
+                          {booking.status.replace('_', ' ')}
                         </span>
                       </td>
                     </tr>

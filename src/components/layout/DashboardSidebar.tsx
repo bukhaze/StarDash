@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 const DashboardSidebar = () => {
   const pathname = usePathname() || '';
   const isAdmin = pathname.startsWith('/admin');
+  const isWorker = pathname.startsWith('/worker');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const customerItems = [
@@ -26,7 +27,13 @@ const DashboardSidebar = () => {
     { icon: 'settings', label: 'Settings', href: '/admin/settings' },
   ];
 
-  const menuItems = isAdmin ? adminItems : customerItems;
+  const workerItems = [
+    { icon: 'work', label: 'Worker Dispatch', href: '/worker' },
+    { icon: 'payments', label: 'Earnings', href: '/worker/earnings' },
+    { icon: 'settings', label: 'Settings', href: '/worker/settings' },
+  ];
+
+  const menuItems = isAdmin ? adminItems : isWorker ? workerItems : customerItems;
 
   return (
     <>

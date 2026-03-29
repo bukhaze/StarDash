@@ -76,3 +76,32 @@ export async function registerWorker(formData: FormData) {
 
   return { success: true, workerId: workerData.user.id };
 }
+
+export async function assignWorkerToBooking(bookingId: string, workerId: string) {
+  const supabase = await createSupabaseServerClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) return { error: 'Unauthorized' };
+
+  // Verify requester is admin
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('role')
+    .eq('id', user.id)
+    .single();
+
+  if (profile?.role !== 'admin') return { error: 'Only admins can assign workers' };
+
+  const { error } = await supabase
+    .from('bookings')
+    .update({ 
+      worker_id: workerId,
+      status: 'worker_assigned' 
+    })
+    .eq('id', bookingId);
+
+  if (error) return { error: error.message };
+
+  revalidatePath('/admin/bookings');
+  return { success: true };
+}
