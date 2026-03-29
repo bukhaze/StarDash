@@ -58,10 +58,10 @@ const BookingPage = () => {
     <div className="flex flex-col min-h-screen">
       <Navbar />
       
-      <main className="pt-24 pb-32 px-4 md:px-8 max-w-6xl mx-auto w-full flex-grow">
+      <main className="pt-20 md:pt-32 pb-24 px-4 md:px-8 max-w-7xl mx-auto w-full flex-grow">
         {/* Step Indicator */}
-        <div className="mb-12">
-          <div className="flex items-center justify-between max-w-2xl mx-auto relative px-4">
+        <div className="mb-10 md:mb-16">
+          <div className="flex items-center justify-between max-w-xl mx-auto relative px-2 md:px-6">
             {/* Progress Line */}
             <div className="absolute top-5 left-8 right-8 h-[2px] bg-surface-container-highest -z-10">
                <div 
@@ -84,10 +84,10 @@ const BookingPage = () => {
                 }`}>
                   {step > s.id ? <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>check</span> : s.icon}
                 </div>
-                <span className={`text-xs font-bold uppercase tracking-wider ${
+                <span className={`text-[10px] md:text-xs font-bold uppercase tracking-wider ${
                   step >= s.id ? 'text-secondary' : 'text-on-surface-variant'
                 }`}>
-                  {s.label}
+                   {s.label}
                 </span>
               </div>
             ))}
@@ -101,13 +101,13 @@ const BookingPage = () => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
           {/* Left Column: Form Content */}
-          <div className="lg:col-span-8 space-y-10">
+          <div className="w-full lg:flex-1 space-y-8 md:space-y-10 order-2 lg:order-1">
             {step === 2 && (
               <>
                 {/* Section: When */}
-                <section className="bg-white p-8 rounded-3xl shadow-premium border border-outline-variant/5">
+                <section className="bg-white p-5 sm:p-8 rounded-[2rem] shadow-premium border border-outline-variant/5">
                   <div className="flex items-center gap-3 mb-8">
                     <span className="material-symbols-outlined text-secondary" style={{ fontVariationSettings: "'FILL' 1" }}>calendar_month</span>
                     <h2 className="text-2xl font-bold font-headline tracking-tight">Pick a Date & Time</h2>
@@ -175,7 +175,7 @@ const BookingPage = () => {
                 </section>
 
                 {/* Section: Where */}
-                <section className="bg-white p-8 rounded-3xl shadow-premium border border-outline-variant/5">
+                <section className="bg-white p-5 sm:p-8 rounded-[2rem] shadow-premium border border-outline-variant/5">
                   <div className="flex items-center gap-3 mb-8">
                     <span className="material-symbols-outlined text-secondary" style={{ fontVariationSettings: "'FILL' 1" }}>location_on</span>
                     <h2 className="text-2xl font-bold font-headline tracking-tight">Service Location</h2>
@@ -205,7 +205,7 @@ const BookingPage = () => {
             )}
 
             {step === 3 && (
-              <section className="bg-white p-8 rounded-3xl shadow-premium border border-outline-variant/5">
+              <section className="bg-white p-5 sm:p-8 rounded-[2rem] shadow-premium border border-outline-variant/5">
                 <div className="flex items-center gap-3 mb-8">
                   <span className="material-symbols-outlined text-secondary" style={{ fontVariationSettings: "'FILL' 1" }}>payments</span>
                   <h2 className="text-2xl font-bold font-headline tracking-tight">Confirm & Book</h2>
@@ -226,11 +226,11 @@ const BookingPage = () => {
             )}
 
             {/* Step Actions */}
-            <div className="flex items-center justify-between pt-6">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6">
               <button 
                 onClick={prevStep}
                 disabled={step === 1}
-                className="flex items-center gap-2 text-on-surface font-bold px-8 py-4 rounded-xl hover:bg-surface-container-low transition-all disabled:opacity-30 disabled:pointer-events-none font-headline"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 text-on-surface font-bold px-8 py-4 rounded-xl hover:bg-surface-container-low transition-all disabled:opacity-30 disabled:pointer-events-none font-headline order-2 sm:order-1"
               >
                 <span className="material-symbols-outlined">arrow_back</span>
                 Back
@@ -239,7 +239,7 @@ const BookingPage = () => {
               {step < 3 ? (
                 <button 
                   onClick={nextStep}
-                  className="bg-primary text-white font-bold px-12 py-4 rounded-2xl shadow-premium hover:shadow-xl transition-all scale-95 active:scale-90 flex items-center gap-3 font-headline"
+                  className="w-full sm:w-auto bg-primary text-white font-bold px-12 py-4 rounded-2xl shadow-premium hover:shadow-xl transition-all scale-95 active:scale-90 flex items-center justify-center gap-3 font-headline order-1 sm:order-2"
                 >
                   Continue to Payment
                   <span className="material-symbols-outlined">arrow_forward</span>
@@ -248,7 +248,7 @@ const BookingPage = () => {
                 <button 
                   onClick={handleBookingSubmit}
                   disabled={loading}
-                  className="bg-secondary text-white font-extrabold px-12 py-4 rounded-2xl shadow-premium shadow-secondary/20 hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-3 font-headline disabled:opacity-50"
+                  className="w-full sm:w-auto bg-secondary text-white font-extrabold px-12 py-4 rounded-2xl shadow-premium shadow-secondary/20 hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-3 font-headline disabled:opacity-50 order-1 sm:order-2"
                 >
                   {loading ? <span className="material-symbols-outlined animate-spin">progress_activity</span> : 'Place Booking Request'}
                 </button>
@@ -257,8 +257,8 @@ const BookingPage = () => {
           </div>
 
           {/* Right Column: Summary Card */}
-          <div className="lg:col-span-4 sticky top-28">
-            <div className="bg-white rounded-3xl shadow-premium overflow-hidden border border-outline-variant/5">
+          <div className="w-full lg:w-96 sticky top-28 order-1 lg:order-2">
+            <div className="bg-white rounded-[2rem] shadow-premium overflow-hidden border border-outline-variant/5">
               <div className="p-8 border-b border-surface-container-low bg-surface-container-lowest/50">
                 <h3 className="text-xl font-bold font-headline tracking-tight">Booking Summary</h3>
               </div>

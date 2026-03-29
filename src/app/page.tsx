@@ -64,26 +64,26 @@ export default function Home() {
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">
+        <section className="relative pt-24 pb-16 lg:pt-48 lg:pb-32 overflow-hidden px-6 md:px-8">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-gradient-to-tr from-surface-container-low to-transparent opacity-60"></div>
-            <div className="absolute top-20 right-[-10%] w-[600px] h-[600px] bg-secondary-container/20 rounded-full blur-[120px]"></div>
+            <div className="absolute top-20 right-[-10%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-secondary-container/20 rounded-full blur-[80px] md:blur-[120px]"></div>
           </div>
           
-          <div className="max-w-7xl mx-auto px-8 relative z-10">
+          <div className="max-w-7xl mx-auto relative z-10">
             <div className="max-w-3xl">
-              <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight text-on-surface mb-8 leading-[1.1] font-headline">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-on-surface mb-6 leading-[1.1] font-headline">
                 Your Home, <br/><span className="text-secondary font-headline">Perfectly Handled.</span>
               </h1>
-              <p className="text-xl text-on-surface-variant mb-12 max-w-2xl leading-relaxed font-body">
+              <p className="text-lg md:text-xl text-on-surface-variant mb-10 max-w-2xl leading-relaxed font-body">
                 Experience the Digital Concierge. On-demand cleaning, laundry, and specialized home services from vetted local professionals in Nairobi, delivered with precision.
               </p>
               
               {/* Search/Booking Bar */}
-              <div className="bg-white p-3 rounded-2xl shadow-premium flex flex-col md:flex-row gap-4 items-center premium-shadow">
-                <div className="flex-1 w-full flex items-center px-4 py-3 bg-surface-container-high rounded-xl">
-                  <span className="material-symbols-outlined text-outline mr-3">home_repair_service</span>
-                  <select className="bg-transparent border-none focus:ring-0 text-on-surface font-medium w-full focus:outline-none">
+              <div className="bg-white p-2 md:p-3 rounded-2xl shadow-premium flex flex-col md:flex-row gap-3 md:gap-4 items-center premium-shadow">
+                <div className="flex-1 w-full flex items-center px-4 py-3 bg-surface-container-high rounded-xl group focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
+                  <span className="material-symbols-outlined text-outline mr-3 group-focus-within:text-secondary">home_repair_service</span>
+                  <select className="bg-transparent border-none focus:ring-0 text-on-surface font-medium w-full focus:outline-none text-sm md:text-base">
                     <option>Select Service</option>
                     <option>House Cleaning</option>
                     <option>Laundry Service</option>
@@ -91,11 +91,11 @@ export default function Home() {
                     <option>Carpet Deep Clean</option>
                   </select>
                 </div>
-                <div className="flex-1 w-full flex items-center px-4 py-3 bg-surface-container-high rounded-xl">
-                  <span className="material-symbols-outlined text-outline mr-3">location_on</span>
-                  <input className="bg-transparent border-none focus:ring-0 text-on-surface font-medium w-full focus:outline-none" placeholder="Location in Nairobi" type="text" defaultValue="Kilimani, Nairobi" />
+                <div className="flex-1 w-full flex items-center px-4 py-3 bg-surface-container-high rounded-xl group focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
+                  <span className="material-symbols-outlined text-outline mr-3 group-focus-within:text-secondary">location_on</span>
+                  <input className="bg-transparent border-none focus:ring-0 text-on-surface font-medium w-full focus:outline-none text-sm md:text-base" placeholder="Location in Nairobi" type="text" defaultValue="Kilimani, Nairobi" />
                 </div>
-                <button className="w-full md:w-auto bg-primary text-white px-10 py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all active:scale-95 bg-gradient-to-br from-primary to-primary-container">
+                <button className="w-full md:w-auto bg-primary text-white px-10 py-4 h-14 md:h-auto rounded-xl font-bold text-base md:text-lg shadow-premium hover:shadow-xl hover:translate-y-[-2px] active:scale-95 transition-all bg-gradient-to-br from-primary to-primary-container shrink-0">
                   Book Now
                 </button>
               </div>
@@ -103,7 +103,7 @@ export default function Home() {
           </div>
           
           {/* Floating Abstract Visual */}
-          <div className="hidden lg:block absolute top-1/2 right-0 -translate-y-1/2 w-1/3 h-[500px] rounded-l-[4rem] overflow-hidden shadow-2xl">
+          <div className="hidden lg:block absolute top-1/2 right-0 -translate-y-1/2 w-1/3 h-[500px] rounded-l-[4rem] overflow-hidden shadow-2xl border-l-8 border-white">
             <img 
               className="w-full h-full object-cover" 
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0xwDhunjl49xtWBVJibHLxD8M1eoB8XVk-egJDf4VmHQYchYFQE-xg7TxEb_iJOHoZPlMCFPP4gyk7PcjoiR5qMTlaLCItHajnq4zeSCV57NXS3tRzgtjNSiWmznXUnQ76zoux7rfgR4TSGf65o4W3rVd_GmM47QRxu4P-ZSB-qj7DEntRKcTuolVhhqrfhOiDrN3iOrP9R1TZiO-j-gWS4Q3rnsUbdYUPW2rpzN3mBVKOw3WPz7ypXBsZTfwkgT87oBRfCsT8IA" 

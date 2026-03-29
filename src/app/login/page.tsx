@@ -37,11 +37,11 @@ const LoginPage = () => {
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-secondary-container/20 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary-container/10 rounded-full blur-[120px]"></div>
         
-        <div className="w-full max-w-xl relative z-10">
-          <div className="bg-white/80 backdrop-blur-2xl p-12 rounded-[2.5rem] shadow-premium border border-white/50 space-y-10">
-            <div className="text-center space-y-4">
-              <h1 className="text-4xl font-extrabold tracking-tight text-primary font-headline">Welcome Back</h1>
-              <p className="text-on-surface-variant font-body font-medium">Log in to your premium home service dashboard.</p>
+        <div className="w-full max-w-xl relative z-10 animate-in fade-in slide-in-from-bottom-5 duration-700">
+          <div className="bg-white/80 backdrop-blur-2xl p-6 sm:p-10 md:p-12 rounded-[2rem] md:rounded-[2.5rem] shadow-premium border border-white/50 space-y-8 md:space-y-10">
+            <div className="text-center space-y-3">
+              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-primary font-headline">Welcome Back</h1>
+              <p className="text-sm md:text-base text-on-surface-variant font-body font-medium">Log in to your premium home service dashboard.</p>
             </div>
 
             {error && (

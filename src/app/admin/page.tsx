@@ -1,6 +1,7 @@
 import React from 'react';
 import { createSupabaseServerClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 import DashboardSidebar from '@/components/layout/DashboardSidebar';
 
 export default async function AdminDashboard() {
@@ -37,13 +38,13 @@ export default async function AdminDashboard() {
       <DashboardSidebar />
       <div className="flex-1 md:ml-72 flex flex-col">
         {/* Dashboard Header */}
-        <header className="w-full sticky top-0 z-40 bg-white/80 backdrop-blur-xl flex items-center justify-between px-8 h-20 shadow-sm border-b border-outline-variant/5">
+        <header className="w-full relative md:sticky top-0 z-30 bg-white/80 backdrop-blur-xl flex flex-col md:flex-row items-start md:items-center justify-between px-6 md:px-8 py-4 md:h-20 gap-4 md:gap-0 shadow-sm border-b border-outline-variant/5">
           <h1 className="font-headline font-semibold tracking-tight text-slate-900 text-xl">Admin Control Center</h1>
           <div className="flex items-center gap-4">
             <button className="p-2.5 hover:bg-slate-100 rounded-full transition-colors active:scale-90 group relative">
               <span className="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">notifications</span>
             </button>
-            <div className="w-10 h-10 rounded-full bg-error text-white font-bold flex items-center justify-center font-headline shadow-sm">
+            <div className="w-10 h-10 rounded-full bg-error text-white font-bold flex items-center justify-center font-headline shadow-sm shrink-0">
               AD
             </div>
           </div>
@@ -64,12 +65,12 @@ export default async function AdminDashboard() {
               <p className="text-sm font-bold uppercase tracking-widest text-on-surface-variant font-headline mt-1">Pending Assignments</p>
             </div>
 
-            <div className="bg-secondary p-8 rounded-3xl shadow-premium text-white relative overflow-hidden group">
+            <Link href="/admin/workers" className="bg-secondary p-8 rounded-3xl shadow-premium text-white relative overflow-hidden group">
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-              <span className="material-symbols-outlined text-3xl mb-4 relative z-10">payments</span>
-              <p className="text-4xl font-headline font-extrabold relative z-10">Platform</p>
-              <p className="text-sm font-bold uppercase tracking-widest text-white/80 font-headline mt-1 relative z-10">Revenue Center &gt;</p>
-            </div>
+              <span className="material-symbols-outlined text-3xl mb-4 relative z-10">engineering</span>
+              <p className="text-4xl font-headline font-extrabold relative z-10">Workers</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-white/80 font-headline mt-1 relative z-10">Manage Roster &gt;</p>
+            </Link>
           </div>
 
           <div className="bg-white rounded-3xl shadow-premium border border-outline-variant/5 overflow-hidden font-body">
