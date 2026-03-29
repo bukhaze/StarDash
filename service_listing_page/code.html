@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Services | StarDash Premium Home Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "inverse-primary": "#b9c7e4",
+                        "surface-container": "#eceef0",
+                        "on-secondary-fixed-variant": "#005047",
+                        "secondary-fixed": "#62fae3",
+                        "surface": "#f7f9fb",
+                        "primary-container": "#0d1c32",
+                        "surface-tint": "#515f78",
+                        "on-primary-fixed-variant": "#39475f",
+                        "surface-variant": "#e0e3e5",
+                        "surface-dim": "#d8dadc",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary": "#000000",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c5c6cd",
+                        "secondary": "#006b5f",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#0d1c32",
+                        "surface-container-low": "#f2f4f6",
+                        "on-surface-variant": "#44474d",
+                        "primary": "#000000",
+                        "surface-container-high": "#e6e8ea",
+                        "on-error": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "on-tertiary-container": "#009844",
+                        "background": "#f7f9fb",
+                        "tertiary-container": "#002109",
+                        "secondary-container": "#62fae3",
+                        "surface-bright": "#f7f9fb",
+                        "primary-fixed-dim": "#b9c7e4",
+                        "on-background": "#191c1e",
+                        "primary-fixed": "#d6e3ff",
+                        "on-secondary-fixed": "#00201c",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-container": "#007165",
+                        "on-tertiary-fixed": "#002109",
+                        "secondary-fixed-dim": "#3cddc7",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#6bff8f",
+                        "outline": "#75777e",
+                        "on-primary-container": "#76849f",
+                        "on-tertiary-fixed-variant": "#005321"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-glass {
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .shadow-ambient {
+            box-shadow: 0 8px 32px rgba(25, 28, 30, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-sm">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-slate-900 dark:text-white font-headline">StarDash</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-600 transition-colors font-['Plus_Jakarta_Sans'] tracking-tight" href="#">Home</a>
+<a class="text-teal-600 dark:text-teal-400 font-semibold border-b-2 border-teal-600 font-['Plus_Jakarta_Sans'] tracking-tight" href="#">Services</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-600 transition-colors font-['Plus_Jakarta_Sans'] tracking-tight" href="#">How It Works</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-600 transition-colors font-['Plus_Jakarta_Sans'] tracking-tight" href="#">Become a Worker</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-600 transition-colors font-['Plus_Jakarta_Sans'] tracking-tight" href="#">About</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-600 transition-colors font-['Plus_Jakarta_Sans'] tracking-tight" href="#">Contact</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-slate-600 dark:text-slate-400 hover:text-teal-600 font-medium px-4 py-2 transition-all">Login</button>
+<button class="bg-primary text-white px-6 py-2.5 rounded-xl font-semibold shadow-sm scale-95 active:opacity-80 transition-transform">Sign Up</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20 max-w-7xl mx-auto px-8">
+<!-- Breadcrumbs -->
+<nav class="flex mb-8 items-center space-x-2 text-sm text-on-surface-variant">
+<a class="hover:text-secondary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="font-medium text-on-surface">Services</span>
+</nav>
+<header class="mb-12">
+<h1 class="text-5xl font-extrabold font-headline tracking-tight text-primary mb-4">Premium Home Services</h1>
+<p class="text-lg text-on-surface-variant max-w-2xl leading-relaxed">Experience the Digital Concierge. Curated home services delivered by vetted professionals with seamless booking.</p>
+</header>
+<div class="flex gap-12">
+<!-- Filter Sidebar -->
+<aside class="w-72 flex-shrink-0 hidden lg:block">
+<div class="sticky top-28 space-y-8 bg-surface-container-low p-6 rounded-xl">
+<!-- Search Input -->
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-3 font-label">Search Services</label>
+<div class="relative">
+<input class="w-full bg-surface-container-high border-none rounded-lg py-3 pl-10 pr-4 text-sm focus:ring-2 focus:ring-secondary/30 focus:bg-surface-container-lowest transition-all" placeholder="What do you need?" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+</div>
+</div>
+<!-- Categories -->
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-4 font-label">Category</label>
+<div class="space-y-3">
+<label class="flex items-center group cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-secondary focus:ring-secondary w-5 h-5" type="checkbox"/>
+<span class="ml-3 text-sm text-on-surface group-hover:text-secondary transition-colors">Cleaning</span>
+</label>
+<label class="flex items-center group cursor-pointer">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary w-5 h-5" type="checkbox"/>
+<span class="ml-3 text-sm text-on-surface group-hover:text-secondary transition-colors">Laundry</span>
+</label>
+<label class="flex items-center group cursor-pointer">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary w-5 h-5" type="checkbox"/>
+<span class="ml-3 text-sm text-on-surface group-hover:text-secondary transition-colors">Security</span>
+</label>
+</div>
+</div>
+<!-- Rating -->
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-4 font-label">Rating</label>
+<button class="flex items-center justify-between w-full p-3 rounded-lg bg-surface-container-lowest border border-outline-variant/15 text-sm hover:border-secondary/30 transition-all">
+<span class="flex items-center text-on-surface">
+<span class="material-symbols-outlined text-yellow-500 mr-2" style="font-variation-settings: 'FILL' 1;">star</span>
+                                4.0 &amp; Above
+                            </span>
+<span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+</button>
+</div>
+<!-- Price Range -->
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-4 font-label">Price Range</label>
+<input class="w-full h-1.5 bg-surface-container-highest rounded-full appearance-none cursor-pointer accent-secondary" max="500" min="0" type="range"/>
+<div class="flex justify-between mt-2 text-xs font-medium text-on-surface-variant">
+<span>$0</span>
+<span>$500+</span>
+</div>
+</div>
+<!-- Availability -->
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-4 font-label">Availability</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full border border-outline-variant/15 text-xs font-medium bg-surface-container-lowest text-on-surface hover:border-secondary transition-all">Today</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant/15 text-xs font-medium bg-secondary text-white shadow-sm">This Week</button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Service Grid -->
+<div class="flex-1">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Card 1: House Cleaning -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-ambient hover:-translate-y-1 transition-all duration-300">
+<div class="aspect-[4/3] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="high-end modern living room being professionally cleaned, soft sunlight filtering through large windows, pristine surfaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz9SEngPPSGdT-bNVfVL29xjYd49fGVb28iZJtkKd37eljC3dCw3aWyadT2V5a6wdaoBuJBv1Us4fDXforppwr0vkErB7PozaXsaKbkB8SEgbfmsP2E3PrxOIrUQAa7jfVTfqHCqKEqvaso7LnBv2PIrMW2jMSf8He7gNsR9UKFSoo8TPDhljqtroGaYENDcib8Tp06s54i8t5RrmQ5vaMoC8WSYWm43zkbBr1VulnA4_y43yocd1R7AnTQVaziEKAecwHJK2SrVU"/>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-secondary shadow-sm">Popular</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold font-headline text-primary group-hover:text-secondary transition-colors">House Cleaning</h3>
+<div class="flex items-center bg-secondary-container/30 px-2 py-0.5 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-secondary-container ml-1">4.9</span>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 line-clamp-2">Complete maintenance for your home including dusting, mopping, and vacuuming.</p>
+<div class="flex items-center justify-between mt-auto">
+<div>
+<span class="text-xs text-on-surface-variant block">Starting at</span>
+<span class="text-2xl font-black text-primary">$85</span>
+</div>
+<button class="bg-primary text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-secondary transition-all">Book Now</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Office Cleaning -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-ambient hover:-translate-y-1 transition-all duration-300">
+<div class="aspect-[4/3] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="minimalist corporate office space at night, polished floors reflecting warm interior lights, clean desks and glass partitions" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOiax_FY_1Gkk4X4y9ukYaZLZVIuao1TJMmkPvablr-lZbsquRze4yZ_JPx6aPY5pV8F9xwb6PMen0Mpborl8n6rN_-uTepleZh5rkf9w_XogE92n0puQqwQXDUy9x5kHN9U5n9bHCbhaEEi1FmKFgCvnqvDkJLZCQ_6dZN6VW0M1GH3WJvaKI9bDev7YkW23NnKwExftUT6IysD69p8ovyS4a80WyNkBxaDcqidws0amJGc60bxosy9JreDSBZ3LHZv7MTG0E5Wc"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold font-headline text-primary group-hover:text-secondary transition-colors">Office Cleaning</h3>
+<div class="flex items-center bg-secondary-container/30 px-2 py-0.5 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-secondary-container ml-1">4.8</span>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 line-clamp-2">Maintain a professional environment with specialized commercial sanitation.</p>
+<div class="flex items-center justify-between mt-auto">
+<div>
+<span class="text-xs text-on-surface-variant block">Starting at</span>
+<span class="text-2xl font-black text-primary">$120</span>
+</div>
+<button class="bg-primary text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-secondary transition-all">Book Now</button>
+</div>
+</div>
+</div>
+<!-- Card 3: Move In / Move Out -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-ambient hover:-translate-y-1 transition-all duration-300">
+<div class="aspect-[4/3] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="empty clean modern apartment with white walls and wooden floors, bright morning light hitting the floor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBrPwjHl9zE5yBYW7qpYPMxq3hpSnoNeCWlyBg-nHQUs_hS1yNEfWSnQ3XgS_7t-K90evFk2WWnO7Al457fq070rruwsxGtmwyHaA0RFDYhLbuS5ec2MVecBGF-fiK35IyKE3VuL0uikkt2j7GzO6c8TbMCRJzSPiwC6cI_XlxYP2Ldiw071Iq8ONpq-UWKlVfWhrAz3D73402sG-wR_Fs58ZfnNO2w1GSb-boQv5bfN29f3wmn7gXKYeJEm-4NBTRhEglDOi6Yjg"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold font-headline text-primary group-hover:text-secondary transition-colors">Move In / Out</h3>
+<div class="flex items-center bg-secondary-container/30 px-2 py-0.5 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-secondary-container ml-1">5.0</span>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 line-clamp-2">Deep cleaning for a fresh start in your new home or a stress-free departure.</p>
+<div class="flex items-center justify-between mt-auto">
+<div>
+<span class="text-xs text-on-surface-variant block">Starting at</span>
+<span class="text-2xl font-black text-primary">$195</span>
+</div>
+<button class="bg-primary text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-secondary transition-all">Book Now</button>
+</div>
+</div>
+</div>
+<!-- Card 4: Laundry Washing -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-ambient hover:-translate-y-1 transition-all duration-300">
+<div class="aspect-[4/3] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="neatly folded white towels and linens on a wooden table, soft neutral color palette, airy laundry room vibe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiJEmP3F9M6Hs7_A0X74dTI7S3yO-pqDOJoEjXbpjfxdhZsRTzB00HVRDDbJwJQmHQOMCxPSTd6ZPdrXCzWX3b20UtJYQCyE7Pmgkfj7xzXpeAm44PleyuGnHlOZgzJRveiJ8PaKEW7TNJz3gAc4WlKMBUaerr1alkWtmRtvDVl2XIzHWVYbA3UvqRapOI5_4c4iAz6Z6lLPXiWjhI4g3u40PCAp-zx-VaQr4JzpuZ1mynIivtN5YJvr6yqMuC4fafkgVzmtjiANY"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold font-headline text-primary group-hover:text-secondary transition-colors">Laundry Washing</h3>
+<div class="flex items-center bg-secondary-container/30 px-2 py-0.5 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-secondary-container ml-1">4.7</span>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 line-clamp-2">Professional wash, dry, and fold service with eco-friendly detergents.</p>
+<div class="flex items-center justify-between mt-auto">
+<div>
+<span class="text-xs text-on-surface-variant block">Starting at</span>
+<span class="text-2xl font-black text-primary">$45</span>
+</div>
+<button class="bg-primary text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-secondary transition-all">Book Now</button>
+</div>
+</div>
+</div>
+<!-- Card 5: Sofa Set Cleaning -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-ambient hover:-translate-y-1 transition-all duration-300">
+<div class="aspect-[4/3] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="close-up of a high-end emerald velvet sofa being steam cleaned, focus on texture and clean finish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-8tc6xli7rnLb4i65TqEOlZc74quvkJ3U5BAV4Yh7zFcTqhWlcPFNhvoIC4gDR7ywdj40s_R3CldmQM_MIH2dsQC2wT3wk0XGyzOnjtUkPiBVJULkBtAS8D98Nh1-WFEkVjHNq1OUnwA6r3zd7XSbZ3pDPBLglEDXSnvHPHGT-2PORRxdkP9zHiBy4TuRvhbRj_jD9EfzOMBsope6o-yebyV3ohSjh5CqrwXd0AxocxEHmYFwYQYPt18P7O9z5mzJ3nr9RiLuVkY"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold font-headline text-primary group-hover:text-secondary transition-colors">Sofa Cleaning</h3>
+<div class="flex items-center bg-secondary-container/30 px-2 py-0.5 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-secondary-container ml-1">4.9</span>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 line-clamp-2">Specialized upholstery cleaning to remove stains and allergens.</p>
+<div class="flex items-center justify-between mt-auto">
+<div>
+<span class="text-xs text-on-surface-variant block">Starting at</span>
+<span class="text-2xl font-black text-primary">$110</span>
+</div>
+<button class="bg-primary text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-secondary transition-all">Book Now</button>
+</div>
+</div>
+</div>
+<!-- Card 6: Security Services -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-ambient hover:-translate-y-1 transition-all duration-300">
+<div class="aspect-[4/3] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="modern smart home security system panel on a clean wall, bokeh background of a high-end hallway" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9aO7Fi-w52Mn1jhnyuWgnhPijEDOPRX_C4DLtWeNrminanzFh501fgpvRKhdvGHjCeGFpUm96LquSTYOZlB319FT1eFtaYfImh0jtArIJ6m4FmR9NcyW-3DsXIqx6VG4OGmGKDvI2gB4yitBQRgBK3awmCHnwLXJa4NG13LcwGenwKGYJt0mQc-q-D1sClEtNi22CYo620vdhHpHH0O1aeyecFv3kuro6DUeDqJsGS-Au0AqaO4sgZaxwjKtMdA4_IZv4fyOMuns"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold font-headline text-primary group-hover:text-secondary transition-colors">Security Services</h3>
+<div class="flex items-center bg-secondary-container/30 px-2 py-0.5 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-secondary-container ml-1">5.0</span>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 line-clamp-2">Premium home monitoring and physical security by certified personnel.</p>
+<div class="flex items-center justify-between mt-auto">
+<div>
+<span class="text-xs text-on-surface-variant block">Starting at</span>
+<span class="text-2xl font-black text-primary">$350</span>
+</div>
+<button class="bg-primary text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-secondary transition-all">Book Now</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-16 flex items-center justify-center space-x-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant hover:bg-secondary hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary text-white font-bold shadow-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high transition-all">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high transition-all">3</button>
+<span class="px-2 text-on-surface-variant">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high transition-all">8</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant hover:bg-secondary hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0A192F] dark:bg-black w-full pt-20 pb-10 font-body">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
+<div>
+<div class="text-2xl font-bold text-white mb-6">StarDash</div>
+<p class="text-slate-400 text-sm leading-relaxed mb-6">The premier choice for luxury home management and concierge services. Excellence delivered at the tap of a button.</p>
+<div class="flex space-x-4">
+<a class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-secondary transition-all" href="#">
+<span class="material-symbols-outlined text-lg">public</span>
+</a>
+<a class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-secondary transition-all" href="#">
+<span class="material-symbols-outlined text-lg">share</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-6">Services</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors text-sm" href="#">Residential Cleaning</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors text-sm" href="#">Commercial Solutions</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors text-sm" href="#">Security &amp; Guarding</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors text-sm" href="#">Laundry &amp; Textiles</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-6">Company</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors text-sm" href="#">About Us</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors text-sm" href="#">Careers</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors text-sm" href="#">How It Works</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors text-sm" href="#">Partnership</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-6">Newsletter</h4>
+<p class="text-slate-400 text-sm mb-4">Join 10,000+ members receiving premium home tips.</p>
+<form class="flex">
+<input class="bg-white/5 border-none rounded-l-lg px-4 py-2 text-white text-sm focus:ring-1 focus:ring-secondary w-full" placeholder="Email address" type="email"/>
+<button class="bg-secondary text-white px-4 py-2 rounded-r-lg font-semibold text-sm hover:opacity-90 transition-all">Join</button>
+</form>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
+<div>© 2024 StarDash Premium Home Services. All rights reserved.</div>
+<div class="flex space-x-6 mt-4 md:mt-0">
+<a class="hover:text-teal-400" href="#">Privacy Policy</a>
+<a class="hover:text-teal-400" href="#">Terms of Service</a>
+<a class="hover:text-teal-400" href="#">Help Center</a>
+<a class="hover:text-teal-400" href="#">Cookies</a>
+</div>
+</div>
+</footer>
+</body></html>

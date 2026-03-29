@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StarDash | Premium Marketplace for Home Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-effect {
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .premium-shadow {
+            box-shadow: 0 8px 32px 0 rgba(10, 25, 47, 0.04);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #191c1e;
+            background-color: #f7f9fb;
+        }
+        h1, h2, h3, h4, .font-headline {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#0A192F",
+                "primary-light": "#112240",
+                "secondary": "#10B981", // Emerald Green
+                "accent": "#64FFDA",
+                "surface": "#f7f9fb",
+                "on-surface": "#191c1e",
+                "outline": "#75777e",
+              },
+              fontFamily: {
+                "headline": ["Plus Jakarta Sans"],
+                "body": ["Inter"],
+              },
+              borderRadius: {"DEFAULT": "8px", "lg": "12px", "xl": "16px", "2xl": "24px", "3xl": "32px", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Top Announcement Bar -->
+<div class="bg-primary text-white py-2.5 px-4 text-center text-sm font-medium tracking-wide">
+        Elevate your home experience. <span class="text-secondary font-bold">20% off your first booking</span> with code DASH20
+    </div>
+<!-- Sticky Navbar -->
+<nav class="sticky top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-extrabold tracking-tighter text-primary font-headline">StarDash</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-secondary font-semibold border-b-2 border-secondary font-headline" href="#">Home</a>
+<a class="text-slate-600 hover:text-secondary transition-colors font-headline" href="#services">Services</a>
+<a class="text-slate-600 hover:text-secondary transition-colors font-headline" href="#how-it-works">How It Works</a>
+<a class="text-slate-600 hover:text-secondary transition-colors font-headline" href="#become-partner">Become a Partner</a>
+<a class="text-slate-600 hover:text-secondary transition-colors font-headline" href="#pricing">Pricing</a>
+</div>
+<div class="flex items-center space-x-6">
+<a class="text-slate-600 font-semibold hover:text-primary" href="#">Login</a>
+<button class="bg-primary text-white px-6 py-2.5 rounded-lg font-bold hover:bg-primary-light transition-all">Sign Up</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative pt-24 pb-20 overflow-hidden">
+<div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+<div class="max-w-xl">
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-primary mb-6 leading-[1.1]">
+                    Your Home,<br/><span class="text-secondary">Perfectly Handled.</span>
+</h1>
+<p class="text-xl text-slate-600 mb-10 leading-relaxed">
+                    Nairobi's premium digital concierge for on-demand home care. Vetted professionals for cleaning, security, and specialized maintenance.
+                </p>
+<!-- Search/Booking Bar -->
+<div class="bg-white p-2 rounded-xl shadow-2xl flex flex-col md:flex-row gap-2 items-center">
+<div class="flex-1 w-full flex items-center px-4 py-3 bg-slate-50 rounded-lg">
+<span class="material-symbols-outlined text-slate-400 mr-3">home_repair_service</span>
+<select class="bg-transparent border-none focus:ring-0 text-primary font-medium w-full text-sm">
+<option>Select Service</option>
+<option>House Cleaning</option>
+<option>Security Services</option>
+<option>Laundry &amp; Duvet</option>
+<option>Office Cleaning</option>
+</select>
+</div>
+<div class="flex-1 w-full flex items-center px-4 py-3 bg-slate-50 rounded-lg">
+<span class="material-symbols-outlined text-slate-400 mr-3">location_on</span>
+<select class="bg-transparent border-none focus:ring-0 text-primary font-medium w-full text-sm">
+<option>Neighborhood</option>
+<option>Kilimani</option>
+<option>Westlands</option>
+<option>Karen</option>
+<option>Lavington</option>
+</select>
+</div>
+<button class="w-full md:w-auto bg-secondary text-white px-8 py-3.5 rounded-lg font-bold hover:opacity-90 transition-all">
+                        Book Now
+                    </button>
+</div>
+<!-- Trust Badges below hero -->
+<div class="mt-12 flex flex-wrap gap-6 items-center border-t border-slate-100 pt-8">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-xl">verified</span>
+<span class="text-xs font-bold text-primary uppercase tracking-wider">Verified Workers</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-xl">lock</span>
+<span class="text-xs font-bold text-primary uppercase tracking-wider">Secure Booking</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-xl">sell</span>
+<span class="text-xs font-bold text-primary uppercase tracking-wider">Transparent Pricing</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-xl">support_agent</span>
+<span class="text-xs font-bold text-primary uppercase tracking-wider">Fast Support</span>
+</div>
+</div>
+</div>
+<div class="relative hidden lg:block">
+<img alt="Premium Modern Home" class="w-full h-[600px] object-cover rounded-2xl shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbNrUxKAopDN46XUtTGrfrSShNcGeaq8jok0ZQjsmjpZiJGZB-r3NrlJFGvYS124iZlV2qPie8UgauRPYYIrsiy-1jRw4AzAvzS45WTLiNauo2elYeE4tO8orHn9pP38oE1S-a8M_NyIkb9us4Gg5eAhDg8HTPa4KKlf5VSgUbT_Y2DTtb9sxvitAnPFk_PSW73nPnEhYRy7BVvjMV4MPAHL3FAvlGfzmwMf2X473NBVIoD47JVHKLI0ITgAOnnGe0HFEhkq7_CrU"/>
+<div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary/10 text-secondary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">stars</span>
+</div>
+<div>
+<div class="text-xl font-bold text-primary">4.8/5</div>
+<div class="text-xs text-slate-500 font-medium">Average Platform Rating</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="py-12 bg-primary">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
+<div>
+<div class="text-3xl md:text-4xl font-extrabold text-secondary mb-1">10,000+</div>
+<p class="text-slate-400 text-sm font-medium">Successful Bookings</p>
+</div>
+<div>
+<div class="text-3xl md:text-4xl font-extrabold text-secondary mb-1">2,500+</div>
+<p class="text-slate-400 text-sm font-medium">Verified Workers</p>
+</div>
+<div class="col-span-2 md:col-span-1">
+<div class="text-3xl md:text-4xl font-extrabold text-secondary mb-1">98%</div>
+<p class="text-slate-400 text-sm font-medium">Customer Satisfaction</p>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-24 bg-white" id="services">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex justify-between items-end mb-16">
+<div>
+<span class="text-secondary font-bold tracking-widest uppercase text-xs mb-4 block">Comprehensive Care</span>
+<h2 class="text-4xl font-extrabold text-primary">All Services</h2>
+</div>
+<button class="text-primary font-bold flex items-center gap-2 group hover:text-secondary transition-colors">
+                    View Full Directory 
+                    <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+<!-- Service Cards -->
+<div class="p-6 bg-slate-50 rounded-lg border border-slate-100 hover:border-secondary transition-all group">
+<span class="material-symbols-outlined text-primary mb-4 block text-3xl group-hover:text-secondary">cleaning_services</span>
+<h3 class="font-bold text-primary mb-1">House Cleaning</h3>
+<p class="text-xs text-slate-500">Starting from $25</p>
+</div>
+<div class="p-6 bg-slate-50 rounded-lg border border-slate-100 hover:border-secondary transition-all group">
+<span class="material-symbols-outlined text-primary mb-4 block text-3xl group-hover:text-secondary">apartment</span>
+<h3 class="font-bold text-primary mb-1">Apartment</h3>
+<p class="text-xs text-slate-500">Starting from $20</p>
+</div>
+<div class="p-6 bg-slate-50 rounded-lg border border-slate-100 hover:border-secondary transition-all group">
+<span class="material-symbols-outlined text-primary mb-4 block text-3xl group-hover:text-secondary">local_laundry_service</span>
+<h3 class="font-bold text-primary mb-1">Laundry</h3>
+<p class="text-xs text-slate-500">Starting from $15</p>
+</div>
+<div class="p-6 bg-slate-50 rounded-lg border border-slate-100 hover:border-secondary transition-all group">
+<span class="material-symbols-outlined text-primary mb-4 block text-3xl group-hover:text-secondary">dry_cleaning</span>
+<h3 class="font-bold text-primary mb-1">Duvet Clean</h3>
+<p class="text-xs text-slate-500">Starting from $12</p>
+</div>
+<div class="p-6 bg-slate-50 rounded-lg border border-slate-100 hover:border-secondary transition-all group">
+<span class="material-symbols-outlined text-primary mb-4 block text-3xl group-hover:text-secondary">chair</span>
+<h3 class="font-bold text-primary mb-1">Sofa Cleaning</h3>
+<p class="text-xs text-slate-500">Starting from $45</p>
+</div>
+<div class="p-6 bg-slate-50 rounded-lg border border-slate-100 hover:border-secondary transition-all group">
+<span class="material-symbols-outlined text-primary mb-4 block text-3xl group-hover:text-secondary">layers</span>
+<h3 class="font-bold text-primary mb-1">Carpet Clean</h3>
+<p class="text-xs text-slate-500">Starting from $35</p>
+</div>
+<div class="p-6 bg-slate-50 rounded-lg border border-slate-100 hover:border-secondary transition-all group">
+<span class="material-symbols-outlined text-primary mb-4 block text-3xl group-hover:text-secondary">bed</span>
+<h3 class="font-bold text-primary mb-1">Mattress Clean</h3>
+<p class="text-xs text-slate-500">Starting from $30</p>
+</div>
+<div class="p-6 bg-slate-50 rounded-lg border border-slate-100 hover:border-secondary transition-all group">
+<span class="material-symbols-outlined text-primary mb-4 block text-3xl group-hover:text-secondary">corporate_fare</span>
+<h3 class="font-bold text-primary mb-1">Office Cleaning</h3>
+<p class="text-xs text-slate-500">Request Quote</p>
+</div>
+<div class="p-6 bg-slate-50 rounded-lg border border-slate-100 hover:border-secondary transition-all group">
+<span class="material-symbols-outlined text-primary mb-4 block text-3xl group-hover:text-secondary">local_shipping</span>
+<h3 class="font-bold text-primary mb-1">Move In/Out</h3>
+<p class="text-xs text-slate-500">Starting from $60</p>
+</div>
+<div class="p-6 bg-slate-50 rounded-lg border border-slate-100 hover:border-secondary transition-all group">
+<span class="material-symbols-outlined text-primary mb-4 block text-3xl group-hover:text-secondary">security</span>
+<h3 class="font-bold text-primary mb-1">Security</h3>
+<p class="text-xs text-slate-500">On Request</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Choose StarDash -->
+<section class="py-24 bg-slate-50">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-extrabold text-primary mb-4">Why Choose StarDash?</h2>
+<p class="text-slate-600 max-w-2xl mx-auto font-medium">We've built the most trusted platform for home services by focusing on quality and safety.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-white p-10 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="w-14 h-14 bg-secondary/10 text-secondary rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-3xl">verified_user</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-3">Vetted Pros</h3>
+<p class="text-slate-500 text-sm leading-relaxed">Every service provider undergoes a rigorous 5-step background check and skill assessment.</p>
+</div>
+<div class="bg-white p-10 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="w-14 h-14 bg-secondary/10 text-secondary rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-3xl">event_available</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-3">Easy Booking</h3>
+<p class="text-slate-500 text-sm leading-relaxed">Book a professional in less than 60 seconds. Manage everything from your smartphone.</p>
+</div>
+<div class="bg-white p-10 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="w-14 h-14 bg-secondary/10 text-secondary rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-3xl">support_agent</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-3">24/7 Support</h3>
+<p class="text-slate-500 text-sm leading-relaxed">Our dedicated concierge team is available around the clock to ensure your satisfaction.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Preview -->
+<section class="py-24 bg-white" id="pricing">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-16">
+<span class="text-secondary font-bold tracking-widest uppercase text-xs mb-4 block">Transparent &amp; Fair</span>
+<h2 class="text-4xl font-extrabold text-primary mb-4">Starting From</h2>
+</div>
+<div class="grid md:grid-cols-4 gap-6">
+<div class="p-8 rounded-xl border border-slate-100 bg-white hover:border-secondary transition-colors text-center">
+<h4 class="font-bold text-slate-500 uppercase text-xs mb-4">Studio Cleaning</h4>
+<div class="text-4xl font-extrabold text-primary mb-1">$20</div>
+<p class="text-slate-400 text-sm mb-6">per session</p>
+<button class="w-full py-2.5 bg-primary text-white rounded-lg font-bold text-sm">Book Studio</button>
+</div>
+<div class="p-8 rounded-xl border border-slate-100 bg-white hover:border-secondary transition-colors text-center scale-105 shadow-xl ring-2 ring-secondary/20">
+<div class="bg-secondary text-white text-[10px] font-bold uppercase py-1 px-3 rounded-full inline-block mb-4">Most Popular</div>
+<h4 class="font-bold text-slate-500 uppercase text-xs mb-2">3 Bedroom House</h4>
+<div class="text-4xl font-extrabold text-primary mb-1">$45</div>
+<p class="text-slate-400 text-sm mb-6">per session</p>
+<button class="w-full py-2.5 bg-secondary text-white rounded-lg font-bold text-sm">Book 3BR</button>
+</div>
+<div class="p-8 rounded-xl border border-slate-100 bg-white hover:border-secondary transition-colors text-center">
+<h4 class="font-bold text-slate-500 uppercase text-xs mb-4">Deep Sanitization</h4>
+<div class="text-4xl font-extrabold text-primary mb-1">$75</div>
+<p class="text-slate-400 text-sm mb-6">per session</p>
+<button class="w-full py-2.5 bg-primary text-white rounded-lg font-bold text-sm">Book Deep Clean</button>
+</div>
+<div class="p-8 rounded-xl border border-slate-100 bg-white hover:border-secondary transition-colors text-center">
+<h4 class="font-bold text-slate-500 uppercase text-xs mb-4">Sofa Extraction</h4>
+<div class="text-4xl font-extrabold text-primary mb-1">$35</div>
+<p class="text-slate-400 text-sm mb-6">per set</p>
+<button class="w-full py-2.5 bg-primary text-white rounded-lg font-bold text-sm">Book Sofa</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Top Rated Pros -->
+<section class="py-24 bg-slate-50 overflow-hidden">
+<div class="max-w-7xl mx-auto px-8">
+<div class="mb-16 flex justify-between items-center">
+<div>
+<span class="text-secondary font-bold tracking-widest uppercase text-xs mb-4 block">Meet the Elites</span>
+<h2 class="text-4xl font-extrabold text-primary">Top Rated Professionals</h2>
+</div>
+<div class="flex gap-2">
+<button class="p-2 border border-slate-200 rounded-lg hover:bg-white"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-2 border border-slate-200 rounded-lg hover:bg-white"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="flex flex-nowrap gap-8 pb-10 overflow-x-auto no-scrollbar">
+<!-- Pro 1 -->
+<div class="min-w-[340px] bg-white p-6 rounded-xl premium-shadow border border-slate-100 relative">
+<div class="absolute top-6 right-6 flex items-center gap-1 bg-secondary/10 text-secondary px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-xs">verified</span>
+<span class="text-[10px] font-bold uppercase">Verified</span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-20 h-20 rounded-xl overflow-hidden shadow-inner">
+<img alt="Elena Rodriguez" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFg3lfH7zi-5M2U996Vk3eFLJgtTejTzj45lG2D9a43W_f6nTT_QJx61kjPnw1EJyDd5svwHldTTcmy9GlE0v5QBFBuc962jtfXxBnggX7CphUgP8rnMjpTL1LdTU0h6EhgFnq1tKulXZpJK3nyOhlRd4D5RsHYitgjaOrYnEfWcoqroexZPUVp2Nc3DiWhzGJ1o-awoLUDoffXc2YvOSMHiLyeJh1BB8rFtQs79wLMbY4FOVi6NXMuakBnfM6fpnYiWwgope9cjs"/>
+</div>
+<div>
+<h4 class="font-bold text-lg text-primary">Elena Rodriguez</h4>
+<p class="text-slate-500 text-xs font-semibold">House Cleaning Specialist</p>
+<p class="text-slate-400 text-[10px] mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">location_on</span> Kilimani, Nairobi</p>
+</div>
+</div>
+<div class="flex justify-between items-center mb-4 text-sm font-medium border-y border-slate-50 py-3">
+<div class="flex items-center text-yellow-500">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="ml-1 text-primary">4.9</span>
+</div>
+<div class="text-slate-500">542 Jobs Completed</div>
+</div>
+<p class="text-xs text-slate-500 italic leading-relaxed">"Passionate about transforming messy spaces into peaceful sanctuaries."</p>
+</div>
+<!-- Pro 2 -->
+<div class="min-w-[340px] bg-white p-6 rounded-xl premium-shadow border border-slate-100 relative">
+<div class="absolute top-6 right-6 flex items-center gap-1 bg-secondary/10 text-secondary px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-xs">verified</span>
+<span class="text-[10px] font-bold uppercase">Verified</span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-20 h-20 rounded-xl overflow-hidden shadow-inner">
+<img alt="Marcus Chen" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZAV16BnEjnX7C7-Wat1q_vMEJaEpV4-A6OYgW_bxho8uuVxA10paecoY3fOxXnv_bDWoKVbMORPMKqkyElheSS5EHtnkfn4fA18nBVRnJXElGnuh7jU-ncdmX59ZzVyJ1dwL_B7BRR3GmsT0PxG2QoM3YoNBcmx3BQ05DKOKIf8j_1kwQhjfGLkzjQyna-y4xlDARE4ghLbTI59eY9e6_kMeHkVP5GjiuB-WPvriMhoEkPyQFjVfqWvTLmINHxx9cbGKpaKodjjo"/>
+</div>
+<div>
+<h4 class="font-bold text-lg text-primary">Marcus Chen</h4>
+<p class="text-slate-500 text-xs font-semibold">Deep Clean Expert</p>
+<p class="text-slate-400 text-[10px] mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">location_on</span> Westlands, Nairobi</p>
+</div>
+</div>
+<div class="flex justify-between items-center mb-4 text-sm font-medium border-y border-slate-50 py-3">
+<div class="flex items-center text-yellow-500">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="ml-1 text-primary">5.0</span>
+</div>
+<div class="text-slate-500">315 Jobs Completed</div>
+</div>
+<p class="text-xs text-slate-500 italic leading-relaxed">"Industrial precision for your carpets and upholstery."</p>
+</div>
+<!-- Pro 3 -->
+<div class="min-w-[340px] bg-white p-6 rounded-xl premium-shadow border border-slate-100 relative">
+<div class="absolute top-6 right-6 flex items-center gap-1 bg-secondary/10 text-secondary px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-xs">verified</span>
+<span class="text-[10px] font-bold uppercase">Verified</span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-20 h-20 rounded-xl overflow-hidden shadow-inner">
+<img alt="Sarah Jenkins" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFc3U3q8FjGOZexjB9iwSmiBPzvFcIsfu9VuUKGdwfqhzmJh7_ESYf1GBMSG0vEThMfH1yls0MA2IOGGNMtiseFFkwb-AzCTLGeVeHdmMwuDhQevt9xxtI-4Lfjl074MsR6xnJmUmYSEQpO9t7MQZ0lGXQAybuXoiAI-RAlOsPSz-sNy8inGft_vyARO0QNzNxL34VuYaG8jsVQns7gtO97pjVhT3-5sC_3V6TPrlj2RBWJs-Gu7T8txSv5zHCwSazcU_3qAJR6jQ"/>
+</div>
+<div>
+<h4 class="font-bold text-lg text-primary">Sarah Jenkins</h4>
+<p class="text-slate-500 text-xs font-semibold">Laundry &amp; Organising</p>
+<p class="text-slate-400 text-[10px] mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">location_on</span> Lavington, Nairobi</p>
+</div>
+</div>
+<div class="flex justify-between items-center mb-4 text-sm font-medium border-y border-slate-50 py-3">
+<div class="flex items-center text-yellow-500">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="ml-1 text-primary">4.9</span>
+</div>
+<div class="text-slate-500">228 Jobs Completed</div>
+</div>
+<p class="text-xs text-slate-500 italic leading-relaxed">"Meticulous folding and closet management for busy homes."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Become a Worker Section -->
+<section class="py-24 px-8" id="become-partner">
+<div class="max-w-7xl mx-auto bg-primary rounded-2xl overflow-hidden flex flex-col lg:flex-row shadow-2xl">
+<div class="flex-1 p-12 lg:p-20">
+<span class="text-secondary font-bold tracking-widest uppercase text-xs mb-4 block">Opportunity Awaits</span>
+<h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8 leading-tight">Join the Elite Workforce</h2>
+<p class="text-slate-300 text-lg mb-10 leading-relaxed">Set your own rates, manage your own schedule, and gain access to premium clients in Nairobi. We provide the tools, you provide the talent.</p>
+<div class="grid sm:grid-cols-2 gap-6 mb-12">
+<div class="flex gap-4">
+<div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<h4 class="text-white font-bold text-sm">Weekly Payouts</h4>
+<p class="text-slate-400 text-xs">Get paid directly every Friday.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<h4 class="text-white font-bold text-sm">Full Flexibility</h4>
+<p class="text-slate-400 text-xs">Work when you want, where you want.</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-secondary text-white px-8 py-4 rounded-lg font-bold hover:opacity-90 transition-all">Apply as Partner</button>
+<button class="bg-white/10 text-white px-8 py-4 rounded-lg font-bold border border-white/20 hover:bg-white/20 transition-all">Learn More</button>
+</div>
+</div>
+<div class="lg:w-[450px] relative">
+<img alt="Professional Partner" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlkZWCeCIZ_U1ZAebSeQA5D6YB3JHdPT510huukRzag_Z0mdO1o-Iz5k3XdDgn9-gQ79zn0_du1sBUi98IOMbxdz-VlgeH_k7GVHqm-1e7afDeuh68Whpe8DUwPanDGUqszZuVSHN2H5YYMbCZhKS_tc320zIk8ZdTHcyndHU8K8akNle4fMhtSql4_tWWBNSuqYGbDdBzTVVsivGYCbQYLcrGK0GVVPHlPXpvIyQi2letacOnIymqm-7EPajzNVzG816-cE_V3aA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent lg:bg-gradient-to-l"></div>
+</div>
+</div>
+</section>
+<!-- Service Areas -->
+<section class="py-24 bg-white">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+<h2 class="text-3xl font-extrabold text-primary">Now Serving Nairobi</h2>
+<div class="flex gap-4 flex-wrap justify-center">
+<span class="px-4 py-2 bg-slate-50 rounded-full text-sm font-semibold border border-slate-100">Kilimani</span>
+<span class="px-4 py-2 bg-slate-50 rounded-full text-sm font-semibold border border-slate-100">Westlands</span>
+<span class="px-4 py-2 bg-slate-50 rounded-full text-sm font-semibold border border-slate-100">Karen</span>
+<span class="px-4 py-2 bg-slate-50 rounded-full text-sm font-semibold border border-slate-100">Lavington</span>
+<span class="px-4 py-2 bg-slate-50 rounded-full text-sm font-semibold border border-slate-100">Runda</span>
+</div>
+</div>
+<div class="h-[300px] w-full bg-slate-100 rounded-xl overflow-hidden relative">
+<img alt="Nairobi Cityscape" class="w-full h-full object-cover grayscale opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFSeg02tQ5YZnsug7oA1UL55c1P7ZaY4Fab92CSXr4cooeJemCrMLYkg8DJMmqhAOv7ap9SwdE9pthJWR7R0l2dyHj_ONpa7B_tNn_fURduFMw7TZSPQwK6sA9ZNWSdRfSbDrDsJ9_1OqXScWmaxtsjYr6kz73sFfIwzeIymtPm0egOUjX7lzw3vghGCL8C6E1EsLURdccTweaBi1ihTY2SLdI-c3B8sCIZqVaBdXT9fp8-4RPO0WCfKynMW-dXrbVV2m1d-nJDAU"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-primary text-white px-6 py-3 rounded-lg font-bold shadow-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">explore</span>
+                        Expanding to Mombasa Soon
+                    </div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ & Newsletter -->
+<section class="py-24 bg-slate-50">
+<div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-20">
+<div>
+<h2 class="text-4xl font-extrabold text-primary mb-10">Common Questions</h2>
+<div class="space-y-4">
+<details class="group bg-white rounded-lg border border-slate-200 overflow-hidden" open="">
+<summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-primary list-none">
+                            Are your professionals insured?
+                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-6 pb-6 text-slate-500 text-sm leading-relaxed">
+                            Yes, every booking through StarDash is covered by our comprehensive $1,000,000 liability insurance policy. We prioritize your home's safety above everything else.
+                        </div>
+</details>
+<details class="group bg-white rounded-lg border border-slate-200 overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-primary list-none">
+                            How do I pay for the service?
+                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-6 pb-6 text-slate-500 text-sm leading-relaxed">
+                            Payments are handled securely through our platform. You can pay via M-Pesa or Credit Card. Funds are only released to the worker once you approve the job completion.
+                        </div>
+</details>
+<details class="group bg-white rounded-lg border border-slate-200 overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-primary list-none">
+                            Can I cancel my booking?
+                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-6 pb-6 text-slate-500 text-sm leading-relaxed">
+                            Yes, cancellations made up to 24 hours before the service start time are fully refundable.
+                        </div>
+</details>
+</div>
+</div>
+<div class="bg-primary p-12 rounded-2xl flex flex-col justify-center shadow-xl">
+<div class="w-16 h-16 bg-secondary/20 text-secondary rounded-lg flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-3xl">mail</span>
+</div>
+<h3 class="text-3xl font-extrabold text-white mb-4">Stay in the Loop</h3>
+<p class="text-slate-400 mb-8 leading-relaxed">Join 15,000+ homeowners receiving exclusive offers and expert home care tips every month.</p>
+<form class="flex flex-col sm:flex-row gap-3">
+<input class="flex-1 bg-white/5 border border-white/10 rounded-lg px-6 py-4 text-white focus:outline-none focus:ring-1 focus:ring-secondary text-sm" placeholder="Your email address" type="email"/>
+<button class="bg-secondary text-white font-bold px-8 py-4 rounded-lg hover:opacity-90 transition-all text-sm">Subscribe</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Detailed Footer -->
+<footer class="bg-primary text-white pt-24 pb-12 border-t border-white/5">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-20">
+<div class="col-span-2">
+<div class="text-3xl font-black tracking-tighter text-white mb-6 font-headline">StarDash</div>
+<p class="text-slate-400 max-w-sm mb-8 leading-relaxed">
+                        Nairobi's premium marketplace for home excellence. We bridge the gap between quality service seekers and the city's finest professionals.
+                    </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:text-secondary hover:bg-white/10 transition-all" href="#"><span class="material-symbols-outlined text-xl">facebook</span></a>
+<a class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:text-secondary hover:bg-white/10 transition-all" href="#"><span class="material-symbols-outlined text-xl">share</span></a>
+<a class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:text-secondary hover:bg-white/10 transition-all" href="#"><span class="material-symbols-outlined text-xl">public</span></a>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-sm mb-6 uppercase tracking-widest text-secondary">Company</h4>
+<ul class="space-y-4 text-slate-400 text-sm font-medium">
+<li><a class="hover:text-white transition-colors" href="#">About StarDash</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Success Stories</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Press Kit</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-sm mb-6 uppercase tracking-widest text-secondary">Services</h4>
+<ul class="space-y-4 text-slate-400 text-sm font-medium">
+<li><a class="hover:text-white transition-colors" href="#">Residential Cleaning</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Laundry Management</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Deep Extraction</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Office &amp; Corporate</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-sm mb-6 uppercase tracking-widest text-secondary">Support</h4>
+<ul class="space-y-4 text-slate-400 text-sm font-medium">
+<li><a class="hover:text-white transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Safety Center</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Partner Portal</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-slate-500 text-xs font-medium">© 2024 StarDash Technologies Ltd. Built for excellence in Nairobi.</p>
+<div class="flex gap-8 text-xs font-bold text-slate-400">
+<a class="hover:text-white uppercase" href="#">Privacy Policy</a>
+<a class="hover:text-white uppercase" href="#">Terms of Use</a>
+<a class="hover:text-white uppercase" href="#">Cookie Policy</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

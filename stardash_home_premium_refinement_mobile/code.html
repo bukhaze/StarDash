@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StarDash | Premium Home Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#b9c7e4",
+              "surface-container": "#eceef0",
+              "on-secondary-fixed-variant": "#005047",
+              "secondary-fixed": "#62fae3",
+              "surface": "#f7f9fb",
+              "primary-container": "#0d1c32",
+              "surface-tint": "#515f78",
+              "on-primary-fixed-variant": "#39475f",
+              "surface-variant": "#e0e3e5",
+              "surface-dim": "#d8dadc",
+              "tertiary-fixed-dim": "#4ae176",
+              "surface-container-highest": "#e0e3e5",
+              "tertiary": "#000000",
+              "error-container": "#ffdad6",
+              "outline-variant": "#c5c6cd",
+              "secondary": "#006b5f",
+              "on-primary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "inverse-on-surface": "#eff1f3",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-fixed": "#0d1c32",
+              "surface-container-low": "#f2f4f6",
+              "on-surface-variant": "#44474d",
+              "primary": "#000000",
+              "surface-container-high": "#e6e8ea",
+              "on-error": "#ffffff",
+              "on-surface": "#191c1e",
+              "on-tertiary-container": "#009844",
+              "background": "#f7f9fb",
+              "tertiary-container": "#002109",
+              "secondary-container": "#62fae3",
+              "surface-bright": "#f7f9fb",
+              "primary-fixed-dim": "#b9c7e4",
+              "on-background": "#191c1e",
+              "primary-fixed": "#d6e3ff",
+              "on-secondary-fixed": "#00201c",
+              "on-error-container": "#93000a",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#2d3133",
+              "on-secondary-container": "#007165",
+              "on-tertiary-fixed": "#002109",
+              "secondary-fixed-dim": "#3cddc7",
+              "error": "#ba1a1a",
+              "tertiary-fixed": "#6bff8f",
+              "outline": "#75777e",
+              "on-primary-container": "#76849f",
+              "on-tertiary-fixed-variant": "#005321"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+      .stellar-grid { background-image: radial-gradient(circle at 2px 2px, #e5e7eb 1px, transparent 0); background-size: 24px 24px; }
+      body { min-height: 100dvh; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl border-b border-surface-variant/30 px-6 py-4 flex justify-between items-center left-0 right-0">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-bold tracking-tighter text-primary font-headline">StarDash</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 text-on-surface-variant">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+<button class="p-2 text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<main class="pt-20 pb-24">
+<!-- Hero Section -->
+<section class="px-6 py-10 flex flex-col items-center text-center stellar-grid">
+<div class="w-full max-w-xl mx-auto">
+<span class="inline-block px-4 py-1.5 mb-6 rounded-full bg-secondary-container text-on-secondary-container font-label text-[10px] font-bold uppercase tracking-widest">
+                    Premium Home Services
+                </span>
+<h1 class="font-headline text-4xl font-extrabold text-primary leading-tight tracking-tight mb-4">
+                    Elevated living,<br/>effortlessly delivered.
+                </h1>
+<p class="text-on-surface-variant text-base leading-relaxed mb-8 max-w-sm mx-auto">
+                    The digital concierge for high-end home maintenance. Vetted professionals at your doorstep.
+                </p>
+<!-- Stacked Booking Search -->
+<div class="w-full space-y-3 bg-white p-4 rounded-2xl shadow-xl shadow-primary/5 border border-surface-variant/50">
+<div class="relative flex items-center bg-surface-container-low px-4 py-4 rounded-xl">
+<span class="material-symbols-outlined text-secondary mr-3">home_repair_service</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-medium placeholder:text-on-surface-variant/50" placeholder="Which service?" type="text"/>
+</div>
+<div class="relative flex items-center bg-surface-container-low px-4 py-4 rounded-xl">
+<span class="material-symbols-outlined text-secondary mr-3">location_on</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-medium placeholder:text-on-surface-variant/50" placeholder="Zip Code" type="text"/>
+</div>
+<button class="w-full bg-primary text-white font-headline font-bold py-4 rounded-xl shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform">
+                        Find Experts
+                    </button>
+</div>
+</div>
+</section>
+<!-- Trust Badges -->
+<section class="px-6 pb-12">
+<div class="flex gap-6 overflow-x-auto no-scrollbar py-2">
+<div class="flex items-center gap-2 whitespace-nowrap opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-secondary">verified</span>
+<span class="text-xs font-bold uppercase tracking-tighter">Vetted Pros</span>
+</div>
+<div class="flex items-center gap-2 whitespace-nowrap opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-secondary">security</span>
+<span class="text-xs font-bold uppercase tracking-tighter">Insured Work</span>
+</div>
+<div class="flex items-center gap-2 whitespace-nowrap opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-secondary">payments</span>
+<span class="text-xs font-bold uppercase tracking-tighter">Secure Pay</span>
+</div>
+<div class="flex items-center gap-2 whitespace-nowrap opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-secondary">schedule</span>
+<span class="text-xs font-bold uppercase tracking-tighter">24/7 Support</span>
+</div>
+</div>
+</section>
+<!-- Expanded Service Categories -->
+<section class="py-12 bg-white rounded-t-[2.5rem] border-t border-surface-variant/30">
+<div class="px-6 mb-8 flex justify-between items-end">
+<div>
+<h2 class="font-headline text-2xl font-bold text-primary">Our Expertise</h2>
+<p class="text-sm text-on-surface-variant">Curated care for your residence</p>
+</div>
+<a class="text-secondary text-sm font-bold flex items-center gap-1" href="#">All <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-2 gap-4 px-6">
+<!-- House Cleaning -->
+<div class="bg-surface p-5 rounded-2xl border border-surface-variant/40 flex flex-col gap-4">
+<div class="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">cleaning_services</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-sm">Deep Cleaning</h3>
+<p class="text-[10px] text-on-surface-variant mt-1">Sanitized spaces</p>
+</div>
+</div>
+<!-- Laundry -->
+<div class="bg-surface p-5 rounded-2xl border border-surface-variant/40 flex flex-col gap-4">
+<div class="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">local_laundry_service</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-sm">Dry Cleaning</h3>
+<p class="text-[10px] text-on-surface-variant mt-1">Expert care</p>
+</div>
+</div>
+<!-- Garden -->
+<div class="bg-surface p-5 rounded-2xl border border-surface-variant/40 flex flex-col gap-4">
+<div class="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-sm">Garden Care</h3>
+<p class="text-[10px] text-on-surface-variant mt-1">Lush landscapes</p>
+</div>
+</div>
+<!-- Handyman -->
+<div class="bg-surface p-5 rounded-2xl border border-surface-variant/40 flex flex-col gap-4">
+<div class="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">build</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-sm">Handyman</h3>
+<p class="text-[10px] text-on-surface-variant mt-1">Repairs &amp; more</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Choose StarDash -->
+<section class="px-6 py-16 bg-surface">
+<h2 class="font-headline text-3xl font-extrabold text-primary mb-10 tracking-tight text-center">Why StarDash?</h2>
+<div class="space-y-6">
+<div class="flex gap-5 p-6 bg-white rounded-2xl shadow-sm border border-surface-variant/20">
+<div class="w-12 h-12 bg-secondary rounded-full flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-white">shield_person</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-lg mb-1">Unrivaled Trust</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Every pro passes a 10-point background check and skill audit.</p>
+</div>
+</div>
+<div class="flex gap-5 p-6 bg-white rounded-2xl shadow-sm border border-surface-variant/20">
+<div class="w-12 h-12 bg-secondary rounded-full flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-white">diamond</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-lg mb-1">Premium Quality</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Exclusive tools and high-grade materials used for every job.</p>
+</div>
+</div>
+<div class="flex gap-5 p-6 bg-white rounded-2xl shadow-sm border border-surface-variant/20">
+<div class="w-12 h-12 bg-secondary rounded-full flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-white">auto_awesome</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-lg mb-1">Seamless Tech</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Real-time tracking and automated scheduling via our dashboard.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Top Rated Pros (Enriched) -->
+<section class="px-6 py-16 bg-white">
+<div class="mb-8">
+<h2 class="font-headline text-2xl font-extrabold text-primary mb-2">Expert Professionals</h2>
+<p class="text-on-surface-variant text-sm">Highly requested stars in your area.</p>
+</div>
+<div class="flex flex-col gap-6">
+<!-- Enriched Pro Card 1 -->
+<div class="bg-surface rounded-2xl p-6 border border-surface-variant/40 flex flex-col gap-4">
+<div class="flex gap-4">
+<div class="relative">
+<img class="w-16 h-16 rounded-xl object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz3DREUT5HEBUb09b9KqAV6vyOs8gzzGHnLOucgGTuQ754RuOOyRBYbF0JxAKoG29R1vxjwcfikt9bWa1ht2137ehoc9mnXHIw0W64QoUhh5CGfcLJ0z7KfMrAqLoczemN_kmx6BjFi52iEM09b3Poa7Dz9doLDr-EljhKP7Hs1ZpprxAUz7zpSVWqpxt63GwZ06AIlcvCUztGOlSeplk-QGk21fETWfUn_ffUm7k6wBHO7rtH7hRTiQ1-f4bsZRLkzZTD68MEshw"/>
+<div class="absolute -bottom-1 -right-1 bg-secondary text-white w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">
+<span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-primary">Elena R.</h4>
+<p class="text-xs text-on-surface-variant font-medium">Interior Specialist</p>
+</div>
+<div class="flex items-center gap-1 bg-secondary/10 px-2 py-0.5 rounded text-secondary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold">4.9</span>
+</div>
+</div>
+<div class="mt-2 flex items-center gap-3 text-[10px] text-on-surface-variant font-medium uppercase tracking-tighter">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">work</span> 450+ Jobs</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">location_on</span> Kilimani</span>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-surface-variant/30 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant font-bold uppercase">Rate from</span>
+<span class="text-lg font-bold text-secondary">$35<span class="text-xs text-on-surface-variant font-normal">/hr</span></span>
+</div>
+<button class="bg-primary text-white px-6 py-3 rounded-xl font-bold text-sm shadow-md">Book Elena</button>
+</div>
+</div>
+<!-- Enriched Pro Card 2 -->
+<div class="bg-surface rounded-2xl p-6 border border-surface-variant/40 flex flex-col gap-4">
+<div class="flex gap-4">
+<div class="relative">
+<img class="w-16 h-16 rounded-xl object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx12DjHEcLsJqgOb0Nhs5Ge1hSLsrsmN6lNwomwNxxjj4HDmCHeE20LnOiRX-Xv8qTf3MaZsM6EjfxZ9y6H4hhK0wuScwVO1c7dwf7ArTRp3fzq8Q17XIYJsPTnBDGku3U64iv_nmalQccp5mO8_PGROq9C6Pr0cXt3GgT7NVUZc_coPMNntAiy9ube-haKPNsXeVDL0LFRL-4KU006P3pV20nqGz6ZbI7Ab02KapZ27zR5H_YB6Cd5Z23XWcnDwt8tknvpYszP0A"/>
+<div class="absolute -bottom-1 -right-1 bg-secondary text-white w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">
+<span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-primary">Marcus J.</h4>
+<p class="text-xs text-on-surface-variant font-medium">Landscape Designer</p>
+</div>
+<div class="flex items-center gap-1 bg-secondary/10 px-2 py-0.5 rounded text-secondary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold">5.0</span>
+</div>
+</div>
+<div class="mt-2 flex items-center gap-3 text-[10px] text-on-surface-variant font-medium uppercase tracking-tighter">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">work</span> 280+ Jobs</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">location_on</span> Westlands</span>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-surface-variant/30 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant font-bold uppercase">Rate from</span>
+<span class="text-lg font-bold text-secondary">$48<span class="text-xs text-on-surface-variant font-normal">/hr</span></span>
+</div>
+<button class="bg-primary text-white px-6 py-3 rounded-xl font-bold text-sm shadow-md">Book Marcus</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Preview -->
+<section class="px-6 py-16 bg-surface">
+<div class="text-center mb-10">
+<h2 class="font-headline text-3xl font-extrabold text-primary mb-3">Transparent Pricing</h2>
+<p class="text-on-surface-variant text-sm">No hidden fees. Pay for what you need.</p>
+</div>
+<div class="bg-white rounded-2xl p-8 border border-surface-variant/40 shadow-sm">
+<div class="space-y-6">
+<div class="flex justify-between items-center">
+<span class="font-bold text-primary">Standard Cleaning</span>
+<span class="text-secondary font-bold">from $25/hr</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-bold text-primary">Handyman Repair</span>
+<span class="text-secondary font-bold">from $45/hr</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-bold text-primary">Landscape Design</span>
+<span class="text-secondary font-bold">from $60/hr</span>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-surface-variant/20">
+<p class="text-[10px] text-on-surface-variant leading-relaxed text-center mb-6">Rates vary based on complexity and location. All bookings include our satisfaction guarantee.</p>
+<button class="w-full py-4 border-2 border-primary text-primary font-bold rounded-xl active:bg-primary active:text-white transition-colors">See Detailed Pricing</button>
+</div>
+</div>
+</section>
+<!-- Platform Stats & Testimonials -->
+<section class="px-6 py-20 bg-primary text-white rounded-[2rem] mx-4 my-12">
+<div class="grid grid-cols-2 gap-8 text-center mb-16">
+<div>
+<h3 class="text-3xl font-extrabold mb-1">15k+</h3>
+<p class="text-[10px] uppercase font-bold tracking-widest opacity-60">Happy Clients</p>
+</div>
+<div>
+<h3 class="text-3xl font-extrabold mb-1">4.8/5</h3>
+<p class="text-[10px] uppercase font-bold tracking-widest opacity-60">Avg Rating</p>
+</div>
+</div>
+<div class="space-y-8">
+<div class="flex flex-col gap-4">
+<div class="flex gap-1 text-secondary-fixed">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-lg font-medium italic opacity-90 leading-relaxed">"The most professional cleaning I've ever had. Truly a premium experience from start to finish."</p>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container/20"></div>
+<span class="font-bold text-sm">Sarah W., Lavington</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Become a Worker -->
+<section class="px-6 py-16 bg-secondary-container rounded-t-[2.5rem] mt-12">
+<div class="text-center mb-10">
+<h2 class="font-headline text-3xl font-extrabold text-on-secondary-container mb-4">Earn as an Expert</h2>
+<p class="text-on-secondary-container/80 text-sm max-w-xs mx-auto">Join our elite network of home service professionals in Nairobi.</p>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4 bg-white/40 p-4 rounded-xl">
+<span class="material-symbols-outlined text-on-secondary-container">payments</span>
+<span class="text-sm font-bold text-on-secondary-container">Get paid weekly</span>
+</div>
+<div class="flex items-center gap-4 bg-white/40 p-4 rounded-xl">
+<span class="material-symbols-outlined text-on-secondary-container">calendar_today</span>
+<span class="text-sm font-bold text-on-secondary-container">Set your own schedule</span>
+</div>
+<button class="w-full bg-on-secondary-container text-white font-bold py-5 rounded-2xl shadow-xl active:scale-[0.98] transition-transform mt-6">Apply to Join</button>
+</div>
+</section>
+<!-- Service Areas -->
+<section class="px-6 py-20 bg-white">
+<h2 class="font-headline text-2xl font-bold text-primary mb-8">Serving Nairobi</h2>
+<div class="flex flex-wrap gap-2">
+<span class="px-4 py-2 bg-surface rounded-full text-xs font-medium border border-surface-variant/50">Kilimani</span>
+<span class="px-4 py-2 bg-surface rounded-full text-xs font-medium border border-surface-variant/50">Lavington</span>
+<span class="px-4 py-2 bg-surface rounded-full text-xs font-medium border border-surface-variant/50">Westlands</span>
+<span class="px-4 py-2 bg-surface rounded-full text-xs font-medium border border-surface-variant/50">Karen</span>
+<span class="px-4 py-2 bg-surface rounded-full text-xs font-medium border border-surface-variant/50">Runda</span>
+<span class="px-4 py-2 bg-surface rounded-full text-xs font-medium border border-surface-variant/50">Muthaiga</span>
+<span class="px-4 py-2 bg-surface rounded-full text-xs font-medium border border-surface-variant/50">Upper Hill</span>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="px-6 py-16 bg-surface">
+<h2 class="font-headline text-2xl font-bold text-primary mb-8 text-center">Frequently Asked</h2>
+<div class="space-y-4">
+<details class="group bg-white rounded-2xl border border-surface-variant/30 overflow-hidden">
+<summary class="flex justify-between items-center p-5 cursor-pointer list-none font-bold text-sm text-primary">
+                        How are pros vetted?
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-5 pt-0 text-sm text-on-surface-variant leading-relaxed">
+                        Every professional undergoes a rigorous background check, including identity verification, criminal record audit, and a practical skill assessment.
+                    </div>
+</details>
+<details class="group bg-white rounded-2xl border border-surface-variant/30 overflow-hidden">
+<summary class="flex justify-between items-center p-5 cursor-pointer list-none font-bold text-sm text-primary">
+                        What if I'm not satisfied?
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-5 pt-0 text-sm text-on-surface-variant leading-relaxed">
+                        We offer a StarDash Guarantee. If you aren't happy with the service, we'll send another pro to fix it at no extra cost or offer a full refund.
+                    </div>
+</details>
+<details class="group bg-white rounded-2xl border border-surface-variant/30 overflow-hidden">
+<summary class="flex justify-between items-center p-5 cursor-pointer list-none font-bold text-sm text-primary">
+                        How do I pay?
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-5 pt-0 text-sm text-on-surface-variant leading-relaxed">
+                        Payment is handled securely through the platform via M-Pesa or Credit/Debit card only after the job is completed and approved by you.
+                    </div>
+</details>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="mx-6 my-16 bg-primary-container rounded-[2rem] p-10 text-center text-white relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="font-headline text-3xl font-bold mb-4 tracking-tight">Ready for a cleaner home?</h2>
+<p class="text-on-primary-container text-sm mb-10 opacity-80 max-w-xs mx-auto">Experience the standard of premium living today.</p>
+<button class="w-full bg-secondary-fixed text-on-secondary-fixed font-bold py-5 rounded-2xl shadow-xl active:scale-95 transition-all">Get Started Today</button>
+</div>
+<div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-secondary/20 rounded-full blur-3xl"></div>
+</section>
+</main>
+<!-- Comprehensive Mobile Footer -->
+<footer class="bg-tertiary text-white pt-20 pb-28 px-6">
+<div class="flex flex-col gap-12">
+<div>
+<span class="text-3xl font-bold font-headline tracking-tighter block mb-4">StarDash</span>
+<p class="text-slate-400 text-sm leading-relaxed max-w-xs">The gold standard for residential maintenance and luxury care in Nairobi.</p>
+</div>
+<div class="grid grid-cols-2 gap-10">
+<div class="space-y-4">
+<h5 class="text-secondary-fixed font-bold text-xs uppercase tracking-widest">Company</h5>
+<ul class="space-y-4 text-slate-400 text-sm font-medium">
+<li><a class="hover:text-secondary-fixed transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#">How It Works</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#">Safety First</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#">Careers</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="text-secondary-fixed font-bold text-xs uppercase tracking-widest">Support</h5>
+<ul class="space-y-4 text-slate-400 text-sm font-medium">
+<li><a class="hover:text-secondary-fixed transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#">Contact Us</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#">Pricing</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#">Privacy</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-12 border-t border-white/5 space-y-8">
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">share</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">camera_alt</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">alternate_email</span>
+</div>
+</div>
+<p class="text-slate-600 text-[10px] leading-relaxed">© 2024 StarDash Technologies Ltd. Licensed, bonded, and insured. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<!-- Bottom Nav Bar (Mobile Only) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md px-6 py-4 flex justify-between items-center z-50 border-t border-surface-variant/20">
+<div class="flex flex-col items-center gap-1 text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-medium">Explore</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] font-medium">Bookings</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</div>
+</div>
+</body></html>

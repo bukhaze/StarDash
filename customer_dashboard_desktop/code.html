@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StarDash Customer Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed": "#0d1c32",
+              "inverse-primary": "#b9c7e4",
+              "primary-fixed": "#d6e3ff",
+              "on-surface-variant": "#44474d",
+              "on-surface": "#191c1e",
+              "error": "#ba1a1a",
+              "secondary": "#006b5f",
+              "on-primary": "#ffffff",
+              "on-secondary-fixed-variant": "#005047",
+              "surface-dim": "#d8dadc",
+              "error-container": "#ffdad6",
+              "surface-tint": "#515f78",
+              "surface-variant": "#e0e3e5",
+              "on-tertiary-fixed": "#002109",
+              "surface-bright": "#f7f9fb",
+              "on-primary-container": "#76849f",
+              "outline": "#75777e",
+              "on-secondary-container": "#007165",
+              "on-primary-fixed-variant": "#39475f",
+              "tertiary": "#000000",
+              "secondary-container": "#62fae3",
+              "on-error-container": "#93000a",
+              "surface": "#f7f9fb",
+              "on-background": "#191c1e",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed": "#6bff8f",
+              "on-tertiary-container": "#009844",
+              "background": "#f7f9fb",
+              "outline-variant": "#c5c6cd",
+              "on-secondary-fixed": "#00201c",
+              "inverse-on-surface": "#eff1f3",
+              "inverse-surface": "#2d3133",
+              "primary": "#000000",
+              "on-tertiary-fixed-variant": "#005321",
+              "primary-container": "#0d1c32",
+              "surface-container": "#eceef0",
+              "tertiary-container": "#002109",
+              "surface-container-high": "#e6e8ea",
+              "tertiary-fixed-dim": "#4ae176",
+              "surface-container-low": "#f2f4f6",
+              "secondary-fixed": "#62fae3",
+              "secondary-fixed-dim": "#3cddc7",
+              "primary-fixed-dim": "#b9c7e4",
+              "surface-container-highest": "#e0e3e5",
+              "on-error": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .no-border { border: none !important; }
+      .glass-effect {
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-72 fixed left-0 top-0 overflow-y-auto bg-slate-50 hidden md:flex flex-col gap-1 p-6 z-50">
+<div class="text-2xl font-black text-slate-900 mb-8 font-headline tracking-tighter">StarDash</div>
+<div class="mb-8 px-2">
+<div class="flex items-center gap-3 mb-2">
+<img alt="User Profile" class="w-10 h-10 rounded-full object-cover" data-alt="professional headshot of a smiling young man in a clean white shirt against a neutral studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIBwWvryGdwoJu52m7gDudgQcLf1szjrlxVWNEc_5kBIqKbtXL8DXp8yhV3uGC7OQ8rV6EflUwrSPYa9eqTXq82uSkPI00shTktE2H-18CB0KG-0k5nTt_p-ptexSY8e_aJiLiAntLVZyWtfUASgUq9i5hr5LCuyd_zQjJYMr7ignx6oLAqYuqGrHvQMj7WFg7d75ODWjJOT71YoSRFmM76uERrZmOwYXZDC6zTC7OTaSJ5az0UN4TyYbsV9XCj3QBZljrDyFW1n4"/>
+<div>
+<p class="font-headline text-sm font-semibold text-slate-900">Welcome back,</p>
+<p class="text-xs text-slate-500 font-medium">Premium Member</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="cursor-pointer flex items-center gap-3 px-6 py-4 bg-white text-teal-600 shadow-sm rounded-xl font-headline text-sm font-medium transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="cursor-pointer flex items-center gap-3 px-6 py-4 text-slate-500 hover:text-slate-900 hover:translate-x-1 transition-transform duration-200 font-headline text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span>My Bookings</span>
+</a>
+<a class="cursor-pointer flex items-center gap-3 px-6 py-4 text-slate-500 hover:text-slate-900 hover:translate-x-1 transition-transform duration-200 font-headline text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span>Messages</span>
+</a>
+<a class="cursor-pointer flex items-center gap-3 px-6 py-4 text-slate-500 hover:text-slate-900 hover:translate-x-1 transition-transform duration-200 font-headline text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span>Addresses</span>
+</a>
+<a class="cursor-pointer flex items-center gap-3 px-6 py-4 text-slate-500 hover:text-slate-900 hover:translate-x-1 transition-transform duration-200 font-headline text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Payments</span>
+</a>
+<a class="cursor-pointer flex items-center gap-3 px-6 py-4 text-slate-500 hover:text-slate-900 hover:translate-x-1 transition-transform duration-200 font-headline text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-6">
+<button class="w-full py-4 px-6 bg-primary text-white rounded-xl font-headline font-bold text-sm shadow-lg shadow-black/10 active:scale-95 transition-all">
+                Book New Service
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-72 min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-40 bg-white/80 backdrop-blur-xl flex items-center justify-between px-8 h-20 shadow-[0_8px_32px_rgba(25,28,30,0.04)]">
+<h1 class="font-headline font-semibold tracking-tight text-slate-900 text-xl">Customer Dashboard</h1>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-50 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-500" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-slate-50 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-500" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<div class="p-8 max-w-7xl mx-auto space-y-10">
+<!-- Welcome Section & Stats Bento Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+<div class="lg:col-span-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline text-4xl font-extrabold tracking-tight text-primary">Welcome back, Alex</h2>
+<p class="text-on-surface-variant mt-2 text-lg">Your home is in good hands. Here's what's happening.</p>
+</div>
+</div>
+<!-- Stats Cards -->
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-col justify-between min-h-[160px]">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="schedule">schedule</span>
+<div>
+<p class="text-4xl font-headline font-extrabold text-primary">2</p>
+<p class="text-sm font-label uppercase tracking-wider text-on-surface-variant">Active Bookings</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-col justify-between min-h-[160px]">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="task_alt">task_alt</span>
+<div>
+<p class="text-4xl font-headline font-extrabold text-primary">14</p>
+<p class="text-sm font-label uppercase tracking-wider text-on-surface-variant">Completed Services</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-col justify-between min-h-[160px]">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="stars">stars</span>
+<div>
+<p class="text-4xl font-headline font-extrabold text-primary">850</p>
+<p class="text-sm font-label uppercase tracking-wider text-on-surface-variant">StarDash Points</p>
+</div>
+</div>
+<div class="bg-secondary p-6 rounded-xl flex flex-col justify-between min-h-[160px] text-white">
+<span class="material-symbols-outlined text-secondary-container text-3xl" data-icon="redeem">redeem</span>
+<div>
+<p class="text-lg font-headline font-bold leading-tight">Refer a Friend</p>
+<p class="text-xs opacity-80 mt-1">Get $20 off your next cleaning</p>
+</div>
+</div>
+</section>
+<!-- Featured Content Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+<!-- Upcoming Service Card (Editorial Focus) -->
+<div class="lg:col-span-2 space-y-6">
+<h3 class="font-headline text-xl font-bold text-primary">Upcoming Service</h3>
+<div class="relative overflow-hidden rounded-xl bg-primary-container text-white p-8 group">
+<div class="absolute top-0 right-0 w-64 h-full opacity-20 pointer-events-none group-hover:scale-110 transition-transform duration-700">
+<img alt="House cleaning" class="w-full h-full object-cover" data-alt="Modern minimalist living room with sunlight streaming through large windows, professionally cleaned and organized with soft neutral colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfpUtKc4ZB7qtFFbI-P5MTrtig6U5m7Hxa-PwkCg0oZG9I3xCmaNl23bYwU67tNq4wUiy3U-qfLylUTL47cbZlm_QxmGm0NXg2PTut10cBR-E42XJUosb4YPepULRzvHssbYJnF3la_7dTwE0te4jeB8uSBwHsJvvyeSZgjMcdN_ChKFhFV3k2DZzzc0IEXtf01uPdL3XOFdfrzRBVXXMbVAk9iSOqxSJ_a1K_eR3Fbp_9Ko-RW_NWY9MAUVsR8xU7pYAGcSaelJk"/>
+</div>
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<div class="space-y-4">
+<div class="inline-flex items-center gap-2 bg-secondary/20 text-secondary-fixed border border-secondary/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+                                    Tomorrow • 09:00 AM
+                                </div>
+<h4 class="text-3xl font-headline font-extrabold">Deep House Cleaning</h4>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<img alt="Sarah J." class="w-10 h-10 rounded-full border-2 border-white/20" data-alt="Close-up portrait of a friendly professional female service worker with a warm smile, wearing a professional uniform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVG66K04esVegDZKl9LHH8Q3OIMRJFodR8wmuEa0Dny54y-jt7gC4zqvPsSzmXWLdHkrOSEYluPYreiYXotR-kNz4OYluzQG2SdqntEQLQRzVT-0Pk7luO2lcQNqi7epHoWu0PJLLjGG0DB4u44wMVNtn3pPnv8pQ5uyHr6eonPuCDcp8BYneCHai-Gg82Q4ObOmP5NMWwa4snQbHpZkJHA_vwMJl2UMs6Z2AXx4S2kUXObSaPIgC8Fg1upyYig9EEhkBmA3we5lo"/>
+<div>
+<p class="text-sm font-semibold">Sarah J.</p>
+<p class="text-xs text-on-primary-container">Top-rated Professional</p>
+</div>
+</div>
+<div class="h-8 w-px bg-white/10"></div>
+<div>
+<p class="text-sm font-semibold">Kilimani, Nairobi</p>
+<p class="text-xs text-on-primary-container">Apartment 4B, Oasis Court</p>
+</div>
+</div>
+</div>
+<button class="bg-white text-primary px-8 py-4 rounded-xl font-headline font-bold hover:bg-surface-container-lowest transition-colors active:scale-95">
+                                View Details
+                            </button>
+</div>
+</div>
+<!-- Booking History -->
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="font-headline text-xl font-bold text-primary">Recent Activity</h3>
+<button class="text-secondary font-semibold text-sm hover:underline underline-offset-4">View All</button>
+</div>
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high/50 text-on-surface-variant text-xs uppercase tracking-widest font-bold">
+<th class="px-6 py-4">Service</th>
+<th class="px-6 py-4">Professional</th>
+<th class="px-6 py-4">Date</th>
+<th class="px-6 py-4 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-highest/10">
+<tr class="hover:bg-surface-container-highest/30 transition-colors">
+<td class="px-6 py-5 font-semibold text-primary">Laundry &amp; Pressing</td>
+<td class="px-6 py-5">Michael K.</td>
+<td class="px-6 py-5 text-on-surface-variant">Oct 24, 2023</td>
+<td class="px-6 py-5 text-right">
+<span class="inline-flex px-3 py-1 rounded-full bg-tertiary-fixed/20 text-on-tertiary-container text-xs font-bold">Completed</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/30 transition-colors">
+<td class="px-6 py-5 font-semibold text-primary">Sofa Deep Cleaning</td>
+<td class="px-6 py-5">Grace W.</td>
+<td class="px-6 py-5 text-on-surface-variant">Oct 18, 2023</td>
+<td class="px-6 py-5 text-right">
+<span class="inline-flex px-3 py-1 rounded-full bg-tertiary-fixed/20 text-on-tertiary-container text-xs font-bold">Completed</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/30 transition-colors">
+<td class="px-6 py-5 font-semibold text-primary">Window Cleaning</td>
+<td class="px-6 py-5">David O.</td>
+<td class="px-6 py-5 text-on-surface-variant">Oct 12, 2023</td>
+<td class="px-6 py-5 text-right">
+<span class="inline-flex px-3 py-1 rounded-full bg-error-container text-error text-xs font-bold">Cancelled</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/30 transition-colors">
+<td class="px-6 py-5 font-semibold text-primary">Carpet Shampooing</td>
+<td class="px-6 py-5">Sarah J.</td>
+<td class="px-6 py-5 text-on-surface-variant">Oct 05, 2023</td>
+<td class="px-6 py-5 text-right">
+<span class="inline-flex px-3 py-1 rounded-full bg-tertiary-fixed/20 text-on-tertiary-container text-xs font-bold">Completed</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar / Quick Actions & Promotion -->
+<div class="space-y-8">
+<div class="space-y-6">
+<h3 class="font-headline text-xl font-bold text-primary">Quick Actions</h3>
+<div class="space-y-3">
+<button class="w-full group flex items-center justify-between p-5 bg-surface-container-lowest hover:bg-secondary-container/10 transition-all rounded-xl shadow-sm text-left">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+</div>
+<div>
+<p class="font-headline font-bold text-primary">Book New Service</p>
+<p class="text-xs text-on-surface-variant">Fast, reliable, and vetted</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-secondary group-hover:translate-x-1 transition-all" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="w-full group flex items-center justify-between p-5 bg-surface-container-lowest hover:bg-secondary-container/10 transition-all rounded-xl shadow-sm text-left">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="home_pin">home_pin</span>
+</div>
+<div>
+<p class="font-headline font-bold text-primary">Manage Addresses</p>
+<p class="text-xs text-on-surface-variant">Add home, office or gym</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-secondary group-hover:translate-x-1 transition-all" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="w-full group flex items-center justify-between p-5 bg-surface-container-lowest hover:bg-secondary-container/10 transition-all rounded-xl shadow-sm text-left">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+</div>
+<div>
+<p class="font-headline font-bold text-primary">Get Help</p>
+<p class="text-xs text-on-surface-variant">24/7 dedicated support</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-secondary group-hover:translate-x-1 transition-all" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Referral Promo Card -->
+<div class="bg-surface-container-high rounded-xl p-8 relative overflow-hidden">
+<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl"></div>
+<div class="relative z-10 space-y-4">
+<h4 class="font-headline text-2xl font-extrabold text-primary leading-tight">Spread the sparkle</h4>
+<p class="text-on-surface-variant text-sm">Invite your neighbors and friends to StarDash and you'll both receive <span class="text-secondary font-bold">20% off</span> your next deep cleaning service.</p>
+<div class="pt-4 flex flex-col gap-3">
+<div class="bg-surface-container-lowest px-4 py-3 rounded-lg flex items-center justify-between border border-outline-variant/30">
+<code class="text-xs font-bold text-primary">STARDASH-ALEX-2024</code>
+<button class="text-secondary hover:text-on-secondary-container">
+<span class="material-symbols-outlined text-xl" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+<button class="w-full py-3 bg-secondary text-white rounded-xl font-bold text-sm hover:brightness-110 active:scale-95 transition-all">
+                                    Share Invitation
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer / Space Filler -->
+<footer class="p-8 mt-20 text-center">
+<p class="text-on-surface-variant/40 text-xs font-label uppercase tracking-[0.2em]">© 2024 StarDash Technologies. Premium Domestic Logistics.</p>
+</footer>
+</main>
+<!-- Mobile Navigation (visible only on small screens) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl border-t border-outline-variant/10 z-50 flex justify-around items-center py-4 px-2 shadow-[0_-8px_32px_rgba(25,28,30,0.04)]">
+<a class="flex flex-col items-center gap-1 text-teal-600" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="text-[10px] font-medium">Bookings</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-[10px] font-medium">Messages</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StarDash | Premium Home Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-effect {
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .premium-shadow {
+            box-shadow: 0 8px 32px 0 rgba(25, 28, 30, 0.04);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #191c1e;
+            background-color: #f7f9fb;
+        }
+        h1, h2, h3, h4, .font-headline {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "inverse-primary": "#b9c7e4",
+                "surface-container": "#eceef0",
+                "on-secondary-fixed-variant": "#005047",
+                "secondary-fixed": "#62fae3",
+                "surface": "#f7f9fb",
+                "primary-container": "#0d1c32",
+                "surface-tint": "#515f78",
+                "on-primary-fixed-variant": "#39475f",
+                "surface-variant": "#e0e3e5",
+                "surface-dim": "#d8dadc",
+                "tertiary-fixed-dim": "#4ae176",
+                "surface-container-highest": "#e0e3e5",
+                "tertiary": "#000000",
+                "error-container": "#ffdad6",
+                "outline-variant": "#c5c6cd",
+                "secondary": "#006b5f",
+                "on-primary": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "inverse-on-surface": "#eff1f3",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed": "#0d1c32",
+                "surface-container-low": "#f2f4f6",
+                "on-surface-variant": "#44474d",
+                "primary": "#000000",
+                "surface-container-high": "#e6e8ea",
+                "on-error": "#ffffff",
+                "on-surface": "#191c1e",
+                "on-tertiary-container": "#009844",
+                "background": "#f7f9fb",
+                "tertiary-container": "#002109",
+                "secondary-container": "#62fae3",
+                "surface-bright": "#f7f9fb",
+                "primary-fixed-dim": "#b9c7e4",
+                "on-background": "#191c1e",
+                "primary-fixed": "#d6e3ff",
+                "on-secondary-fixed": "#00201c",
+                "on-error-container": "#93000a",
+                "on-secondary": "#ffffff",
+                "inverse-surface": "#2d3133",
+                "on-secondary-container": "#007165",
+                "on-tertiary-fixed": "#002109",
+                "secondary-fixed-dim": "#3cddc7",
+                "error": "#ba1a1a",
+                "tertiary-fixed": "#6bff8f",
+                "outline": "#75777e",
+                "on-primary-container": "#76849f",
+                "on-tertiary-fixed-variant": "#005321"
+              },
+              fontFamily: {
+                "headline": ["Plus Jakarta Sans"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.5rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- 1. Top Announcement Bar -->
+<div class="bg-primary text-on-primary py-2.5 px-4 text-center text-sm font-medium tracking-wide">
+        Elevate your home experience. <span class="text-secondary-fixed font-bold">20% off your first booking</span> with code DASH20
+    </div>
+<!-- 2. Sticky Navbar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-sm mt-10">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-slate-900 dark:text-white font-headline">StarDash</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-teal-600 dark:text-teal-400 font-semibold border-b-2 border-teal-600 font-['Plus_Jakarta_Sans'] tracking-tight" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-600 transition-colors font-['Plus_Jakarta_Sans'] tracking-tight" href="#">Services</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-600 transition-colors font-['Plus_Jakarta_Sans'] tracking-tight" href="#">How It Works</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-600 transition-colors font-['Plus_Jakarta_Sans'] tracking-tight" href="#">Become a Worker</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-600 transition-colors font-['Plus_Jakarta_Sans'] tracking-tight" href="#">About</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-600 transition-colors font-['Plus_Jakarta_Sans'] tracking-tight" href="#">Contact</a>
+</div>
+<div class="flex items-center space-x-6">
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-600 transition-colors font-semibold" href="#">Login</a>
+<button class="bg-primary text-white px-6 py-2.5 rounded-xl font-semibold hover:opacity-90 transition-all scale-95 active:opacity-80">Sign Up</button>
+</div>
+</div>
+</nav>
+<!-- 3. Hero Section -->
+<section class="relative pt-40 pb-24 md:pt-56 md:pb-40 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-tr from-surface-container-low to-transparent opacity-60"></div>
+<div class="absolute top-20 right-[-10%] w-[600px] h-[600px] bg-secondary-container/20 rounded-full blur-[120px]"></div>
+</div>
+<div class="max-w-7xl mx-auto px-8 relative z-10">
+<div class="max-w-3xl">
+<h1 class="text-6xl md:text-7xl font-extrabold tracking-tight text-on-surface mb-8 leading-[1.1]">
+                    Your Home, <br/><span class="text-secondary">Perfectly Handled.</span>
+</h1>
+<p class="text-xl text-on-surface-variant mb-12 max-w-2xl leading-relaxed">
+                    Experience the Digital Concierge. On-demand cleaning, laundry, and specialized home services from vetted local professionals delivered with architectural precision.
+                </p>
+<!-- Search/Booking Bar -->
+<div class="bg-surface-container-lowest p-3 rounded-2xl shadow-xl flex flex-col md:flex-row gap-4 items-center premium-shadow">
+<div class="flex-1 w-full flex items-center px-4 py-3 bg-surface-container-high rounded-xl">
+<span class="material-symbols-outlined text-outline mr-3">home_repair_service</span>
+<select class="bg-transparent border-none focus:ring-0 text-on-surface font-medium w-full">
+<option>Select Service</option>
+<option>House Cleaning</option>
+<option>Laundry Service</option>
+<option>Sofa Cleaning</option>
+<option>Carpet Deep Clean</option>
+</select>
+</div>
+<div class="flex-1 w-full flex items-center px-4 py-3 bg-surface-container-high rounded-xl">
+<span class="material-symbols-outlined text-outline mr-3">location_on</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface font-medium w-full" placeholder="Zip Code" type="text"/>
+</div>
+<button class="w-full md:w-auto bg-primary text-white px-10 py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all active:scale-95 bg-gradient-to-br from-primary to-primary-container">
+                        Book Now
+                    </button>
+</div>
+</div>
+</div>
+<!-- Floating Abstract Visual -->
+<div class="hidden lg:block absolute top-1/2 right-0 -translate-y-1/2 w-1/3 h-[500px] rounded-l-[4rem] overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Modern minimalist living room with clean lines, soft natural lighting, and premium furniture in a bright airy atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0xwDhunjl49xtWBVJibHLxD8M1eoB8XVk-egJDf4VmHQYchYFQE-xg7TxEb_iJOHoZPlMCFPP4gyk7PcjoiR5qMTlaLCItHajnq4zeSCV57NXS3tRzgtjNSiWmznXUnQ76zoux7rfgR4TSGf65o4W3rVd_GmM47QRxu4P-ZSB-qj7DEntRKcTuolVhhqrfhOiDrN3iOrP9R1TZiO-j-gWS4Q3rnsUbdYUPW2rpzN3mBVKOw3WPz7ypXBsZTfwkgT87oBRfCsT8IA"/>
+</div>
+</section>
+<!-- 4. Popular Services Grid -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex justify-between items-end mb-16">
+<div>
+<span class="text-secondary font-bold tracking-widest uppercase text-xs mb-4 block">Our Specialities</span>
+<h2 class="text-4xl font-extrabold text-on-surface">Popular Services</h2>
+</div>
+<a class="text-secondary font-semibold flex items-center group" href="#">
+                    Explore All Services 
+                    <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Service Card 1 -->
+<div class="group bg-surface-container-low rounded-2xl overflow-hidden hover:translate-y-[-8px] transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Professional cleaner in white uniform cleaning a modern kitchen countertop with specialized equipment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB-R26jKB9i5PlNdbB10f9Ma2Uo_jRX7We7SUvf63kLH5hYeEAemnuUbAa8KeKDkhu24zx4uwVtAI-cVcTGNvteU4mwAApBCUAFdj0MfBwN5qKm0sX6mpyr5IOsjz253SUVcOksLsIPRTY2aj-TYiLcbxMsg4vkNAKlxuuOZbpOUVKZLPB-78oM79k1dWlFzkD5jdCzSH0f44dockVHijxasnbUZZm9vPohOTqjH6u9AdkGFpl4_3JuYB5vliGXUy1w83Ni2qHAv8"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary flex items-center">
+<span class="material-symbols-outlined text-sm mr-1" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                            4.9 (1.2k)
+                        </div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">House Cleaning</h3>
+<p class="text-on-surface-variant text-sm mb-4">Meticulous top-to-bottom dusting and sanitization.</p>
+<div class="flex justify-between items-center">
+<span class="font-bold text-secondary">From $25/hr</span>
+<button class="p-2 rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Service Card 2 -->
+<div class="group bg-surface-container-low rounded-2xl overflow-hidden hover:translate-y-[-8px] transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Neatly folded stack of fresh white linens and clothes in a bright laundry room setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy_3inT4RfYTJbixlmrKxrXwLPqDnODrEf_W_N_8Je1KQdAbxaWyrCrAxUwu_LJwdywXhgdypr141hN5pLXeVcdPy_3hJnnutq1r4aDxwr0E79tNffhWxXGKgI7UHQScFFtkPlBLnNVDCQvHhxBUygIGojC9eOKZaFuR1qoKRNH3ggZK35qpYWKE85ss08CmdcXwGnMl0z4SCTvLoKTqouCOhzGw58YYTTR4GmgtiUwrA06doWb2COUiD3yCsATfoi4_qlfApUj7M"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary flex items-center">
+<span class="material-symbols-outlined text-sm mr-1" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                            4.8 (850)
+                        </div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Laundry Service</h3>
+<p class="text-on-surface-variant text-sm mb-4">Wash, dry, and professional fold with care.</p>
+<div class="flex justify-between items-center">
+<span class="font-bold text-secondary">From $18/hr</span>
+<button class="p-2 rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Service Card 3 -->
+<div class="group bg-surface-container-low rounded-2xl overflow-hidden hover:translate-y-[-8px] transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Close up of a luxury grey velvet sofa being steam cleaned with professional industrial equipment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ-gxCRsK2sz_xsBAmqGUkk56kEkQ7iGeqRnvtSTve6cYx5tNctR8rGd0eqx2KQgEm8pOl7UVmmx2C9afAbTWKUBrg3_P_rS-A79D_BTHIOLzSHnbgNa37yihC_sjGNTZNnwqYOikFWu-0Dl9dFffC85nfT3v-pzhsxLTgEmct7bxAP5nux9hSZiq_YyIzwS-grXQU6ZanZlf4KqrsPuj11i4lTouPjndau3AbYocMi0XLS9dsEJY1cMH3Wx6kW-EiXGz21DR_a7E"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary flex items-center">
+<span class="material-symbols-outlined text-sm mr-1" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                            5.0 (420)
+                        </div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Sofa Cleaning</h3>
+<p class="text-on-surface-variant text-sm mb-4">Deep fabric extraction and stain removal.</p>
+<div class="flex justify-between items-center">
+<span class="font-bold text-secondary">From $45/job</span>
+<button class="p-2 rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Service Card 4 -->
+<div class="group bg-surface-container-low rounded-2xl overflow-hidden hover:translate-y-[-8px] transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Worker using a heavy-duty carpet cleaning machine on a plush beige rug in a contemporary home" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIDHHKS5ZfBdEjHAsEc23Lx4Ja40kFAXC6p4cF6uek_ru469bGUf-BYPL4C3XlUMbIpIJisUGpVNO2de3WY6WMlRsNNBZbClwyPQi79wx_AXo9kZhOcTaUwJtx9wCyPprTn1CjRzmh4_F9mPe7aVwyt-g1MTloZxbNXU7-JgnkvfnLxcfMcF1w8IAuvqSNBRGA7x7Nt8NBeVptYmR-hJhxywNVC4deU8DmnbKBbO_ve1DrLb6ScCRZn4efTxObh2kD7RDB4Bh1xGo"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary flex items-center">
+<span class="material-symbols-outlined text-sm mr-1" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                            4.7 (630)
+                        </div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Carpet Cleaning</h3>
+<p class="text-on-surface-variant text-sm mb-4">Professional grade steam deep cleaning.</p>
+<div class="flex justify-between items-center">
+<span class="font-bold text-secondary">From $35/room</span>
+<button class="p-2 rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Trust Badges Section -->
+<section class="py-16 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+<div class="flex flex-col items-center text-center p-8 bg-surface-container-lowest rounded-3xl premium-shadow">
+<div class="w-16 h-16 bg-secondary/10 text-secondary rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-3xl">verified_user</span>
+</div>
+<h4 class="text-lg font-bold mb-2">Vetted Professionals</h4>
+<p class="text-on-surface-variant text-sm">Background checked and skill-tested experts only.</p>
+</div>
+<div class="flex flex-col items-center text-center p-8 bg-surface-container-lowest rounded-3xl premium-shadow">
+<div class="w-16 h-16 bg-secondary/10 text-secondary rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-3xl">payments</span>
+</div>
+<h4 class="text-lg font-bold mb-2">Secure Payments</h4>
+<p class="text-on-surface-variant text-sm">Escrow-style payments released only after your approval.</p>
+</div>
+<div class="flex flex-col items-center text-center p-8 bg-surface-container-lowest rounded-3xl premium-shadow">
+<div class="w-16 h-16 bg-secondary/10 text-secondary rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-3xl">shield</span>
+</div>
+<h4 class="text-lg font-bold mb-2">Insurance Protected</h4>
+<p class="text-on-surface-variant text-sm">All bookings are fully insured for up to $1,000,000.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. How It Works -->
+<section class="py-24 bg-white">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-20">
+<h2 class="text-4xl font-extrabold mb-4">Seamless Experience in 3 Steps</h2>
+<p class="text-on-surface-variant max-w-xl mx-auto">From booking to completion, we've refined every detail to ensure absolute peace of mind.</p>
+</div>
+<div class="relative">
+<!-- Connector Line -->
+<div class="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-surface-container-high -translate-y-1/2 z-0"></div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-16 relative z-10">
+<div class="flex flex-col items-center">
+<div class="w-20 h-20 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-8 border-8 border-white">01</div>
+<h3 class="text-2xl font-bold mb-4">Choose a Service</h3>
+<p class="text-on-surface-variant text-center leading-relaxed">Select from our wide range of premium services and specify your unique requirements.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-20 h-20 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-8 border-8 border-white">02</div>
+<h3 class="text-2xl font-bold mb-4">Pick a Time</h3>
+<p class="text-on-surface-variant text-center leading-relaxed">Choose a slot that fits your schedule. Our pros are available 7 days a week, 7am to 9pm.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-20 h-20 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-8 border-8 border-white">03</div>
+<div class="flex flex-col items-center">
+<h3 class="text-2xl font-bold mb-4">Relax while we work</h3>
+<p class="text-on-surface-variant text-center leading-relaxed">Track progress in real-time. We'll notify you the moment your home is sparkling clean.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. Featured Workers Section -->
+<section class="py-24 bg-surface-container-low overflow-hidden">
+<div class="max-w-7xl mx-auto px-8">
+<div class="mb-16">
+<span class="text-secondary font-bold tracking-widest uppercase text-xs mb-4 block">Meet the Elites</span>
+<h2 class="text-4xl font-extrabold">Top Rated Professionals</h2>
+</div>
+<div class="flex flex-nowrap gap-8 pb-10 overflow-x-auto no-scrollbar">
+<!-- Worker 1 -->
+<div class="min-w-[320px] bg-white p-6 rounded-3xl premium-shadow">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-20 h-20 rounded-2xl overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Friendly professional woman in service uniform smiling warmly in a bright indoor setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtS8Kbj5EoyGjw8Kur1u3TfAb3f3lMpX5KL4pj2b3DbiXjAF8CmPQ1LLTnKAPzfctMaGLij9waCgAEPK_AXfihsj3p2WMkZDW04dSXhde9p0FjrGqZWiw91C7N36IorrKaSCo1HvtHSy_xrB3VuqhysN-LpkRJYanHmsfFgGDWCo6qz00rfuK1SdeDDTHRYkHUPXTFlkTojVCh4U4nkCWEQdTka8YON5ej8__yfZ5fpajh_Xp8EUX4qxlCcNOBwnhBhFYQKbHOHFY"/>
+</div>
+<div>
+<h4 class="font-bold text-lg">Elena Rodriguez</h4>
+<p class="text-secondary text-sm font-semibold">House Cleaning Expert</p>
+<div class="flex items-center text-yellow-500 mt-1">
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface-variant text-xs ml-2 font-medium">(492 reviews)</span>
+</div>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant italic leading-relaxed">"I take pride in transforming living spaces into sanctuaries of cleanliness and order."</p>
+</div>
+<!-- Worker 2 -->
+<div class="min-w-[320px] bg-white p-6 rounded-3xl premium-shadow">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-20 h-20 rounded-2xl overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional male technician in a smart polo shirt looking confident and approachable" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsIcrxUPVLqDVbaAW2KahS6GkT94UiVT-GRSh7x_XovbMEQk111orcKe1eKout_wLhkzhgnrmb5Ys-n6j4Ip66HEjQI5l6XHcjDBuIYQQS8HAi9ICRrn_z5tT7o0afaHb_VXYzYe8QnDu9MxtHOZUN8Ouusk6y7sJv4oxmWv45yatAohvFqDC5vUsD11TMdaoBJvgtPsWjI29eUPU_OeFy6PDA4HL4WmPETn_FMcSMdXv8mURdqOlvfHD_EMjY5n0kQcSVoM1IqR0"/>
+</div>
+<div>
+<h4 class="font-bold text-lg">Marcus Chen</h4>
+<p class="text-secondary text-sm font-semibold">Deep Clean Specialist</p>
+<div class="flex items-center text-yellow-500 mt-1">
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface-variant text-xs ml-2 font-medium">(315 reviews)</span>
+</div>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant italic leading-relaxed">"Using industrial-grade tools to ensure your carpets and sofas look brand new again."</p>
+</div>
+<!-- Worker 3 -->
+<div class="min-w-[320px] bg-white p-6 rounded-3xl premium-shadow">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-20 h-20 rounded-2xl overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Young professional woman smiling with a kind expression, representing premium service quality" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByRt44gDjgzAUmzpVOFFmw5NnVErexsZV0gX9IGakBB5WDdprus_naDWIFwgMDRIr14V6te87dJUSThHyQUVlBtJ6h2XM6gdPrnr6NQjshfDhVlNIO8RZjGhvSHmANYdklxzDTtqdrVjllhbyjUnC3hIzTrA2GAwVBd7-rsrPtcnnSmgjoOiXdjkaWwY9V9xzMw5j_pbNCD4pTLEOUiEHmYsP0hDCYnhDDS0W7pPB5rgGRbVpzCVAJpMuekyknz5OR9NvJsbi1G5c"/>
+</div>
+<div>
+<h4 class="font-bold text-lg">Sarah Jenkins</h4>
+<p class="text-secondary text-sm font-semibold">Laundry Management</p>
+<div class="flex items-center text-yellow-500 mt-1">
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface-variant text-xs ml-2 font-medium">(228 reviews)</span>
+</div>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant italic leading-relaxed">"I treat every garment as if it were my own fine silk. Precision folding is my signature."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. Become a Worker CTA -->
+<section class="py-24 px-8">
+<div class="max-w-7xl mx-auto bg-primary rounded-[3rem] p-12 md:p-24 overflow-hidden relative">
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+<img class="w-full h-full object-cover" data-alt="A diverse group of smiling professional service providers in a team-oriented setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKnH4N6AIAQ0rDEH5Qt3nzcVo06uYFhnG-CiJpYCzUFAJiQ81g10ckDZmkelShFBppqTvLm8fuHfwHBMPSMFULmRp9DUQt9F0CvIa4I4EU1JvXJwjmflvIxgkovTC48fDi1FteCVEv2WUHS_swqC7RnTfRCk1AkCaf3Dq1Nte7ShrYjtX5mYDWBa5oVloov444He-Xf0rxOBGDL0jLF0RhC75xPXow0owedQ5XOITcFiMZ50bh9TQiSNAqYnm7Rnq56Oo0Qwy0BZw"/>
+</div>
+<div class="max-w-xl relative z-10">
+<h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8 leading-tight">Ready to earn on your own terms?</h2>
+<p class="text-blue-100 text-lg mb-12 leading-relaxed">Join the StarDash elite network. Set your own schedule, choose your rates, and work with premium clients in your city.</p>
+<div class="flex flex-col sm:flex-row gap-6">
+<button class="bg-secondary text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-secondary/90 transition-all scale-95 active:scale-90">
+                        Become a Partner
+                    </button>
+<button class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white/20 transition-all">
+                        Learn More
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- 9. FAQ & Newsletter -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-24">
+<div>
+<h2 class="text-4xl font-extrabold mb-12">Frequently Asked Questions</h2>
+<div class="space-y-4">
+<div class="bg-surface-container-lowest p-6 rounded-2xl premium-shadow group cursor-pointer">
+<div class="flex justify-between items-center">
+<h4 class="font-bold">Are your professionals insured?</h4>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">expand_more</span>
+</div>
+<div class="hidden pt-4 text-on-surface-variant text-sm leading-relaxed">
+                            Yes, every booking through StarDash is covered by our comprehensive $1,000,000 liability insurance policy for your complete peace of mind.
+                        </div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-2xl premium-shadow group cursor-pointer">
+<div class="flex justify-between items-center">
+<h4 class="font-bold">How do I cancel a booking?</h4>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">expand_more</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-2xl premium-shadow group cursor-pointer">
+<div class="flex justify-between items-center">
+<h4 class="font-bold">Can I request the same pro again?</h4>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary-container p-12 rounded-[2.5rem] flex flex-col justify-center">
+<div class="w-16 h-16 bg-secondary rounded-2xl flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-white text-3xl">mail</span>
+</div>
+<h3 class="text-3xl font-extrabold text-white mb-4">Stay in the Loop</h3>
+<p class="text-blue-100/70 mb-8 leading-relaxed">Join 10,000+ homeowners receiving exclusive offers, home care tips, and service updates.</p>
+<form class="flex flex-col sm:flex-row gap-4">
+<input class="flex-1 bg-white/10 border-white/20 rounded-xl px-6 py-4 text-white focus:ring-secondary focus:border-secondary" placeholder="Your email address" type="email"/>
+<button class="bg-secondary text-white font-bold px-8 py-4 rounded-xl hover:opacity-90 transition-all">Subscribe</button>
+</form>
+</div>
+</div>
+</section>
+<!-- 10. Premium Footer -->
+<footer class="bg-[#0A192F] dark:bg-black w-full pt-20 pb-10">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-12 font-['Inter'] text-sm leading-relaxed">
+<div class="space-y-6">
+<div class="text-2xl font-bold text-white font-headline">StarDash</div>
+<p class="text-slate-400">Revolutionizing home care with elite professionals and seamless digital management. Excellence, delivered.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-secondary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-secondary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+</div>
+</div>
+<div class="space-y-6">
+<h4 class="text-white font-bold text-lg">Services</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors" href="#">House Cleaning</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors" href="#">Laundry Service</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors" href="#">Deep Cleaning</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors" href="#">Pet Care</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="text-white font-bold text-lg">Company</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors" href="#">About Us</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors" href="#">Careers</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors" href="#">Partner with Us</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors" href="#">Press Kit</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="text-white font-bold text-lg">Support</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors" href="#">Help Center</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors" href="#">Contact Support</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors" href="#">Trust &amp; Safety</a></li>
+<li><a class="text-slate-400 hover:text-teal-400 transition-colors" href="#">System Status</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-slate-500">© 2024 StarDash Premium Home Services. All rights reserved.</p>
+<div class="flex gap-8">
+<a class="text-slate-400 hover:text-teal-400 text-xs" href="#">Privacy Policy</a>
+<a class="text-slate-400 hover:text-teal-400 text-xs" href="#">Terms of Service</a>
+<a class="text-slate-400 hover:text-teal-400 text-xs" href="#">Help Center</a>
+<a class="text-slate-400 hover:text-teal-400 text-xs" href="#">Cookies</a>
+</div>
+</div>
+</footer>
+</body></html>
