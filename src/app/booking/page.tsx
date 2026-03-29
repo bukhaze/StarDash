@@ -7,9 +7,52 @@ import Link from 'next/link';
 
 const BookingPage = () => {
   const [step, setStep] = useState(2); // Starting at Step 2 based on the design I have
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Form State
+  const [date, setDate] = useState('2024-10-03');
+  const [time, setTime] = useState('09:30 AM');
+  const [neighborhood, setNeighborhood] = useState('Westlands');
+  const [apartment, setApartment] = useState('');
+  const [street, setStreet] = useState('');
+  
+  const [guestName, setGuestName] = useState('');
+  const [guestPhone, setGuestPhone] = useState('');
+  const [guestEmail, setGuestEmail] = useState('');
+
+  const selectedServiceId = 'c7e1dbab-bd8e-4f24-9bbf-01584041bcca'; // Dummy uuid for real backend matching later or dynamic params
+  const totalAmount = '4750';
 
   const nextStep = () => setStep(prev => prev + 1);
   const prevStep = () => setStep(prev => prev - 1);
+
+  const handleBookingSubmit = async () => {
+    setLoading(true);
+    setError(null);
+
+    const formData = new FormData();
+    formData.append('date', date);
+    formData.append('time', time);
+    formData.append('neighborhood', neighborhood);
+    formData.append('apartment', apartment);
+    formData.append('street', street);
+    formData.append('service_id', selectedServiceId);
+    formData.append('total_amount', totalAmount);
+    formData.append('guest_name', guestName);
+    formData.append('guest_phone', guestPhone);
+    formData.append('guest_email', guestEmail);
+
+    const { submitBooking } = await import('@/app/actions/booking');
+    const result = await submitBooking(formData);
+
+    if (result?.error) {
+      setError(result.error);
+      setLoading(false);
+    } else {
+      window.location.href = '/dashboard';
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -21,7 +64,7 @@ const BookingPage = () => {
           <div className="flex items-center justify-between max-w-2xl mx-auto relative px-4">
             {/* Progress Line */}
             <div className="absolute top-5 left-8 right-8 h-[2px] bg-surface-container-highest -z-10">
-              <div 
+               <div 
                 className="h-full bg-secondary transition-all duration-500"
                 style={{ width: step === 1 ? '0%' : step === 2 ? '50%' : '100%' }}
               ></div>
@@ -50,6 +93,13 @@ const BookingPage = () => {
             ))}
           </div>
         </div>
+
+        {error && (
+          <div className="mb-8 bg-error-container text-error px-4 py-3 rounded-xl text-sm font-bold border border-error/20 flex items-center gap-3">
+            <span className="material-symbols-outlined text-xl">error</span>
+            {error}
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column: Form Content */}
@@ -90,18 +140,36 @@ const BookingPage = () => {
                       <div>
                         <h3 className="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-4 font-headline">Morning</h3>
                         <div className="flex flex-wrap gap-2">
-                          <button className="px-4 py-3 rounded-xl bg-surface-container-low text-on-surface text-sm font-medium hover:bg-secondary/10 transition-all font-body">08:00 AM</button>
-                          <button className="px-4 py-3 rounded-xl bg-secondary text-white text-sm font-bold shadow-md shadow-secondary/10 font-body">09:30 AM</button>
-                          <button className="px-4 py-3 rounded-xl bg-surface-container-low text-on-surface text-sm font-medium hover:bg-secondary/10 transition-all font-body">11:00 AM</button>
+                          <button onClick={() => setTime('08:00 AM')} className={`px-4 py-3 rounded-xl text-sm font-medium transition-all font-body ${time === '08:00 AM' ? 'bg-secondary text-white font-bold shadow-md shadow-secondary/10' : 'bg-surface-container-low text-on-surface hover:bg-secondary/10'}`}>08:00 AM</button>
+                          <button onClick={() => setTime('09:30 AM')} className={`px-4 py-3 rounded-xl text-sm font-medium transition-all font-body ${time === '09:30 AM' ? 'bg-secondary text-white font-bold shadow-md shadow-secondary/10' : 'bg-surface-container-low text-on-surface hover:bg-secondary/10'}`}>09:30 AM</button>
+                          <button onClick={() => setTime('11:00 AM')} className={`px-4 py-3 rounded-xl text-sm font-medium transition-all font-body ${time === '11:00 AM' ? 'bg-secondary text-white font-bold shadow-md shadow-secondary/10' : 'bg-surface-container-low text-on-surface hover:bg-secondary/10'}`}>11:00 AM</button>
                         </div>
                       </div>
                       <div>
                         <h3 className="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-4 font-headline">Afternoon</h3>
                         <div className="flex flex-wrap gap-2">
-                          <button className="px-4 py-3 rounded-xl bg-surface-container-low text-on-surface text-sm font-medium hover:bg-secondary/10 transition-all font-body">01:00 PM</button>
-                          <button className="px-4 py-3 rounded-xl bg-surface-container-low text-on-surface text-sm font-medium hover:bg-secondary/10 transition-all font-body">02:30 PM</button>
+                          <button onClick={() => setTime('01:00 PM')} className={`px-4 py-3 rounded-xl text-sm font-medium transition-all font-body ${time === '01:00 PM' ? 'bg-secondary text-white font-bold shadow-md shadow-secondary/10' : 'bg-surface-container-low text-on-surface hover:bg-secondary/10'}`}>01:00 PM</button>
+                          <button onClick={() => setTime('02:30 PM')} className={`px-4 py-3 rounded-xl text-sm font-medium transition-all font-body ${time === '02:30 PM' ? 'bg-secondary text-white font-bold shadow-md shadow-secondary/10' : 'bg-surface-container-low text-on-surface hover:bg-secondary/10'}`}>02:30 PM</button>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                </section>
+
+                {/* Section: Guest Details */}
+                <section className="bg-white p-8 rounded-3xl shadow-premium border border-outline-variant/5">
+                  <div className="flex items-center gap-3 mb-8">
+                    <span className="material-symbols-outlined text-secondary" style={{ fontVariationSettings: "'FILL' 1" }}>person</span>
+                    <h2 className="text-2xl font-bold font-headline tracking-tight">Your Information</h2>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                       <label className="text-xs font-extrabold uppercase tracking-wider text-on-surface-variant px-1 font-headline">Full Name</label>
+                       <input value={guestName} onChange={(e) => setGuestName(e.target.value)} required className="w-full bg-surface-container-low border-none rounded-2xl px-5 py-4 text-on-surface focus:ring-2 focus:ring-secondary/30 transition-all outline-none font-body" placeholder="John Doe" />
+                    </div>
+                    <div className="space-y-2">
+                       <label className="text-xs font-extrabold uppercase tracking-wider text-on-surface-variant px-1 font-headline">Phone Number</label>
+                       <input value={guestPhone} onChange={(e) => setGuestPhone(e.target.value)} required className="w-full bg-surface-container-low border-none rounded-2xl px-5 py-4 text-on-surface focus:ring-2 focus:ring-secondary/30 transition-all outline-none font-body" placeholder="0723 531 085" />
                     </div>
                   </div>
                 </section>
@@ -116,7 +184,7 @@ const BookingPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label className="text-xs font-extrabold uppercase tracking-wider text-on-surface-variant px-1 font-headline">Neighborhood</label>
-                        <select className="w-full bg-surface-container-low border-none rounded-2xl px-5 py-4 text-on-surface focus:ring-2 focus:ring-secondary/30 transition-all outline-none font-body">
+                        <select value={neighborhood} onChange={(e) => setNeighborhood(e.target.value)} className="w-full bg-surface-container-low border-none rounded-2xl px-5 py-4 text-on-surface focus:ring-2 focus:ring-secondary/30 transition-all outline-none font-body">
                           <option>Westlands</option>
                           <option>Kilimani</option>
                           <option>Lavington</option>
@@ -124,16 +192,37 @@ const BookingPage = () => {
                       </div>
                       <div className="space-y-2">
                         <label className="text-xs font-extrabold uppercase tracking-wider text-on-surface-variant px-1 font-headline">Apartment / Suite</label>
-                        <input className="w-full bg-surface-container-low border-none rounded-2xl px-5 py-4 text-on-surface focus:ring-2 focus:ring-secondary/30 transition-all outline-none font-body" placeholder="B4, Azure Heights" type="text" />
+                        <input value={apartment} onChange={(e) => setApartment(e.target.value)} className="w-full bg-surface-container-low border-none rounded-2xl px-5 py-4 text-on-surface focus:ring-2 focus:ring-secondary/30 transition-all outline-none font-body" placeholder="B4, Azure Heights" type="text" />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <label className="text-xs font-extrabold uppercase tracking-wider text-on-surface-variant px-1 font-headline">Street Address</label>
-                      <input className="w-full bg-surface-container-low border-none rounded-2xl px-5 py-4 text-on-surface focus:ring-2 focus:ring-secondary/30 transition-all outline-none font-body" placeholder="Start typing your address..." type="text" />
+                      <input value={street} onChange={(e) => setStreet(e.target.value)} className="w-full bg-surface-container-low border-none rounded-2xl px-5 py-4 text-on-surface focus:ring-2 focus:ring-secondary/30 transition-all outline-none font-body" placeholder="Start typing your address..." type="text" />
                     </div>
                   </div>
                 </section>
               </>
+            )}
+
+            {step === 3 && (
+              <section className="bg-white p-8 rounded-3xl shadow-premium border border-outline-variant/5">
+                <div className="flex items-center gap-3 mb-8">
+                  <span className="material-symbols-outlined text-secondary" style={{ fontVariationSettings: "'FILL' 1" }}>payments</span>
+                  <h2 className="text-2xl font-bold font-headline tracking-tight">Confirm & Book</h2>
+                </div>
+                
+                <div className="space-y-6">
+                  <div className="p-5 bg-surface-container-lowest border border-outline-variant/10 flex items-start gap-4 rounded-2xl">
+                    <span className="material-symbols-outlined text-green-500 bg-green-50 p-2 rounded-full">info</span>
+                    <div>
+                      <h4 className="font-bold text-sm">Pay After Service</h4>
+                      <p className="text-on-surface-variant text-sm font-medium mt-1">
+                        You won't be charged now. Place your booking request, and you can pay the worker directly upon satisfactory completion of your premium service via safe local gateways (M-Pesa or Cash).
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
             )}
 
             {/* Step Actions */}
@@ -146,13 +235,24 @@ const BookingPage = () => {
                 <span className="material-symbols-outlined">arrow_back</span>
                 Back
               </button>
-              <button 
-                onClick={nextStep}
-                className="bg-primary text-white font-bold px-12 py-4 rounded-2xl shadow-premium hover:shadow-xl transition-all scale-95 active:scale-90 flex items-center gap-3 font-headline"
-              >
-                Continue to Payment
-                <span className="material-symbols-outlined">arrow_forward</span>
-              </button>
+              
+              {step < 3 ? (
+                <button 
+                  onClick={nextStep}
+                  className="bg-primary text-white font-bold px-12 py-4 rounded-2xl shadow-premium hover:shadow-xl transition-all scale-95 active:scale-90 flex items-center gap-3 font-headline"
+                >
+                  Continue to Payment
+                  <span className="material-symbols-outlined">arrow_forward</span>
+                </button>
+              ) : (
+                <button 
+                  onClick={handleBookingSubmit}
+                  disabled={loading}
+                  className="bg-secondary text-white font-extrabold px-12 py-4 rounded-2xl shadow-premium shadow-secondary/20 hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-3 font-headline disabled:opacity-50"
+                >
+                  {loading ? <span className="material-symbols-outlined animate-spin">progress_activity</span> : 'Place Booking Request'}
+                </button>
+              )}
             </div>
           </div>
 
@@ -177,9 +277,9 @@ const BookingPage = () => {
                 {/* Details List */}
                 <div className="space-y-5 pt-2 border-t border-surface-container-low mt-4">
                   {[
-                    { icon: 'calendar_today', label: 'Date', value: 'Oct 3, 2024' },
-                    { icon: 'schedule', label: 'Time', value: '09:30 AM' },
-                    { icon: 'location_on', label: 'Location', value: 'Westlands' }
+                    { icon: 'calendar_today', label: 'Date', value: date },
+                    { icon: 'schedule', label: 'Time', value: time },
+                    { icon: 'location_on', label: 'Location', value: neighborhood }
                   ].map(item => (
                     <div key={item.label} className="flex justify-between items-center bg-surface-container-lowest p-1 rounded-lg">
                       <div className="flex items-center gap-3">

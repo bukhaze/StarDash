@@ -9,7 +9,7 @@ export async function proxy(request: NextRequest) {
   // Re-create a light client just to read the user state for routing
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://qvhmnecsrdekezdellrh.supabase.co',
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.dummy_anon_key_for_testing_ui',
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2aG1uZWNzcmRla2V6ZGVsbHJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3Mzk4NzksImV4cCI6MjA5MDMxNTg3OX0.FxZWgxgU4O9OCIRW98GShoBKRUUJl_Uhf5-m13kx6IE',
     {
       cookies: {
         get(name: string) {
@@ -29,9 +29,11 @@ export async function proxy(request: NextRequest) {
     request.nextUrl.pathname.startsWith('/admin') ||
     request.nextUrl.pathname.startsWith('/worker');
 
-  const isAuthPath = 
-    request.nextUrl.pathname.startsWith('/login') || 
-    request.nextUrl.pathname.startsWith('/signup');
+  const isAuthPath = request.nextUrl.pathname.startsWith('/login');
+
+  if (request.nextUrl.pathname.startsWith('/signup')) {
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
 
   // Guard protected routes
   if (isProtectedPath && !user) {
