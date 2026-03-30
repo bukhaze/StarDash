@@ -3,113 +3,132 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import TrustBadge from '@/components/ui/TrustBadge';
 
-const BecomeAWorkerPage = () => {
-  const benefits = [
-    { icon: 'payments', title: 'High Earnings', description: 'Set your own competitive rates and keep 90% of your earnings + 100% of tips.' },
-    { icon: 'schedule', title: 'Total Flexibility', description: 'Work when you want, where you want. No minimum hours, no fixed shifts.' },
-    { icon: 'shield_person', title: 'Insurance Covered', description: 'Every job is covered by our comprehensive liability insurance for your peace of mind.' },
+const ArtisanOnboardingPage = () => {
+  const protocolBenefits = [
+    { icon: 'military_tech', title: 'Elite Status', description: 'Join the top 1% of Nairobi artisan professionals in our strictly managed network.' },
+    { icon: 'hub', title: 'Managed Dispatch', description: 'Focus on your craft. Our central operations team handles all triage and intake logistics.' },
+    { icon: 'shield_with_heart', title: 'Full Protocol Support', description: 'Every deployment is backed by StarDash administrative protection and high-level support.' },
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen text-slate-900 font-body items-stretch bg-surface">
       <Navbar />
       
-      <main className="flex-grow pt-32 pb-24 px-8 overflow-hidden bg-surface">
-        {/* Hero Section */}
-        <section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
-          <div className="space-y-10 relative z-10">
-            <span className="bg-secondary/10 text-secondary border border-secondary/20 px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest font-headline">Join the elite network</span>
-            <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight text-primary leading-tight font-headline">
-              Turn your skill into a <br/><span className="text-secondary font-headline">Thriving Business.</span>
+      <main className="flex-grow pt-32 pb-40 px-8 overflow-hidden">
+        {/* Managed Network Hero */}
+        <section className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
+          <div className="space-y-12 relative z-10">
+            <div className="flex items-center gap-3">
+               <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-on-surface-variant font-headline opacity-60 italic">Specialist In-take</span>
+            </div>
+            <h1 className="text-6xl lg:text-8xl font-black tracking-tighter text-slate-900 leading-[0.9] font-headline lowercase first-letter:uppercase italic">
+              Nairobi's elite <br/><span className="text-secondary">Artisan Network.</span>
             </h1>
-            <p className="text-xl text-on-surface-variant font-body leading-relaxed max-w-xl">
-              StarDash connects Nairobi's most talented home service professionals with high-end clients. Apply now to start your journey with the market leader.
+            <p className="text-xl md:text-2xl text-on-surface-variant/70 font-medium leading-relaxed max-w-xl">
+              StarDash is a managed dispatch terminal for the city's finest home service specialists. We strictly select elite partners for our high-fidelity residence care protocol.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6">
-              <button className="bg-primary text-white border-2 border-primary px-12 py-5 rounded-2xl font-bold font-headline text-lg shadow-premium hover:shadow-xl transition-all scale-95 active:scale-90 bg-gradient-to-br from-primary to-primary-container">
-                Apply to Join
+            <div className="flex flex-col sm:flex-row gap-6 pt-4">
+              <button className="bg-slate-900 text-white px-12 py-6 rounded-3xl font-black font-headline text-[10px] uppercase tracking-[0.4em] shadow-xl hover:scale-[1.05] active:scale-95 transition-all text-center">
+                Submit Signal Key
               </button>
-              <button className="bg-white border-2 border-outline-variant/20 text-on-surface px-12 py-5 rounded-2xl font-bold font-headline text-lg hover:border-secondary hover:text-secondary transition-all">
-                Learn the Process
+              <button className="bg-white border-2 border-slate-100 text-slate-900 px-12 py-6 rounded-3xl font-black font-headline text-[10px] uppercase tracking-[0.4em] hover:bg-slate-50 transition-all text-center">
+                Protocol Overview
               </button>
             </div>
             
-            <div className="flex items-center gap-6 pt-10 border-t border-outline-variant/10">
-               <div className="flex -space-x-4">
+            <div className="flex items-center gap-8 pt-12 border-t border-outline-variant/5">
+               <div className="flex -space-x-6">
                  {[1,2,3,4].map(idx => (
-                   <div key={idx} className="w-12 h-12 rounded-full border-4 border-white bg-slate-200 overflow-hidden shadow-sm">
-                     <img src={`https://lh3.googleusercontent.com/aida-public/AB6AXuAVG66K04esVegDZKl9LHH8Q3OIMRJFodR8wmuEa0Dny54y-jt7gC4zqvPsSzmXWLdHkrOSEYluPYreiYXotR-kNz4OYluzQG2SdqntEQLQRzVT-0Pk7luO2lcQNqi7epHoWu0PJLLjGG0DB4u44wMVNtn3pPnv8pQ5uyHr6eonPuCDcp8BYneCHai-Gg82Q4ObOmP5NMWwa4snQbHpZkJHA_vwMJl2UMs6Z2AXx4S2kUXObSaPIgC8Fg1upyYig9EEhkBmA3we5lo`} alt="Worker" />
-                   </div>
+                    <div key={idx} className="w-14 h-14 rounded-full border-4 border-white bg-slate-100 overflow-hidden shadow-premium transition-transform hover:scale-110 relative z-[10]">
+                       <img src={`https://i.pravatar.cc/150?u=${idx + 10}`} alt="Specialist" className="w-full h-full object-cover grayscale" />
+                    </div>
                  ))}
-                 <div className="w-12 h-12 rounded-full border-4 border-white bg-secondary text-white flex items-center justify-center font-bold text-xs">+500</div>
+                 <div className="w-14 h-14 rounded-full border-4 border-white bg-secondary text-white flex items-center justify-center font-black text-[10px] uppercase tracking-widest relative z-[20] shadow-xl">+250</div>
                </div>
-               <p className="text-sm font-bold text-on-surface-variant font-headline uppercase tracking-widest leading-none">500+ professionals <br/>earning in Nairobi</p>
+               <div className="space-y-1">
+                  <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest font-headline">Managed Network Nodes</p>
+                  <p className="text-[9px] font-bold text-on-surface-variant/40 uppercase tracking-[0.2em]">Verified Specialist Pool</p>
+               </div>
             </div>
           </div>
           
           <div className="relative group">
-            <div className="absolute top-[-20px] left-[-20px] bg-secondary w-full h-full rounded-[4rem] -z-10 group-hover:scale-105 transition-transform duration-700"></div>
-            <div className="aspect-[3/4] rounded-[3.5rem] overflow-hidden shadow-premium">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKnH4N6AIAQ0rDEH5Qt3nzcVo06uYFhnG-CiJpYCzUFAJiQ81g10ckDZmkelShFBppqTvLm8fuHfwHBMPSMFULmRp9DUQt9F0CvIa4I4EU1JvXJwjmflvIxgkovTC48fDi1FteCVEv2WUHS_swqC7RnTfRCk1AkCaf3Dq1Nte7ShrYjtX5mYDWBa5oVloov444He-Xf0rxOBGDL0jLF0RhC75xPXow0owedQ5XOITcFiMZ50bh9TQiSNAqYnm7Rnq56Oo0Qwy0BZw" alt="Pro" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
+            <div className="aspect-[4/5] rounded-[5rem] overflow-hidden shadow-[0_64px_128px_-16px_rgba(0,0,0,0.25)] border-[16px] border-white group-hover:scale-[1.02] transition-transform duration-1000 relative z-10">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKnH4N6AIAQ0rDEH5Qt3nzcVo06uYFhnG-CiJpYCzUFAJiQ81g10ckDZmkelShFBppqTvLm8fuHfwHBMPSMFULmRp9DUQt9F0CvIa4I4EU1JvXJwjmflvIxgkovTC48fDi1FteCVEv2WUHS_swqC7RnTfRCk1AkCaf3Dq1Nte7ShrYjtX5mYDWBa5oVloov444He-Xf0rxOBGDL0jLF0RhC75xPXow0owedQ5XOITcFiMZ50bh9TQiSNAqYnm7Rnq56Oo0Qwy0BZw" alt="Elite Pro" className="w-full h-full object-cover saturate-[0.7] group-hover:saturate-100 transition-all duration-1000" />
             </div>
-            <div className="absolute bottom-8 right-[-20px] bg-white p-6 rounded-3xl shadow-xl border border-outline-variant/10 max-w-[240px] animate-bounce-slow">
-              <div className="flex gap-2 mb-2">
-                {[1,2,3,4,5].map(s => <span key={s} className="material-symbols-outlined text-amber-400 text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>)}
-              </div>
-              <p className="text-sm font-bold text-primary font-headline italic">"StarDash changed my life. I finally have the control I always wanted over my career."</p>
+            <div className="absolute -bottom-10 -right-10 bg-slate-900 text-white p-12 rounded-[3.5rem] shadow-2xl z-20 space-y-4 animate-bounce-slow max-w-[280px]">
+               <span className="material-symbols-outlined text-4xl font-black text-secondary">verified</span>
+               <p className="text-[11px] font-black uppercase tracking-[0.2em] font-headline leading-relaxed text-white/60">"The StarDash managed system allows me to focus purely on my craftsmanship while the hub handles all the logistics."</p>
             </div>
           </div>
         </section>
 
-        {/* Benefits Grid */}
-        <section className="max-w-7xl mx-auto py-24 mb-24 border-y border-outline-variant/10">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl font-extrabold tracking-tight text-primary font-headline">Why Partner with StarDash?</h2>
-            <p className="text-on-surface-variant font-body max-w-2xl mx-auto">We've built the ultimate platform for high-end home professionals to scale their business with premium domestic logistics.</p>
+        {/* Managed Network Protocol */}
+        <section className="max-w-[1400px] mx-auto py-32 border-y border-outline-variant/5">
+          <div className="text-center mb-24 space-y-6">
+            <div className="flex items-center justify-center gap-3">
+               <span className="w-2 h-2 rounded-full bg-secondary"></span>
+               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-on-surface-variant font-headline italic">Why Apply?</span>
+            </div>
+            <h2 className="text-6xl font-black tracking-tighter text-slate-900 font-headline italic lowercase first-letter:uppercase">Network Advantages</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-            {benefits.map(benefit => (
-              <TrustBadge key={benefit.title} {...benefit} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
+            {protocolBenefits.map(benefit => (
+              <div key={benefit.title} className="space-y-6 group">
+                 <div className="w-16 h-16 rounded-[2rem] bg-slate-50 flex items-center justify-center text-primary shadow-inner transition-transform group-hover:scale-110">
+                    <span className="material-symbols-outlined text-2xl font-black italic">{benefit.icon}</span>
+                 </div>
+                 <div className="space-y-4">
+                    <h4 className="text-xl font-black font-headline tracking-tight leading-loose uppercase italic">{benefit.title}</h4>
+                    <p className="text-on-surface-variant font-medium leading-loose text-sm opacity-60">{benefit.description}</p>
+                 </div>
+              </div>
             ))}
           </div>
         </section>
 
-        {/* Process Steps */}
-        <section className="max-w-7xl mx-auto pb-24 mb-24 text-center">
-           <h2 className="text-4xl font-extrabold tracking-tight text-primary font-headline mb-20">Seamless Onboarding</h2>
-           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
-             <div className="hidden md:block absolute top-[28%] left-[10%] right-[10%] h-[2px] bg-outline-variant/10 -z-10"></div>
+        {/* The In-take Cycle */}
+        <section className="max-w-[1400px] mx-auto py-32 text-center">
+           <div className="mb-24 space-y-6">
+              <span className="text-secondary font-black tracking-[0.4em] uppercase text-[10px] italic font-headline">Operational Step-thru</span>
+              <h2 className="text-6xl font-black tracking-tighter text-slate-900 font-headline italic lowercase first-letter:uppercase">Access Onboarding Protocol</h2>
+           </div>
+           
+           <div className="grid grid-cols-1 md:grid-cols-4 gap-16 relative">
+             <div className="hidden md:block absolute top-[40%] left-[5%] right-[5%] h-[1px] bg-slate-100 -z-10"></div>
              {[
-               { id: 1, label: 'Apply', desc: 'Sumbit your profile and previous work portfolio.', icon: 'edit_note' },
-               { id: 2, label: 'Vet', desc: 'Background check and professional skill assessment.', icon: 'verified_user' },
-               { id: 3, label: 'Onboard', desc: 'Digital interview and platform training.', icon: 'school' },
-               { id: 4, label: 'Earn', desc: 'Start receiving premium bookings in Nairobi.', icon: 'payments' }
+               { id: 1, label: 'Signal Intent', desc: 'Submit your technical portfolio and specialized artisan vectors.', icon: 'sensors' },
+               { id: 2, label: 'Verification Hub', desc: 'Mandatory profile audit, criminal record scan, and skill signal test.', icon: 'verified_user' },
+               { id: 3, label: 'Hub Onboarding', desc: 'Managed network training and operational protocol briefing.', icon: 'terminal' },
+               { id: 4, label: 'Dispatch Access', desc: 'Receive assigned service signals from the central command center.', icon: 'hub' }
              ].map(s => (
-               <div key={s.id} className="flex flex-col items-center">
-                 <div className="w-20 h-20 rounded-full bg-white border-2 border-outline-variant/20 flex items-center justify-center text-primary group hover:border-secondary hover:bg-secondary hover:text-white transition-all shadow-sm mb-6 relative">
-                    <span className="material-symbols-outlined text-3xl">{s.icon}</span>
-                    <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white text-xs font-bold border-4 border-white flex items-center justify-center">{s.id}</div>
+               <div key={s.id} className="flex flex-col items-center group">
+                 <div className="w-24 h-24 rounded-[3.5rem] bg-white border border-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-slate-900 group-hover:text-white transition-all duration-700 shadow-premium mb-8 relative italic">
+                    <span className="material-symbols-outlined text-3xl font-black">{s.icon}</span>
+                    <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-secondary text-white text-[10px] font-black border-4 border-white flex items-center justify-center italic">{s.id}</div>
                  </div>
-                 <h3 className="font-bold text-xl font-headline mb-3">{s.label}</h3>
-                 <p className="text-sm text-on-surface-variant font-body leading-relaxed">{s.desc}</p>
+                 <h3 className="font-black text-[10px] font-headline uppercase tracking-[0.3em] text-slate-900 mb-4">{s.label}</h3>
+                 <p className="text-[11px] font-bold text-on-surface-variant/40 uppercase tracking-[0.2em] leading-relaxed max-w-[180px]">{s.desc}</p>
                </div>
              ))}
            </div>
         </section>
 
-        {/* CTA Banner */}
-        <section className="max-w-7xl mx-auto">
-          <div className="bg-slate-900 rounded-[3rem] p-16 md:p-24 text-center text-white relative overflow-hidden shadow-premium">
-             <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-gxCRsK2sz_xsBAmqGUkk56kEkQ7iGeqRnvtSTve6cYx5tNctR8rGd0eqx2KQgEm8pOl7UVmmx2C9afAbTWKUBrg1_P_rS-A79D_BTHIOLzSHnbgNa37yihC_sjGNTZNnwqYOikFWu-0Dl9dFffC85nfT3v-pzhsxLTgEmct7bxAP5nux9hSZiq_YyIzwS-grXQU6ZanZlf4KqrsPuj11i4lTouPjndau3AbYocMi0XLS9dsEJY1cMH3Wx6kW-EiXGz21DR_a7E" className="w-full h-full object-cover" alt="Join us" />
+        {/* Final Access Banner */}
+        <section className="max-w-[1400px] mx-auto">
+          <div className="bg-slate-900 rounded-[5rem] p-24 md:p-32 text-center text-white relative overflow-hidden shadow-[0_64px_128px_-16px_rgba(0,0,0,0.5)]">
+             <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none scale-105 group-hover:rotate-3 transition-transform duration-1000">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-gxCRsK2sz_xsBAmqGUkk56kEkQ7iGeqRnvtSTve6cYx5tNctR8rGd0eqx2KQgEm8pOl7UVmmx2C9afAbTWKUBrg1_P_rS-A79D_BTHIOLzSHnbgNa37yihC_sjGNTZNnwqYOikFWu-0Dl9dFffC85nfT3v-pzhsxLTgEmct7bxAP5nux9hSZiq_YyIzwS-grXQU6ZanZlf4KqrsPuj11i4lTouPjndau3AbYocMi0XLS9dsEJY1cMH3Wx6kW-EiXGz21DR_a7E" className="w-full h-full object-cover" alt="Join the network" />
              </div>
-             <div className="relative z-10 space-y-10">
-               <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight font-headline">Ready to take control?</h2>
-               <p className="text-xl text-slate-400 font-body max-w-xl mx-auto">Join StarDash today and become part of Nairobi's most prestigious home services network.</p>
-               <button className="bg-secondary text-white px-16 py-6 rounded-2xl font-extrabold font-headline text-lg shadow-xl hover:brightness-110 active:scale-95 transition-all bg-gradient-to-br from-secondary to-[#005047]">
-                 Start Application Now
+             <div className="relative z-10 space-y-12">
+               <h2 className="text-5xl md:text-8xl font-black font-headline tracking-tighter italic lowercase first-letter:uppercase leading-none">Apply for <br/>Network Access</h2>
+               <p className="text-xl text-white/40 font-body max-w-2xl mx-auto italic">Join Nairobi's most prestigious managed artisan network today and revolutionize your professional dispatch lifecycle.</p>
+               <button className="bg-white text-slate-900 px-16 py-7 rounded-[2.5rem] font-black font-headline text-[10px] uppercase tracking-[0.4em] shadow-2xl hover:bg-secondary hover:text-white transition-all scale-[1.05] active:scale-95">
+                 Initialize Access Signal
                </button>
              </div>
+             <div className="absolute top-[-10%] left-[-10%] w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[100px]"></div>
           </div>
         </section>
       </main>
@@ -119,4 +138,4 @@ const BecomeAWorkerPage = () => {
   );
 };
 
-export default BecomeAWorkerPage;
+export default ArtisanOnboardingPage;

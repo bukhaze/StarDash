@@ -5,143 +5,201 @@ import Link from 'next/link';
 import { createSupabaseBrowserClient } from '@/utils/supabase/client';
 import { logout } from '@/app/actions/auth';
 import type { User } from '@supabase/supabase-js';
+import Logo from '@/components/ui/Logo';
 
 const Navbar = () => {
   const [user, setUser] = useState<User | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const supabase = createSupabaseBrowserClient();
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setUser(user);
-    });
+    supabase.auth.getUser().then(({ data: { user } }) => setUser(user));
 
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data: authListener } = supabase.auth.onAuthStateChange((_, session) => {
       setUser(session?.user || null);
     });
 
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', handleScroll);
+
     return () => {
       authListener.subscription.unsubscribe();
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   const navLinks = [
-    { label: 'Home', href: '/' },
     { label: 'Services', href: '/services' },
-    { label: 'Become a Worker', href: '/become-a-worker' },
+    { label: 'How It Works', href: '/#how-it-works' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ];
 
+  const dashboardHref = user?.user_metadata?.role === 'admin'
+    ? '/admin'
+    : user?.user_metadata?.role === 'worker'
+    ? '/worker'
+    : '/dashboard';
+
   return (
     <>
-      {/* 1. Top Announcement Bar */}
-      <div className="bg-primary text-on-primary py-2.5 px-4 text-center text-xs md:text-sm font-medium tracking-wide">
-        Elevate your home experience. <span className="text-[#62fae3] font-bold">20% off your first booking</span> with code DASH20
+      {/* Announcement bar */}
+      <div className="bg-blue-600 text-white py-2.5 px-4 text-center text-xs font-semibold">
+        🌟 Serving Nairobi&apos;s premium neighborhoods — Fast, vetted, and fully managed.{' '}
+        <Link href="/signup" className="underline underline-offset-4 hover:text-blue-200 transition-colors">
+          Book your first service →
+        </Link>
       </div>
 
-      {/* 2. Sticky Navbar */}
-      <nav className="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-xl shadow-sm border-b border-outline-variant/5">
-        <div className="flex justify-between items-center px-6 md:px-8 py-4 max-w-7xl mx-auto">
-          <Link href="/" className="text-2xl font-black tracking-tighter text-slate-900 font-headline">
-            StarDash
+      <nav className={`sticky top-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white shadow-md border-b border-slate-100'
+          : 'bg-white/95 backdrop-blur-2xl border-b border-slate-100'
+      }`}>
+        <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-16">
+
+          {/* Logo */}
+          <Link href="/" className="flex-shrink-0">
+            <Logo />
           </Link>
-          
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
+
+          {/* Desktop Nav Links */}
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link key={link.label} href={link.href} className="text-slate-600 hover:text-secondary transition-colors font-headline font-semibold text-sm tracking-tight hover:translate-y-[-1px]">
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-4 md:gap-6">
-            <div className="hidden sm:flex items-center">
-              {user ? (
-                <Link href={user.user_metadata?.role === 'admin' ? '/admin' : user.user_metadata?.role === 'worker' ? '/worker' : '/dashboard'} className="bg-primary text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:opacity-90 transition-all scale-95 active:opacity-80 shadow-premium">
-                  Dashboard
-                </Link>
-              ) : (
-                <Link href="/login" className="bg-primary text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:opacity-90 transition-all scale-95 active:opacity-80 shadow-premium">
-                  Admin Login
-                </Link>
-              )}
-            </div>
-
-            {/* Mobile Menu Toggle */}
-            <button 
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2.5 hover:bg-slate-100 rounded-xl transition-colors active:scale-95 text-slate-700"
-            >
-              <span className="material-symbols-outlined font-black">menu</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Sidebar Overlay */}
-        {isMobileMenuOpen && (
-          <div 
-            className="md:hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[55] animate-in fade-in duration-300" 
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-        )}
-
-        <aside className={`md:hidden fixed top-0 right-0 h-screen w-72 bg-white z-[60] p-8 shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}>
-          <div className="flex items-center justify-between mb-12">
-            <div className="text-2xl font-black text-slate-900 font-headline tracking-tighter">StarDash</div>
-            <button onClick={() => setIsMobileMenuOpen(false)} className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-slate-700 transition-colors">
-              <span className="material-symbols-outlined text-3xl">close</span>
-            </button>
-          </div>
-
-          <div className="flex flex-col space-y-2">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.label} 
+              <Link
+                key={link.label}
                 href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-lg font-bold text-slate-600 hover:text-secondary px-4 py-4 rounded-2xl hover:bg-slate-50 transition-all font-headline"
+                className="text-slate-600 hover:text-slate-900 transition-colors font-medium text-sm"
               >
                 {link.label}
               </Link>
             ))}
-            
-            <div className="pt-8 border-t border-slate-100 mt-4 space-y-4">
-              {user ? (
-                <>
-                  <Link 
-                    href={user.user_metadata?.role === 'admin' ? '/admin' : user.user_metadata?.role === 'worker' ? '/worker' : '/dashboard'}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center justify-center w-full h-14 bg-secondary text-white rounded-2xl font-bold text-lg shadow-premium"
-                  >
-                    Go to Dashboard
-                  </Link>
-                  <button 
-                    onClick={() => { logout(); setIsMobileMenuOpen(false); }}
-                    className="w-full h-14 border-2 border-slate-100 text-slate-600 rounded-2xl font-bold text-lg"
-                  >
-                    Logout
-                  </button>
-                </>
-              ) : (
-                <Link 
-                  href="/login"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-center w-full h-14 bg-primary text-white rounded-2xl font-bold text-lg shadow-premium"
+          </div>
+
+          {/* Desktop Auth Buttons */}
+          <div className="hidden md:flex items-center gap-3">
+            {user ? (
+              <>
+                <Link
+                  href={dashboardHref}
+                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-blue-700 transition-all"
                 >
-                  Admin Login
+                  <span className="material-symbols-outlined text-base" style={{ fontVariationSettings: "'FILL' 1" }}>dashboard</span>
+                  My Dashboard
                 </Link>
-              )}
+                <button
+                  onClick={() => logout()}
+                  className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors px-3 py-2"
+                >
+                  Sign out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors px-4 py-2.5"
+                >
+                  Log in
+                </Link>
+                <Link
+                  href="/signup"
+                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-blue-700 transition-all shadow-sm"
+                >
+                  Get Started
+                  <span className="material-symbols-outlined text-base">arrow_forward</span>
+                </Link>
+              </>
+            )}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2.5 hover:bg-slate-100 rounded-xl transition-colors text-slate-700"
+            aria-label="Toggle menu"
+          >
+            <span className="material-symbols-outlined">
+              {isMobileMenuOpen ? 'close' : 'menu'}
+            </span>
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <>
+            <div
+              className="lg:hidden fixed inset-0 bg-black/40 z-40 backdrop-blur-sm"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+            <div className="lg:hidden fixed top-0 right-0 h-screen w-72 bg-white z-50 shadow-2xl flex flex-col">
+              {/* Header */}
+              <div className="flex items-center justify-between px-6 h-16 border-b border-slate-100">
+                <Logo />
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+                >
+                  <span className="material-symbols-outlined text-slate-600">close</span>
+                </button>
+              </div>
+
+              {/* Nav Links */}
+              <div className="flex-1 overflow-y-auto px-4 py-6 space-y-1">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center px-4 py-3 rounded-xl text-slate-700 font-medium hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+
+              {/* Auth Buttons */}
+              <div className="px-4 pb-8 pt-4 border-t border-slate-100 space-y-3">
+                {user ? (
+                  <>
+                    <Link
+                      href={dashboardHref}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center justify-center gap-2 w-full bg-blue-600 text-white py-3.5 rounded-xl font-bold text-sm hover:bg-blue-700 transition-all"
+                    >
+                      <span className="material-symbols-outlined text-base" style={{ fontVariationSettings: "'FILL' 1" }}>dashboard</span>
+                      My Dashboard
+                    </Link>
+                    <button
+                      onClick={() => { logout(); setIsMobileMenuOpen(false); }}
+                      className="w-full border border-slate-200 text-slate-600 py-3 rounded-xl font-semibold text-sm hover:bg-slate-50 transition-colors"
+                    >
+                      Sign out
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href="/signup"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center justify-center w-full bg-blue-600 text-white py-3.5 rounded-xl font-bold text-sm hover:bg-blue-700 transition-all"
+                    >
+                      Get Started Free
+                    </Link>
+                    <Link
+                      href="/login"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center justify-center w-full border border-slate-200 text-slate-700 py-3 rounded-xl font-semibold text-sm hover:bg-slate-50 transition-colors"
+                    >
+                      Log in
+                    </Link>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-          
-          <div className="mt-auto absolute bottom-8 left-8 right-8 text-center">
-            <p className="text-xs text-slate-400 font-medium font-body uppercase tracking-widest">Premium Home Services Nairobi</p>
-          </div>
-        </aside>
+          </>
+        )}
       </nav>
     </>
   );

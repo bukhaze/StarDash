@@ -2,9 +2,8 @@ import React from 'react';
 import { createSupabaseServerClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import DashboardSidebar from '@/components/layout/DashboardSidebar';
 
-export default async function AdminDashboard() {
+export default async function AdminOperationsCenter() {
   const supabase = await createSupabaseServerClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -18,178 +17,196 @@ export default async function AdminDashboard() {
 
   if (profile?.role !== 'admin') redirect('/dashboard');
 
-  // Fetch metrics for reporting
+  // Fetch High-Density Telemetry
   const { data: allBookings } = await supabase
     .from('bookings')
     .select(`
       *,
       service:services(title),
-      customer:profiles!bookings_customer_id_fkey(full_name, phone, email),
+      customer:profiles!bookings_customer_id_fkey(full_name, phone),
       address:addresses(neighborhood)
     `)
     .order('created_at', { ascending: false });
 
-  const { data: workerCount } = await supabase
-    .from('profiles')
-    .select('id', { count: 'exact', head: true })
-    .eq('role', 'worker');
+  const { data: activeWorkers } = await supabase
+    .from('worker_profiles')
+    .select(`*, profile:profiles(full_name)`)
+    .eq('is_available', true);
 
   const pendingAssignments = allBookings?.filter(b => b.status === 'pending') || [];
-  const todayBookings = allBookings?.filter(b => b.scheduled_date === new Date().toISOString().split('T')[0]) || [];
+  const activeJobs = allBookings?.filter(b => b.status === 'in_progress' || b.status === 'worker_assigned') || [];
 
   const metrics = [
-    { 
-      label: 'Network Volume', 
-      value: allBookings?.length || 0, 
-      sub: 'All-time requests',
-      icon: 'database',
-      color: 'bg-primary'
-    },
-    { 
-      label: 'Pending Dispatch', 
-      value: pendingAssignments.length, 
-      sub: 'Awaiting triages',
-      icon: 'pending_actions',
-      color: 'bg-amber-500' 
-    },
-    { 
-      label: 'Verified Pros', 
-      value: workerCount?.length || 0, 
-      sub: 'Active partners',
-      icon: 'engineering',
-      color: 'bg-secondary' 
-    },
+    { label: 'Booking Intake', value: pendingAssignments.length, color: 'text-blue-600', sub: 'Ready for Dispatch', icon: 'pending_actions' },
+    { label: 'Active Jobs', value: activeJobs.length, color: 'text-indigo-600', sub: 'Live in Nairobi', icon: 'dynamic_feed' },
+    { label: 'Online Specialists', value: activeWorkers?.length || 0, color: 'text-emerald-600', sub: 'Verified & Available', icon: 'engineering' },
+    { label: 'Today Revenue', value: 'KSh 12,450', color: 'text-blue-600', sub: '+12% vs Yesterday', icon: 'payments' },
   ];
 
   return (
-    <div className="flex bg-surface min-h-screen">
-      <DashboardSidebar />
-      <div className="flex-1 md:ml-72 flex flex-col">
-        <header className="w-full relative md:sticky top-0 z-30 bg-white/80 backdrop-blur-xl flex flex-col md:flex-row items-start md:items-center justify-between px-6 md:px-8 py-4 md:h-20 gap-4 md:gap-0 shadow-sm border-b border-outline-variant/5">
-          <div className="flex items-center gap-3">
-             <span className="material-symbols-outlined text-primary text-2xl font-bold">shield</span>
-             <h1 className="font-headline font-semibold tracking-tight text-slate-900 text-xl">Operational Command Center</h1>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="flex flex-col items-end hidden md:block">
-               <p className="text-xs font-bold text-primary font-headline uppercase tracking-widest leading-none">{profile?.full_name}</p>
-               <p className="text-[10px] text-on-surface-variant font-body">Super Admin Access</p>
-            </div>
-            <div className="w-10 h-10 rounded-full bg-slate-900 border-2 border-white shadow-premium text-white font-bold flex items-center justify-center font-headline shrink-0">
-               {profile?.full_name?.split(' ').map(n => n[0]).join('') || 'AD'}
-            </div>
-          </div>
-        </header>
+    <div className="p-8 max-w-[1600px] mx-auto w-full space-y-12 animate-in fade-in duration-700">
+      
+      {/* Ops Header */}
+      <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 py-4">
+        <div className="space-y-2">
+           <h1 className="text-4xl font-black tracking-tight text-slate-900 italic">Operations Hub</h1>
+           <p className="text-slate-500 font-medium text-lg">Central dispatch and platform performance management.</p>
+        </div>
+        <div className="flex gap-3">
+           <Link href="/admin/workers" className="bg-slate-50 text-slate-700 border border-slate-100 px-6 py-4 rounded-xl font-bold text-sm hover:bg-white transition-all">Manages Specialists</Link>
+           <Link href="/admin/bookings" className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-sm hover:bg-blue-700 shadow-lg shadow-blue-100 transition-all flex items-center gap-2">
+              <span className="material-symbols-outlined text-base">assignment</span>
+              Dispatch Queue
+           </Link>
+        </div>
+      </header>
 
-        <main className="flex-1 p-8 max-w-7xl mx-auto w-full space-y-12">
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {metrics.map(m => (
-              <div key={m.label} className="bg-white p-8 rounded-[2.5rem] shadow-premium border border-outline-variant/5 group hover:border-secondary/20 transition-all flex flex-col justify-between h-48 relative overflow-hidden">
-                <div className="space-y-4 relative z-10">
-                   <div className={`w-12 h-12 rounded-2xl ${m.color}/10 flex items-center justify-center text-${m.color.split('-')[1]} font-bold`}>
-                      <span className="material-symbols-outlined" style={{ color: m.color.includes('pending') ? '#d97706' : m.color.includes('secondary') ? '#10b981' : '#0f172a' }}>{m.icon}</span>
-                   </div>
-                   <div>
-                      <p className="text-4xl font-headline font-black text-primary tracking-tight leading-none">{m.value}</p>
-                      <p className="text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant font-headline mt-2 leading-none">{m.label}</p>
-                   </div>
-                </div>
-                <p className="text-[10px] font-medium text-slate-400 font-body relative z-10 uppercase tracking-tight">{m.sub}</p>
-                <div className="absolute top-0 right-0 w-24 h-24 bg-surface-container-low/30 rounded-full translate-x-12 -translate-y-12 group-hover:scale-110 transition-transform"></div>
+      {/* Metrics Section */}
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {metrics.map(m => (
+          <div key={m.label} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col justify-between h-48 relative overflow-hidden group hover:border-blue-200 transition-all">
+            <div className="space-y-4 relative z-10">
+              <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-300 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>{m.icon}</span>
               </div>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-6">
-               <div className="flex items-center justify-between px-2">
-                  <h3 className="font-headline text-2xl font-bold text-primary">Live Intake Roster</h3>
-                  <Link href="/admin/bookings" className="text-xs font-extrabold text-secondary uppercase tracking-widest hover:underline flex items-center gap-1">Complete List &gt;</Link>
-               </div>
-               <div className="bg-white rounded-[2.5rem] shadow-premium border border-outline-variant/5 overflow-hidden font-body">
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse">
-                      <thead>
-                        <tr className="bg-surface-container-high/10 text-on-surface-variant text-[10px] uppercase tracking-widest font-extrabold font-headline">
-                          <th className="px-8 py-5">Origin Connection</th>
-                          <th className="px-8 py-5">Market Vector</th>
-                          <th className="px-8 py-5 text-right">Operational Status</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-surface-container-high/10">
-                        {allBookings && allBookings.length > 0 ? allBookings.slice(0, 8).map((booking: any) => (
-                          <tr key={booking.id} className="hover:bg-slate-50 transition-colors group border-b border-outline-variant/5">
-                            <td className="px-8 py-6">
-                              <p className="font-bold text-primary font-headline text-sm">{booking.customer?.full_name || booking.guest_name || 'Anonymous'}</p>
-                              <p className="text-[10px] text-on-surface-variant font-body uppercase font-medium">{booking.address?.neighborhood || 'Nairobi Hub'}</p>
-                            </td>
-                            <td className="px-8 py-6">
-                              <p className="font-bold text-primary font-headline text-sm">{booking.service?.title || 'Home Service'}</p>
-                              <p className="text-[10px] text-on-surface-variant font-body">{booking.scheduled_date} • {booking.scheduled_time}</p>
-                            </td>
-                            <td className="px-8 py-6 text-right">
-                              <span className={`inline-flex px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border ${
-                                booking.status === 'completed' ? 'bg-secondary/10 text-secondary border-secondary/20' :
-                                booking.status === 'pending' ? 'bg-amber-500/10 text-amber-600 border-amber-500/20 animate-pulse' :
-                                'bg-blue-500/10 text-blue-600 border-blue-500/20'
-                              }`}>
-                                {booking.status.replace('_', ' ')}
-                              </span>
-                            </td>
-                          </tr>
-                        )) : (
-                          <tr>
-                            <td colSpan={3} className="px-8 py-20 text-center">
-                               <span className="material-symbols-outlined text-4xl text-slate-200 mb-4">move_to_inbox</span>
-                               <p className="text-on-surface-variant font-headline font-bold">In-take queue is currently empty.</p>
-                            </td>
-                          </tr>
-                        )}
-                      </tbody>
-                    </table>
-                  </div>
-               </div>
+              <div>
+                <p className={`text-4xl font-black ${m.color} tracking-tight leading-none`}>{m.value}</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mt-3 leading-none">{m.label}</p>
+              </div>
             </div>
-
-            <div className="space-y-8">
-               <div className="bg-slate-900 rounded-[2.5rem] p-8 text-white space-y-8 shadow-premium relative overflow-hidden">
-                  <div className="relative z-10">
-                     <h4 className="font-headline font-bold text-xl leading-snug">Generate Nairobi Performance Audit</h4>
-                     <p className="text-white/60 text-xs mt-2 font-body leading-relaxed">Extract full market telemetry including revenue growth and worker utilization rates from the last 30 days.</p>
-                  </div>
-                  <button className="w-full py-4 bg-white text-primary rounded-xl font-bold font-headline text-sm shadow-xl hover:scale-105 active:scale-95 transition-all relative z-10 flex items-center justify-center gap-2">
-                     <span className="material-symbols-outlined text-sm">analytics</span>
-                     Run Protocol
-                  </button>
-                  <div className="absolute opacity-5 -bottom-10 -right-10 scale-[4]">
-                     <span className="material-symbols-outlined text-[100px]">insights</span>
-                  </div>
-               </div>
-
-               <div className="bg-white rounded-[2.5rem] p-8 shadow-premium border border-outline-variant/5 space-y-6">
-                  <h4 className="font-headline text-sm font-extrabold uppercase tracking-widest text-primary">Triage Breakdown</h4>
-                  <div className="space-y-4">
-                     {[
-                       { label: 'Manual Assignments', val: '72%', color: 'bg-primary' },
-                       { label: 'Auto-Dispatch', val: '0%', color: 'bg-slate-100' },
-                       { label: 'Fulfillment Rate', val: '98%', color: 'bg-secondary' }
-                     ].map(item => (
-                       <div key={item.label}>
-                          <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest mb-2 px-1">
-                             <span className="text-on-surface-variant font-headline">{item.label}</span>
-                             <span className="text-primary font-headline">{item.val}</span>
-                          </div>
-                          <div className="w-full h-2 bg-slate-50 rounded-full overflow-hidden">
-                             <div className={`h-full ${item.color} rounded-full`} style={{ width: item.val }}></div>
-                          </div>
-                       </div>
-                     ))}
-                  </div>
-               </div>
-            </div>
+            <p className="text-[10px] font-bold text-slate-400 font-body uppercase tracking-tight relative z-10">{m.sub}</p>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 rotate-45 translate-x-16 -translate-y-16 group-hover:scale-110 transition-transform"></div>
           </div>
-        </main>
+        ))}
+      </section>
+
+      {/* Main Operations Grid */}
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
+        
+        {/* Recent Inbound Activity */}
+        <div className="xl:col-span-2 space-y-8">
+           <div className="flex items-center justify-between px-2">
+              <h3 className="text-xl font-black text-slate-900 italic">Inbound Intake Queue</h3>
+              <Link href="/admin/bookings" className="text-blue-600 font-bold text-sm hover:underline underline-offset-4 decoration-2">Full Roster Audit &gt;</Link>
+           </div>
+
+           <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden min-h-[500px]">
+             <div className="overflow-x-auto">
+               <table className="w-full text-left">
+                 <thead>
+                   <tr className="bg-slate-50 text-slate-400 text-[10px] uppercase tracking-widest font-black">
+                     <th className="px-10 py-6 italic">Customer / Location</th>
+                     <th className="px-10 py-6 italic">Service Detail</th>
+                     <th className="px-10 py-6 text-right italic">Action Required</th>
+                   </tr>
+                 </thead>
+                 <tbody className="divide-y divide-slate-50">
+                   {allBookings && allBookings.length > 0 ? allBookings.slice(0, 10).map((b: any) => (
+                     <tr key={b.id} className="hover:bg-slate-50/50 transition-colors group">
+                       <td className="px-10 py-8">
+                         <p className="font-bold text-slate-900 text-lg">{b.customer?.full_name || 'Anonymous Guest'}</p>
+                         <div className="flex items-center gap-2 mt-1">
+                            <span className="material-symbols-outlined text-[12px] text-blue-600">location_on</span>
+                            <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest leading-none">{b.address?.neighborhood || 'Nairobi'}</span>
+                         </div>
+                       </td>
+                       <td className="px-10 py-8">
+                         <p className="font-black text-slate-900 text-[13px]">{b.service?.title || 'Managed Service'}</p>
+                         <p className="text-[10px] text-slate-400 font-bold mt-1 uppercase tracking-tight">{b.scheduled_date} • {b.scheduled_time}</p>
+                       </td>
+                       <td className="px-10 py-8 text-right">
+                         <div className="flex flex-col items-end gap-3">
+                            <span className={`inline-flex px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.15em] border ${
+                              b.status === 'completed' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
+                              b.status === 'pending' ? 'bg-amber-50 text-amber-600 border-amber-100 animate-pulse' :
+                              b.status === 'worker_assigned' ? 'bg-blue-50 text-blue-600 border-blue-100' :
+                              'bg-slate-100 text-slate-500 border-slate-200'
+                            }`}>
+                              {b.status.replace('_', ' ')}
+                            </span>
+                            {b.status === 'pending' ? (
+                              <Link href={`/admin/bookings`} className="text-[9px] font-black text-blue-600 hover:text-blue-700 uppercase tracking-widest flex items-center gap-1 group/link">
+                                Assign Specialist
+                                <span className="material-symbols-outlined text-[12px] group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+                              </Link>
+                            ) : (
+                                <p className="text-[9px] font-bold text-slate-300 uppercase tracking-widest">Locked</p>
+                            )}
+                         </div>
+                       </td>
+                     </tr>
+                   )) : (
+                     <tr>
+                       <td colSpan={3} className="px-10 py-32 text-center text-slate-300 italic font-bold">Intake queue currently clear.</td>
+                     </tr>
+                   )}
+                 </tbody>
+               </table>
+             </div>
+           </div>
+        </div>
+
+        {/* Sidebar Ops Widgets */}
+        <div className="space-y-10">
+           
+           {/* Command Pulse */}
+           <div className="bg-slate-900 rounded-[2.5rem] p-12 text-white space-y-10 shadow-xl shadow-slate-200 relative overflow-hidden group">
+              <div className="relative z-10 space-y-10">
+                 <div className="w-16 h-16 rounded-3xl bg-blue-600 flex items-center justify-center text-white shadow-xl">
+                    <span className="material-symbols-outlined text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>hub</span>
+                 </div>
+                 <div className="space-y-4">
+                    <h5 className="text-3xl font-black leading-tight italic">Platform Vitality</h5>
+                    <p className="text-white/40 text-[10px] font-black leading-loose uppercase tracking-[0.2em]">Manage your premium specialist network and service architecture via the secure hub.</p>
+                 </div>
+                 <div className="space-y-3">
+                    <Link href="/admin/workers" className="w-full h-14 flex items-center justify-between px-6 bg-white/10 hover:bg-white/20 transition-all rounded-2xl border border-white/5 font-black text-[10px] uppercase tracking-widest">
+                       Partner Roster
+                       <span className="material-symbols-outlined text-sm">chevron_right</span>
+                    </Link>
+                    <button className="w-full h-14 flex items-center justify-between px-6 bg-white/10 hover:bg-white/20 transition-all rounded-2xl border border-white/5 font-black text-[10px] uppercase tracking-widest">
+                       Service Directory
+                       <span className="material-symbols-outlined text-sm">chevron_right</span>
+                    </button>
+                    <button className="w-full h-14 flex items-center justify-center gap-3 bg-blue-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.3em] shadow-xl hover:bg-blue-500 transition-all active:scale-95 mt-4">
+                       <span className="material-symbols-outlined text-lg">description</span>
+                       Audit Report
+                    </button>
+                 </div>
+              </div>
+           </div>
+
+           {/* Specialist Presence */}
+           <div className="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100 space-y-8">
+              <div className="flex items-center justify-between">
+                 <h4 className="text-xs font-black uppercase tracking-widest text-slate-400 font-headline italic leading-none">Specialist Presence</h4>
+                 <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+              </div>
+              <div className="divide-y divide-slate-50">
+                 {activeWorkers && activeWorkers.length > 0 ? activeWorkers.slice(0, 6).map((w: any) => (
+                   <div key={w.id} className="flex items-center justify-between py-5 group">
+                      <div className="flex items-center gap-4">
+                         <div className="w-12 h-12 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center text-slate-900 font-bold text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                            {w.profile?.full_name?.split(' ').map((n:any) => n[0]).join('')}
+                         </div>
+                         <div className="space-y-0.5">
+                            <p className="text-sm font-black text-slate-900">{w.profile?.full_name}</p>
+                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none italic">Verified Specialist</p>
+                         </div>
+                      </div>
+                      <span className="material-symbols-outlined text-emerald-500 text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                   </div>
+                 )) : (
+                   <div className="py-20 text-center space-y-4">
+                      <span className="material-symbols-outlined text-4xl text-slate-100">person_off</span>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-300">Active roster empty.</p>
+                   </div>
+                 )}
+              </div>
+              <Link href="/admin/workers" className="w-full flex items-center justify-center p-4 bg-slate-50 rounded-2xl text-[10px] font-black uppercase tracking-widest text-slate-500 hover:bg-slate-100 transition-all">Full Network View</Link>
+           </div>
+
+        </div>
       </div>
     </div>
   );
