@@ -7,7 +7,7 @@ StarDash is a premium, full-stack home services marketplace built specifically f
 Designed with a sleek, glassmorphism aesthetic matching the Stitch design system, the application is focused on building local trust, offering high-quality user experiences, and ensuring data security for all parties involved (Customers, Workers, and Admins).
 
 **Target Market**: Nairobi, Kenya  
-**Contact**: +254723531085 | nimcaz22@gmail.com  
+**Contact**: +254723531085 | bukhariabdiaziz22@gmail.com  
 **Founder**: Nimca Abdirashid  
 
 ## Services Offered
