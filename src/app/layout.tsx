@@ -18,6 +18,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "StarDash | Professional Cleaning & Fumigation Nairobi",
   description: "Nairobi's trusted provider for residential cleaning, office cleaning, and expert fumigation/pest control. Visit our BBS Mall office today.",
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
+  },
 };
 
 export default function RootLayout({
