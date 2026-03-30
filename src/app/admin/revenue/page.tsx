@@ -23,7 +23,7 @@ export default async function AdminRevenuePage() {
 
   const completed = allBookings?.filter(b => b.status === 'completed') || [];
   const totalRevenue = completed.reduce((sum, b) => sum + parseInt(b.total_amount || '0'), 0);
-  const pendingRevenue = allBookings?.filter(b => b.status === 'pending')
+  const pendingRevenue = (allBookings?.filter(b => b.status === 'pending') || [])
     .reduce((sum, b) => sum + parseInt(b.total_amount || '0'), 0);
 
   return (

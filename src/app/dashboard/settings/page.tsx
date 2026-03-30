@@ -56,7 +56,7 @@ export default async function CustomerSettingsPage() {
             <div className="p-10 flex items-center justify-between">
                <div>
                   <h4 className="font-headline font-bold text-xl text-primary">Reset Login Protocol</h4>
-                  <p className="text-on-surface-variant text-sm mt-1 max-w-sm">We'll send a password recovery secure link to your verified email address.</p>
+                  <p className="text-on-surface-variant text-sm mt-1 max-w-sm">We&apos;ll send a password recovery secure link to your verified email address.</p>
                </div>
                <button className="bg-slate-100 text-slate-700 px-8 py-3 rounded-2xl font-bold font-headline text-sm hover:bg-slate-200 transition-all active:scale-95 shadow-sm">Initiate Reset</button>
             </div>

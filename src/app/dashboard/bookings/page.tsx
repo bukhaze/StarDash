@@ -1,6 +1,7 @@
 import React from 'react';
 import { createSupabaseServerClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 
 export default async function CustomerBookingsPage() {
   const supabase = await createSupabaseServerClient();
@@ -24,10 +25,10 @@ export default async function CustomerBookingsPage() {
            <h2 className="font-headline text-4xl font-extrabold tracking-tight text-primary">Your Bookings</h2>
            <p className="text-on-surface-variant mt-2 text-lg font-body">Manage and track all your scheduled home services in Nairobi.</p>
         </div>
-        <button className="bg-primary text-white border-none px-8 py-4 rounded-2xl font-bold font-headline shadow-premium hover:shadow-xl transition-all scale-95 active:scale-90 flex items-center gap-2">
+        <Link href="/services" className="bg-primary text-white border-none px-8 py-4 rounded-2xl font-bold font-headline shadow-premium hover:shadow-xl transition-all scale-95 active:scale-90 flex items-center gap-2">
            <span className="material-symbols-outlined">add_circle</span>
            Book New Service
-        </button>
+        </Link>
       </div>
 
       <div className="bg-white rounded-[2.5rem] shadow-premium border border-outline-variant/5 overflow-hidden font-body">
@@ -49,7 +50,7 @@ export default async function CustomerBookingsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-surface-container-high/20">
-              {bookings && bookings.length > 0 ? bookings.map((booking: any) => (
+              {bookings && bookings.length > 0 ? (bookings as { id: string; service?: { name: string }; scheduled_date: string; scheduled_time: string; total_amount: string; status: string }[]).map((booking) => (
                 <tr key={booking.id} className="hover:bg-slate-50 transition-colors group">
                   <td className="px-8 py-6">
                     <div className="flex items-center gap-4">
@@ -67,7 +68,7 @@ export default async function CustomerBookingsPage() {
                     <p className="text-xs text-on-surface-variant font-body">{booking.scheduled_time}</p>
                   </td>
                   <td className="px-8 py-6">
-                    <span className="text-sm font-bold text-primary font-headline">KES {parseInt(booking.total_amount).toLocaleString()}</span>
+                    <span className="text-sm font-bold text-primary font-headline">KES {parseInt(booking.total_amount || '0').toLocaleString()}</span>
                   </td>
                   <td className="px-8 py-6 text-right">
                     <span className={`inline-flex px-4 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest border border-current opacity-90 ${
@@ -82,7 +83,7 @@ export default async function CustomerBookingsPage() {
               )) : (
                 <tr>
                   <td colSpan={4} className="px-8 py-12 text-center text-on-surface-variant font-medium">
-                    No bookings found. <a href="/services" className="text-secondary font-bold hover:underline">Book your first service now!</a>
+                    No bookings found. <Link href="/services" className="text-secondary font-bold hover:underline">Book your first service now!</Link>
                   </td>
                 </tr>
               )}

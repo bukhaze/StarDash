@@ -27,7 +27,7 @@ export default async function CustomerAddressesPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {addresses && addresses.length > 0 ? addresses.map((addr: any) => (
+        {addresses && addresses.length > 0 ? (addresses as { id: string; neighborhood: string; apartment_suite?: string; street_address: string }[]).map((addr) => (
           <div key={addr.id} className="bg-white p-8 rounded-[2.5rem] shadow-premium border border-outline-variant/10 flex flex-col justify-between group hover:border-secondary transition-all">
              <div className="space-y-6">
                 <div className="flex items-center justify-between">

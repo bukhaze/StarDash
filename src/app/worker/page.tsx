@@ -48,7 +48,7 @@ export default async function WorkerDashboard() {
         <div className="flex gap-4">
            <div className="flex flex-col items-end">
               <p className="text-sm font-black text-slate-900 leading-none">{profile?.full_name}</p>
-              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1.5 leading-none italic">Verified Specialist Specialist</p>
+              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1.5 leading-none italic">Verified Specialist</p>
            </div>
            <div className="w-14 h-14 rounded-2xl bg-blue-600 text-white font-black flex items-center justify-center text-lg shadow-lg shadow-blue-100 ring-4 ring-slate-50">
               {profile?.full_name?.[0] || 'W'}
@@ -88,8 +88,8 @@ export default async function WorkerDashboard() {
                 <div key={job.id} className="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden hover:shadow-xl transition-all group flex flex-col md:flex-row relative">
                    {/* Left Date Pane */}
                    <div className="w-full md:w-[120px] bg-slate-50 p-8 flex flex-col items-center justify-center border-r border-slate-100">
-                      <p className="text-2xl font-black text-slate-900 tracking-tight">{job.scheduled_date.split('-')[2]}</p>
-                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{job.scheduled_date.split('-')[1]}</p>
+                      <p className="text-2xl font-black text-slate-900 tracking-tight">{job.scheduled_date?.split('-')[2] || '--'}</p>
+                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{job.scheduled_date?.split('-')[1] || '--'}</p>
                       <p className="text-[10px] font-black text-blue-600 mt-4 uppercase tracking-[0.2em]">{job.scheduled_time}</p>
                    </div>
                    {/* Main Content Pane */}
@@ -103,7 +103,7 @@ export default async function WorkerDashboard() {
                             <span className={`inline-flex px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.15em] border ${
                               job.status === 'in_progress' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-blue-600 text-white shadow-lg'
                             }`}>
-                               {job.status.replace('_', ' ')}
+                               {job.status?.replace('_', ' ') || 'Pending'}
                             </span>
                             <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">ID: {job.id.slice(0, 8)}</p>
                          </div>

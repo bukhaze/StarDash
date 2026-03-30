@@ -1,25 +1,21 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { login } from '@/app/actions/auth';
 import Logo from '@/components/ui/Logo';
 
-const LoginPage = () => {
+const LoginContent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [loginType, setLoginType] = useState<'customer' | 'admin'>('customer');
+  
+  const typeParam = searchParams.get('type');
+  const initialLoginType = (typeParam === 'admin' || typeParam === 'customer') ? typeParam : 'customer';
+  const [loginType, setLoginType] = useState<'customer' | 'admin'>(initialLoginType);
   const [showPassword, setShowPassword] = useState(false);
-
-  useEffect(() => {
-    const type = searchParams.get('type') as any;
-    if (['customer', 'admin'].includes(type)) {
-      setLoginType(type);
-    }
-  }, [searchParams]);
 
   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -78,7 +74,7 @@ const LoginPage = () => {
             <p className="text-white/60 text-lg leading-relaxed max-w-sm">
               {isAdmin
                 ? 'Control requests, dispatch workers, monitor performance and grow your network — all from one place.'
-                : 'Request cleaning, laundry, security and more. Our team handles everything, so you don\'t have to.'
+                : 'Request cleaning, laundry, security and more. Our team handles everything, so you don&apos;t have to.'
               }
             </p>
           </div>
@@ -293,7 +289,7 @@ const LoginPage = () => {
             {/* Sign Up Link (Customer only) */}
             {!isAdmin && (
               <p className="text-center text-sm text-slate-500">
-                Don't have an account?{' '}
+                Don&apos;t have an account?{' '}
                 <Link href="/signup" className="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
                   Create one free
                 </Link>
@@ -329,4 +325,10 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-slate-50"><span className="material-symbols-outlined animate-spin text-blue-600 text-4xl">progress_activity</span></div>}>
+      <LoginContent />
+    </Suspense>
+  );
+}

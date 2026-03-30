@@ -146,7 +146,7 @@ export default function Home() {
               <div className="space-y-8">
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full text-sm font-medium">
                   <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  Nairobi's #1 Managed Home Services
+                  Nairobi&apos;s #1 Managed Home Services
                 </div>
 
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]">
@@ -355,7 +355,7 @@ export default function Home() {
                       <span key={j} className="text-yellow-400 text-base">★</span>
                     ))}
                   </div>
-                  <p className="text-slate-700 leading-relaxed text-[15px]">"{t.text}"</p>
+                  <p className="text-slate-700 leading-relaxed text-[15px]">&quot;{t.text}&quot;</p>
                   <div className="flex items-center gap-3 pt-2 border-t border-slate-100">
                     <div className={`w-10 h-10 rounded-full ${t.avatarBg} text-white flex items-center justify-center font-bold flex-shrink-0`}>
                       {t.avatar}
@@ -379,7 +379,7 @@ export default function Home() {
                 <div className="space-y-4">
                   <p className="text-blue-600 font-bold text-sm uppercase tracking-widest">Coverage Area</p>
                   <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-                    Serving Nairobi's<br />finest neighbourhoods.
+                    Serving Nairobi&apos;s<br />finest neighbourhoods.
                   </h2>
                   <p className="text-slate-500 text-lg leading-relaxed">
                     Our specialist network is currently deployed across premium Nairobi districts, ensuring fast response times and local expertise.
@@ -394,7 +394,7 @@ export default function Home() {
                   ))}
                 </div>
                 <Link href="/contact" className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-800 transition-colors text-sm">
-                  Don't see your area? Contact us
+                  Don&apos;t see your area? Contact us
                   <span className="material-symbols-outlined text-base">arrow_forward</span>
                 </Link>
               </div>
@@ -408,7 +408,7 @@ export default function Home() {
                   </div>
                   <div className="space-y-3">
                     <h3 className="text-3xl font-black leading-tight">Ready to book your first service?</h3>
-                    <p className="text-white/60 leading-relaxed">Create a free account, submit a request, and we'll take it from there.</p>
+                    <p className="text-white/60 leading-relaxed">Create a free account, submit a request, and we&apos;ll take it from there.</p>
                   </div>
                   <div className="flex flex-col gap-4">
                     <Link href="/signup" className="inline-flex items-center justify-center gap-3 bg-blue-500 hover:bg-blue-400 text-white px-8 py-4 rounded-2xl font-bold transition-all hover:shadow-xl active:scale-[0.98]">
@@ -435,7 +435,7 @@ export default function Home() {
               Join hundreds of Nairobi homeowners who trust StarDash for professional home care.
             </p>
             <Link href="/signup" className="inline-flex items-center gap-3 bg-white text-blue-600 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl active:scale-[0.98]">
-              Get Started Today — It's Free
+              Get Started Today — It&apos;s Free
               <span className="material-symbols-outlined text-xl">arrow_forward</span>
             </Link>
           </div>

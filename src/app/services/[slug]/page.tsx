@@ -4,12 +4,14 @@ import Footer from '@/components/layout/Footer';
 import BookingSidebar from '@/components/ui/BookingSidebar';
 import Link from 'next/link';
 
-export default async function ServiceDetailPage({ params }: { params: { slug: string } }) {
+export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  console.log('Rendering service:', slug);
   // In a real app, you would fetch service data based on params.slug
   const service = {
     title: "Premium House Cleaning",
     description: "Experience a level of detail that transforms your home into a sanctuary. Our elite professionals use eco-friendly products for a flawless finish.",
-    detailedDescription: "Our premium house cleaning service is designed for those who demand architectural precision in home maintenance. We don't just clean; we restore your living space using high-grade, sustainable materials and meticulous protocols.",
+    detailedDescription: "Our premium house cleaning service is designed for those who demand architectural precision in home maintenance. We don&apos;t just clean; we restore your living space using high-grade, sustainable materials and meticulous protocols.",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBYOCYFkbPkEAzTp6yRMPRlYzAocjNaXaGFv0rV0TWHn8RF7b_9wxvJNIFlCWYtsiPbPrWgajdQI2mAOHExmaQo-b-__uZiX_O3hqeJOQPCmj5-Y7eRG-1jeh8EOR_uAN5LFc11Q8z1GWLhSPrlB5QG-8_4ziDi9NHa4R_CD7IUjf7SAt1ttmkxRcdWNl8KRPoYy8bx_U4gKPRdsbXB57DUwDb5yUN3DsGth6eb6-2H5_JATBxK4joAYchy_i33ct48TQzMqe-hhS8",
     labels: ["Top Rated", "Elite Tier"],
     rating: "4.9",
@@ -102,7 +104,7 @@ export default async function ServiceDetailPage({ params }: { params: { slug: st
                 <div>
                   <span className="material-symbols-outlined text-secondary-container text-4xl mb-4">format_quote</span>
                   <p className="text-xl font-medium leading-relaxed italic mb-6 font-body">
-                    "Our standard isn't just clean; it's pristine. If you aren't absolutely thrilled with the results, we'll return to make it right—guaranteed."
+                    &quot;Our standard isn&apos;t just clean; it&apos;s pristine. If you aren&apos;t absolutely thrilled with the results, we&apos;ll return to make it right—guaranteed.&quot;
                   </p>
                 </div>
                 <div className="flex items-center gap-4 border-t border-white/10 pt-6 mt-6">
@@ -155,7 +157,7 @@ export default async function ServiceDetailPage({ params }: { params: { slug: st
                     ))}
                   </div>
                   <p className="text-on-surface-variant font-medium leading-relaxed mb-4 font-body">
-                    "Absolutely impeccable service. They didn't just clean—they organized my entryway and left a custom fragrance that made the whole house feel brand new."
+                    &quot;Absolutely impeccable service. They didn&apos;t just clean—they organized my entryway and left a custom fragrance that made the whole house feel brand new.&quot;
                   </p>
                   <div className="text-sm font-bold text-on-surface font-headline">Sarah J. <span className="text-slate-400 font-normal ml-2 font-body">— 3 days ago</span></div>
                 </div>

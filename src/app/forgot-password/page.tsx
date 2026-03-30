@@ -41,7 +41,7 @@ const ForgotPasswordPage = () => {
           <div className="bg-white/80 backdrop-blur-2xl p-12 rounded-[2.5rem] shadow-premium border border-white/50 space-y-10">
             <div className="text-center space-y-4">
               <h1 className="text-4xl font-extrabold tracking-tight text-primary font-headline">Reset Password</h1>
-              <p className="text-on-surface-variant font-body font-medium">Enter your email and we'll send you instructions to reset your password.</p>
+              <p className="text-on-surface-variant font-body font-medium">Enter your email and we&apos;ll send you instructions to reset your password.</p>
             </div>
 
             {error && (
