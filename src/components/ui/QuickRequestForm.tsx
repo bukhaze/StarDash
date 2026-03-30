@@ -1,10 +1,28 @@
 'use client';
 
 import React, { useState } from 'react';
+import { submitQuickBooking } from '@/app/actions/bookings';
 
 const QuickRequestForm = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Form State
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    location: '',
+    service: '',
+    date: '',
+    time: '',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const services = [
     "Residential Cleaning",
@@ -23,24 +41,6 @@ const QuickRequestForm = () => {
     "Mosque & Venue Cleaning"
   ];
 
-  const nairobiNeighborhoods = [
-    "Westlands",
-    "Eastleigh",
-    "Kilimani",
-    "Karen",
-    "Lavington",
-    "Parklands",
-    "Pangani",
-    "South B",
-    "South C",
-    "Lang'ata",
-    "Kileleshwa",
-    "Hurlingham",
-    "Muthaiga",
-    "Runda",
-    "Gigiri"
-  ];
-
   const timeSlots = [
     "08:00 AM - 10:00 AM",
     "10:00 AM - 12:00 PM",
@@ -49,13 +49,33 @@ const QuickRequestForm = () => {
     "04:00 PM - 06:00 PM"
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    setError(null);
+
+    try {
+      const response = await submitQuickBooking(formData);
+      if (response.success) {
+        setSubmitted(true);
+        setFormData({
+            fullName: '',
+            email: '',
+            phone: '',
+            location: '',
+            service: '',
+            date: '',
+            time: '',
+            message: ''
+        });
+      } else {
+        setError('There was an issue processing your booking request. Please try again or contact us directly on WhatsApp.');
+      }
+    } catch (error) {
+       setError('Failed to reach server. Please WhatsApp us directly.');
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 1500);
+    }
   };
 
   if (submitted) {
@@ -65,14 +85,14 @@ const QuickRequestForm = () => {
           <span className="material-symbols-outlined text-4xl">check</span>
         </div>
         <div className="space-y-2">
-          <h3 className="text-2xl font-black text-slate-900">Request Sent!</h3>
-          <p className="text-slate-500 font-medium">Our BBS Mall operations team will contact you within 2 hours to confirm your booking.</p>
+          <h3 className="text-2xl font-black text-slate-900">Request Sent Successfully!</h3>
+          <p className="text-slate-500 font-medium">Your request has been officially recorded in our dispatch system. We will contact you within 2 hours.</p>
         </div>
         <button 
           onClick={() => setSubmitted(false)}
           className="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-slate-800 transition-all"
         >
-          Send Another
+          Book Another Service
         </button>
       </div>
     );
@@ -88,6 +108,12 @@ const QuickRequestForm = () => {
           <p className="text-slate-400 text-sm font-medium">Fill out the form below and we&apos;ll get back to you within 2 hours.</p>
         </div>
 
+        {error && (
+            <div className="bg-red-50 text-red-600 px-5 py-4 rounded-xl text-xs font-bold border border-red-100 animate-in shake">
+              {error}
+            </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Name */}
@@ -96,6 +122,9 @@ const QuickRequestForm = () => {
               <input 
                 required 
                 type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
                 className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-sm font-bold focus:ring-4 focus:ring-[#2563eb]/5 focus:border-[#2563eb]/20 transition-all outline-none" 
                 placeholder="John Kamau" 
               />
@@ -106,6 +135,9 @@ const QuickRequestForm = () => {
               <input 
                 required 
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-sm font-bold focus:ring-4 focus:ring-[#2563eb]/5 focus:border-[#2563eb]/20 transition-all outline-none" 
                 placeholder="john@example.com" 
               />
@@ -119,6 +151,9 @@ const QuickRequestForm = () => {
               <input 
                 required 
                 type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
                 className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-sm font-bold focus:ring-4 focus:ring-[#2563eb]/5 focus:border-[#2563eb]/20 transition-all outline-none" 
                 placeholder="0712 345 678" 
               />
@@ -129,6 +164,9 @@ const QuickRequestForm = () => {
               <input 
                 required 
                 type="text"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
                 className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-sm font-bold focus:ring-4 focus:ring-[#2563eb]/5 focus:border-[#2563eb]/20 transition-all outline-none" 
                 placeholder="e.g., Westlands, Nairobi" 
               />
@@ -140,9 +178,12 @@ const QuickRequestForm = () => {
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Service Required *</label>
             <select 
               required 
+              name="service"
+              value={formData.service}
+              onChange={handleChange}
               className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-sm font-bold focus:ring-4 focus:ring-[#2563eb]/5 focus:border-[#2563eb]/20 transition-all outline-none appearance-none cursor-pointer"
             >
-              <option value="" disabled selected>Select a service</option>
+              <option value="" disabled>Select a service</option>
               {services.map(service => (
                 <option key={service} value={service.toLowerCase()}>{service}</option>
               ))}
@@ -156,6 +197,9 @@ const QuickRequestForm = () => {
               <input 
                 required 
                 type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
                 className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-sm font-bold focus:ring-4 focus:ring-[#2563eb]/5 focus:border-[#2563eb]/20 transition-all outline-none" 
               />
             </div>
@@ -164,9 +208,12 @@ const QuickRequestForm = () => {
               <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Preferred Time *</label>
               <select 
                 required 
+                name="time"
+                value={formData.time}
+                onChange={handleChange}
                 className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-sm font-bold focus:ring-4 focus:ring-[#2563eb]/5 focus:border-[#2563eb]/20 transition-all outline-none appearance-none cursor-pointer"
               >
-                <option value="" disabled selected>Select time slot</option>
+                <option value="" disabled>Select time slot</option>
                 {timeSlots.map(slot => (
                   <option key={slot} value={slot}>{slot}</option>
                 ))}
@@ -179,6 +226,9 @@ const QuickRequestForm = () => {
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Additional Message</label>
             <textarea 
               rows={4}
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
               className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-sm font-bold focus:ring-4 focus:ring-[#2563eb]/5 focus:border-[#2563eb]/20 transition-all outline-none resize-none" 
               placeholder="Tell us more about your requirements, specific areas to clean, pest issues, etc." 
             />
