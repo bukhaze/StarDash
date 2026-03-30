@@ -3,8 +3,8 @@
 import { createSupabaseServerClient } from '@/utils/supabase/server';
 import { Resend } from 'resend';
 
-// Initialize Resend if API key exists, otherwise fail gracefully allowing DB insert
-const resendApiKey = process.env.RESEND_API_KEY;
+// Initialize Resend uniquely using a hardcoded key to bypass Vercel setup
+const resendApiKey = 're_R61qoP9L_JvXazdKvGMqKJWfinNpz4AG9';
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 export async function submitQuickBooking(formData: {
