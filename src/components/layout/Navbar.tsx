@@ -7,6 +7,7 @@ import Logo from '@/components/ui/Logo';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const phoneNumber = "+254 723 531 085";
 
@@ -48,9 +49,9 @@ const Navbar = () => {
          </div>
       </div>
 
-      <div className={`w-full transition-all duration-500 px-6 md:px-10 ${scrolled ? 'bg-white/90 backdrop-blur-3xl py-4 shadow-xl border-b border-slate-100' : 'bg-white py-6'}`}>
+      <div className={`w-full transition-all duration-500 px-6 md:px-10 ${scrolled || mobileMenuOpen ? 'bg-white/95 backdrop-blur-3xl py-4 shadow-xl border-b border-slate-100' : 'bg-white py-6'}`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link href="/" className="scale-90 md:scale-100 origin-left">
+          <Link href="/" className="scale-90 md:scale-100 origin-left" onClick={() => setMobileMenuOpen(false)}>
             <Logo />
           </Link>
 
@@ -84,14 +85,42 @@ const Navbar = () => {
             <Link 
               href="/contact" 
               className="bg-[#f97316] text-white px-8 py-3 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-orange-600 shadow-lg shadow-orange-200 transition-all hover:-translate-y-0.5 active:scale-95 flex items-center gap-2"
+              onClick={() => setMobileMenuOpen(false)}
             >
               Book Now
             </Link>
 
             {/* Mobile Menu Toggle */}
-            <button className="lg:hidden w-10 h-10 flex items-center justify-center text-slate-900">
-               <span className="material-symbols-outlined font-black">menu</span>
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden w-10 h-10 flex items-center justify-center text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#f97316]/50 rounded-lg active:scale-95 transition-all"
+            >
+               <span className="material-symbols-outlined font-black text-3xl">{mobileMenuOpen ? 'close' : 'menu'}</span>
             </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      <div className={`lg:hidden w-full bg-white/95 backdrop-blur-3xl transition-all duration-300 overflow-hidden ${mobileMenuOpen ? 'max-h-[80vh] border-b border-slate-100 shadow-2xl shadow-blue-900/10' : 'max-h-0'}`}>
+        <div className="flex flex-col px-6 py-4 space-y-2 h-[calc(100vh-140px)] overflow-y-auto w-full">
+          {navLinks.map((link) => (
+            <Link 
+              key={link.name} 
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className={`text-sm font-black uppercase tracking-widest py-4 border-b border-slate-50 transition-colors ${pathname === link.href ? 'text-[#2563eb]' : 'text-slate-600 hover:text-slate-900'}`}
+            >
+              {link.name}
+            </Link>
+          ))}
+          <div className="pt-8 pb-12 flex flex-col gap-4">
+             <a 
+              href="https://wa.me/254723531085" 
+              className="bg-[#22c55e] text-white w-full px-6 py-4 rounded-xl font-black text-xs uppercase tracking-widest text-center flex items-center justify-center gap-2 shadow-lg shadow-green-200/50"
+            >
+              <span className="material-symbols-outlined text-sm">chat</span> WhatsApp Us
+            </a>
           </div>
         </div>
       </div>
