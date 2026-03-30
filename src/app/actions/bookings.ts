@@ -55,7 +55,7 @@ export async function submitQuickBooking(formData: {
     if (resend) {
       await resend.emails.send({
         from: 'StarDash Bookings <onboarding@resend.dev>',
-        to: ['bukhariabdiaziz@gmail.com', 'nimcaz22@gmail.com'],
+        to: ['bukhazeupdy@gmail.com'],
         subject: `New Service Request: ${formData.service}`,
         html: `
           <h2>New Booking Request Received</h2>
