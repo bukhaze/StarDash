@@ -3,65 +3,99 @@ import Link from 'next/link';
 import Logo from '@/components/ui/Logo';
 
 const Footer = () => {
+  const serviceAreas = [
+    "Kilimani", "Westlands", "Eastleigh", "Garden City", "Muthaiga", "Karen", 
+    "Lavington", "Parklands", "Kileleshwa", "South C", "Pangani"
+  ];
+
+  const socialLinks = [
+    { label: 'Facebook', href: 'https://facebook.com/stardash', icon: 'facebook' },
+    { label: 'Instagram', href: 'https://instagram.com/geelbariisan_', icon: 'photo_camera' },
+    { label: 'Twitter', href: 'https://twitter.com/stardash', icon: 'share' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/company/stardash', icon: 'work' },
+  ];
+
   return (
-    <footer className="bg-slate-900 w-full pt-20 pb-10">
-      <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-12 font-body text-sm leading-relaxed">
-        <div className="space-y-6">
-          <Logo isDark className="scale-75 origin-left" />
-          <p className="text-slate-400 font-medium">
-            Revolutionizing home care in Nairobi with professional, vetted specialists and fully managed service delivery.
+    <footer className="bg-slate-900 w-full pt-32 pb-16">
+      <div className="max-w-7xl mx-auto px-10 grid grid-cols-1 lg:grid-cols-4 gap-16 font-body text-sm leading-relaxed">
+        
+        <div className="space-y-8 col-span-1 lg:col-span-1">
+           <div className="flex items-center gap-4 group">
+            <div className="w-10 h-10 bg-[#2563eb] rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg">SD</div>
+            <span className="font-black text-xl tracking-tight text-white leading-none">StarDash</span>
+          </div>
+          <p className="text-slate-500 font-medium text-base max-w-xs">
+            Nairobi&apos;s leading professional cleaning and fumigation company. Your trusted partner for home, office, and pest control since 2024.
           </p>
-          <div className="flex gap-3">
-            {['facebook', 'twitter', 'instagram'].map(platform => (
-              <a key={platform} href="#" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all">
-                <span className="material-symbols-outlined text-lg">public</span>
+          <div className="flex gap-4">
+            {socialLinks.map(platform => (
+              <a 
+                key={platform.label} 
+                href={platform.href} 
+                target="_blank"
+                className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-slate-500 hover:bg-[#2563eb] hover:text-white transition-all duration-300"
+              >
+                <span className="material-symbols-outlined text-lg">{platform.icon}</span>
               </a>
             ))}
           </div>
         </div>
 
-        <div className="space-y-6">
-          <h4 className="text-white font-black text-sm uppercase tracking-widest">Services</h4>
-          <ul className="space-y-3">
-            <li><Link href="/services" className="text-slate-400 hover:text-white transition-colors">House Cleaning</Link></li>
-            <li><Link href="/services" className="text-slate-400 hover:text-white transition-colors">Laundry Service</Link></li>
-            <li><Link href="/services" className="text-slate-400 hover:text-white transition-colors">Sofa Cleaning</Link></li>
-            <li><Link href="/services" className="text-slate-400 hover:text-white transition-colors">Security Services</Link></li>
+        <div className="space-y-8">
+          <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em]">Our Services</h4>
+          <ul className="space-y-4">
+            <li><Link href="/services" className="text-slate-500 hover:text-white transition-colors font-medium">Residential Cleaning</Link></li>
+            <li><Link href="/services" className="text-slate-500 hover:text-white transition-colors font-medium">Office Cleaning</Link></li>
+            <li><Link href="/services" className="text-slate-500 hover:text-white transition-colors font-medium">Fumigation & Pest Control</Link></li>
+            <li><Link href="/services" className="text-slate-500 hover:text-white transition-colors font-medium">Sofa & Carpet Cleaning</Link></li>
           </ul>
         </div>
 
-        <div className="space-y-6">
-          <h4 className="text-white font-black text-sm uppercase tracking-widest">Company</h4>
-          <ul className="space-y-3">
-            <li><Link href="/about" className="text-slate-400 hover:text-white transition-colors">Our Story</Link></li>
-            <li><Link href="/contact" className="text-slate-400 hover:text-white transition-colors">Contact Us</Link></li>
-            <li><Link href="/signup" className="text-slate-400 hover:text-white transition-colors">Get Started</Link></li>
-            <li><Link href="/login?type=admin" className="text-slate-400 hover:text-white transition-colors">Admin Portal</Link></li>
+        <div className="space-y-8">
+          <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em]">Quick Links</h4>
+          <ul className="space-y-4">
+            <li><Link href="/about" className="text-slate-500 hover:text-white transition-colors font-medium">About StarDash</Link></li>
+            <li><Link href="/contact" className="text-slate-500 hover:text-white transition-colors font-medium">Contact Office</Link></li>
+            <li><Link href="/login" className="text-slate-500 hover:text-white transition-colors font-medium">Staff Login</Link></li>
+            <li><Link href="/login" className="text-slate-500 hover:text-white transition-colors font-medium">Admin Portal</Link></li>
           </ul>
         </div>
 
-        <div className="space-y-6">
-          <h4 className="text-white font-black text-sm uppercase tracking-widest">Nairobi HQ</h4>
+        <div className="space-y-8">
+          <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em]">Our HQ</h4>
           <div className="space-y-4">
-            <div className="flex items-start gap-3">
-               <span className="material-symbols-outlined text-blue-500 text-lg">pin_drop</span>
-               <p className="text-slate-400">Serving Premium Districts: Kilimani, Kileleshwa, Westlands, Lavington & Karen.</p>
-            </div>
-            <div className="flex items-center gap-3">
-               <span className="material-symbols-outlined text-blue-500 text-lg">call</span>
-               <p className="text-slate-400">+254 723 531 085</p>
-            </div>
+             <div className="flex items-start gap-3">
+                <span className="material-symbols-outlined text-[#2563eb] text-lg">location_on</span>
+                <p className="text-slate-500 font-medium">BBS Mall, Eastleigh, Nairobi, Kenya</p>
+             </div>
+             <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-[#2563eb] text-lg">call</span>
+                <p className="text-slate-500 font-medium">+254 723 531 085</p>
+             </div>
+             <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-[#2563eb] text-lg">mail</span>
+                <p className="text-slate-500 font-medium font-inter">nimcaz22@gmail.com</p>
+             </div>
+          </div>
+          <div className="flex flex-wrap gap-2 pt-4">
+            {serviceAreas.map(area => (
+              <span key={area} className="text-[10px] font-bold uppercase tracking-widest text-slate-600 bg-white/5 px-3 py-1.5 rounded-lg border border-white/5">
+                {area}
+              </span>
+            ))}
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-8 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-        <p className="text-slate-500 text-xs font-medium">© 2024 StarDash Premium Home Services. All rights reserved.</p>
-        <div className="flex gap-8">
-          <Link href="/privacy" className="text-slate-400 hover:text-white text-xs font-medium">Privacy Policy</Link>
-          <Link href="/terms" className="text-slate-400 hover:text-white text-xs font-medium">Terms of Service</Link>
-          <Link href="/contact" className="text-slate-400 hover:text-white text-xs font-medium">Support</Link>
+      <div className="max-w-7xl mx-auto px-10 mt-32 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="flex flex-col md:flex-row items-center gap-8">
+           <p className="text-slate-600 text-xs font-bold uppercase tracking-widest leading-loose">© 2024 StarDash Premium Services · Nairobi Headquarters</p>
+           <div className="flex gap-8">
+             <Link href="/privacy" className="text-slate-600 hover:text-white text-xs font-bold uppercase tracking-widest transition-all">Privacy</Link>
+             <Link href="/terms" className="text-slate-600 hover:text-white text-xs font-bold uppercase tracking-widest transition-all">Terms</Link>
+           </div>
         </div>
+        <p className="text-slate-700 text-[10px] font-bold uppercase tracking-widest italic border border-white/5 px-4 py-2 rounded-xl">Professional Cleaning & Fumigation</p>
       </div>
     </footer>
   );

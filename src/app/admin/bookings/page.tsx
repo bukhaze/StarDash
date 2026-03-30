@@ -1,9 +1,9 @@
 import React from 'react';
 import { createSupabaseServerClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
-import DashboardSidebar from '@/components/layout/DashboardSidebar';
 import Link from 'next/link';
 import AssignWorkerSelect from './AssignWorkerSelect';
+import CreateBookingForm from './CreateBookingForm';
 
 export default async function AdminBookingsPage() {
   const supabase = await createSupabaseServerClient();
@@ -19,96 +19,116 @@ export default async function AdminBookingsPage() {
 
   if (profile?.role !== 'admin') redirect('/dashboard');
 
-  // Fetch all qualified professionals for assignment
-  const { data: workerProfiles } = await supabase
+  const { data: workersRaw } = await supabase
     .from('profiles')
     .select('id, full_name')
     .eq('role', 'worker');
+
+  const { data: services } = await supabase
+    .from('services')
+    .select('id, title');
 
   const { data: allBookings } = await supabase
     .from('bookings')
     .select(`
       *,
-      service:services(name),
+      service:services(title),
       customer:profiles!bookings_customer_id_fkey(full_name, phone, email),
-      worker:profiles!bookings_worker_id_fkey(full_name)
+      address:addresses(neighborhood, street_address)
     `)
     .order('created_at', { ascending: false });
 
   return (
-    <div className="flex bg-surface min-h-screen">
-      <DashboardSidebar />
-      <div className="flex-1 md:ml-72 flex flex-col">
-        <header className="w-full relative md:sticky top-0 z-30 bg-white/80 backdrop-blur-xl flex flex-col md:flex-row items-start md:items-center justify-between px-6 md:px-8 py-4 md:h-20 gap-4 md:gap-0 shadow-sm border-b border-outline-variant/5">
-          <h1 className="font-headline font-semibold tracking-tight text-slate-900 text-xl">Service Bookings Roster</h1>
-          <div className="flex items-center gap-4">
-            <button className="flex items-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-xl font-headline font-bold text-sm hover:opacity-90 active:scale-95 transition-all">
-              <span className="material-symbols-outlined text-sm">filter_list</span>
-              Filter View
-            </button>
-          </div>
-        </header>
-
-        <main className="flex-1 p-8 max-w-7xl mx-auto w-full space-y-10">
-          <div className="bg-white rounded-[2rem] shadow-premium border border-outline-variant/5 overflow-hidden font-body">
-            <div className="p-6 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-lowest">
-               <h3 className="font-headline text-xl font-bold text-primary text-xl">Master Network Bookings</h3>
-               <span className="bg-secondary/10 text-secondary px-4 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest">{allBookings?.length || 0} Total</span>
+    <div className="flex-1 flex flex-col font-body bg-slate-50 min-h-screen">
+         
+         <header className="w-full relative md:sticky top-0 z-30 bg-white border-b border-slate-100 flex flex-col md:flex-row items-start md:items-center justify-between px-10 py-8 md:h-28 animate-in fade-in duration-700">
+            <div className="space-y-1">
+               <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Service Bookings</h1>
+               <p className="text-sm font-medium text-slate-400">Manage customer service requests and staff assignments.</p>
             </div>
+            <div className="flex items-center gap-4">
+               <CreateBookingForm services={services || []} />
+            </div>
+         </header>
+
+         <main className="flex-1 p-10 max-w-[1600px] mx-auto w-full space-y-10 animate-in slide-in-from-bottom-4 duration-1000">
+           
+           <div className="bg-white rounded-[3rem] shadow-sm border border-slate-100 overflow-hidden font-body relative">
+            <div className="p-10 border-b border-slate-50 flex justify-between items-center bg-slate-50/20">
+               <div>
+                  <h3 className="text-xl font-bold text-slate-900 tracking-tight">Service Appointments</h3>
+                  <p className="text-xs font-medium text-slate-400 mt-1">Live overview of all booking activity</p>
+               </div>
+               <div className="flex bg-slate-100 p-1.5 rounded-2xl">
+                  <button className="px-6 py-3 bg-white rounded-xl shadow-sm text-[10px] font-bold uppercase tracking-widest text-slate-900 border border-slate-100">All Bookings</button>
+                  <button className="px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-slate-600 transition-all border border-transparent">Needs Staff</button>
+               </div>
+            </div>
+
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
+              <table className="w-full text-left">
                 <thead>
-                  <tr className="bg-surface-container-high/30 text-on-surface-variant text-[10px] uppercase tracking-widest font-extrabold font-headline">
-                    <th className="px-8 py-5">Customer Connection</th>
-                    <th className="px-8 py-5">Service Details</th>
-                    <th className="px-8 py-5">Dispatch Assigned</th>
-                    <th className="px-8 py-5">Value</th>
-                    <th className="px-8 py-5 text-right">Status</th>
+                  <tr className="bg-slate-50 text-slate-400 text-[10px] uppercase tracking-widest font-bold">
+                    <th className="px-10 py-6 border-b border-slate-50">Customer</th>
+                    <th className="px-10 py-6 border-b border-slate-50">Service & Area</th>
+                    <th className="px-10 py-6 border-b border-slate-50">Assigned Staff</th>
+                    <th className="px-10 py-6 border-b border-slate-50">Total Amount</th>
+                    <th className="px-10 py-6 border-b border-slate-50 text-right">Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-surface-container-high/20">
-                  {allBookings && allBookings.length > 0 ? allBookings.map((booking: any) => (
-                    <tr key={booking.id} className="hover:bg-slate-50 transition-colors group">
-                      <td className="px-8 py-6">
-                        <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center text-primary font-bold">
-                             {booking.customer?.full_name?.[0] || 'G'}
+                <tbody className="divide-y divide-slate-50">
+                  {allBookings && allBookings.length > 0 ? (allBookings as any[]).map((booking) => (
+                    <tr key={booking.id} className="hover:bg-slate-50 transition-all group">
+                      <td className="px-10 py-10">
+                        <div className="flex items-center gap-6">
+                          <div className="w-14 h-14 bg-slate-100 border border-slate-200 rounded-2xl flex items-center justify-center text-slate-500 font-bold text-lg group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                             {(booking.customer?.full_name || booking.guest_name)?.[0]?.toUpperCase() || 'G'}
                           </div>
-                          <div>
-                            <p className="font-bold text-primary font-headline">{booking.customer?.full_name || booking.guest_name}</p>
-                            <p className="text-xs text-on-surface-variant font-body">{booking.customer?.email || booking.guest_email}</p>
+                          <div className="space-y-1">
+                            <p className="font-bold text-slate-900 text-lg tracking-tight">{booking.customer?.full_name || booking.guest_name}</p>
+                            <p className="text-[11px] text-slate-400 font-bold tracking-widest uppercase">{booking.customer?.phone || booking.guest_phone || 'N/A'}</p>
                           </div>
                         </div>
                       </td>
-                      <td className="px-8 py-6">
-                        <p className="font-bold text-primary font-headline group-hover:text-secondary transition-colors">{booking.service?.name}</p>
-                        <p className="text-xs text-on-surface-variant font-body">{booking.scheduled_date} @ {booking.scheduled_time}</p>
+                      <td className="px-10 py-10">
+                        <div className="space-y-2">
+                           <p className="font-bold text-slate-900 text-sm">{booking.service?.title || 'Residential Service'}</p>
+                           <p className="text-[11px] text-slate-400 font-medium uppercase tracking-tight">{booking.address?.neighborhood || 'Nairobi'} • {booking.address?.street_address || 'TBD'}</p>
+                           <p className="text-[10px] text-blue-600 font-bold uppercase tracking-widest">{booking.scheduled_date} @ {booking.scheduled_time}</p>
+                        </div>
                       </td>
-                      <td className="px-8 py-6">
-                        <AssignWorkerSelect 
-                           bookingId={booking.id} 
-                           currentWorkerId={booking.worker_id} 
-                           workers={workerProfiles || []} 
-                        />
+                      <td className="px-10 py-10">
+                         <AssignWorkerSelect 
+                            bookingId={booking.id} 
+                            currentWorkerId={booking.worker_id} 
+                            workers={workersRaw || []} 
+                         />
                       </td>
-                      <td className="px-8 py-6 font-bold text-slate-900 font-headline">
-                        KES {parseInt(booking.total_amount).toLocaleString()}
+                      <td className="px-10 py-10">
+                         <p className="text-xl font-bold text-slate-900 tracking-tight">KSh {parseInt(booking.total_amount || '0').toLocaleString()}</p>
+                         <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Gross Price</p>
                       </td>
-                      <td className="px-8 py-6 text-right">
-                        <span className={`inline-flex px-4 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest border border-current opacity-90 ${
-                          booking.status === 'completed' ? 'bg-secondary/10 text-secondary' :
-                          booking.status === 'cancelled' ? 'bg-error/10 text-error' :
-                          booking.status === 'worker_assigned' ? 'bg-blue-500/10 text-blue-600' :
-                          'bg-amber-500/10 text-amber-600'
-                        }`}>
-                          {booking.status.replace('_', ' ')}
-                        </span>
+                      <td className="px-10 py-10 text-right">
+                        <div className="flex flex-col items-end gap-2">
+                           <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border ${
+                              booking.status === 'completed' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
+                              booking.status === 'cancelled' ? 'bg-red-50 text-red-600 border-red-100' :
+                              booking.status === 'worker_assigned' ? 'bg-blue-50 text-blue-600 border-blue-100' :
+                              'bg-amber-50 text-amber-600 border-amber-100 animate-pulse'
+                           }`}>
+                              {booking.status?.replace('_', ' ') || 'Pending'}
+                           </span>
+                           <p className="text-[9px] text-slate-300 font-bold uppercase tracking-widest leading-none">Job No. #{booking.id.slice(0, 5)}</p>
+                        </div>
                       </td>
                     </tr>
                   )) : (
                     <tr>
-                      <td colSpan={5} className="px-8 py-10 text-center text-on-surface-variant font-medium">
-                        No bookings captured on the network yet.
+                      <td colSpan={5} className="px-10 py-40 text-center">
+                        <div className="max-w-xs mx-auto space-y-4 opacity-30">
+                           <span className="material-symbols-outlined text-4xl">inbox</span>
+                           <p className="text-sm font-bold uppercase tracking-widest">No booking records found</p>
+                        </div>
                       </td>
                     </tr>
                   )}
@@ -117,7 +137,6 @@ export default async function AdminBookingsPage() {
             </div>
           </div>
         </main>
-      </div>
     </div>
   );
 }

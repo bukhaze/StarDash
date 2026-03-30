@@ -11,30 +11,22 @@ const DashboardSidebar = () => {
   const isWorker = pathname.startsWith('/worker');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const customerItems = [
-    { icon: 'dashboard', label: 'Dashboard', href: '/dashboard' },
-    { icon: 'calendar_month', label: 'My Bookings', href: '/dashboard/bookings' },
-    { icon: 'chat_bubble', label: 'Messages', href: '/dashboard/messages' },
-    { icon: 'location_on', label: 'My Addresses', href: '/dashboard/addresses' },
-    { icon: 'payments', label: 'Payments', href: '/dashboard/payments' },
-    { icon: 'person', label: 'Profile Settings', href: '/dashboard/settings' },
-  ];
 
   const adminItems = [
-    { icon: 'grid_view', label: 'Operations', href: '/admin' },
-    { icon: 'engineering', label: 'Specialists', href: '/admin/workers' },
-    { icon: 'assignment', label: 'Dispatch Queue', href: '/admin/bookings' },
-    { icon: 'payments', label: 'Revenue Hub', href: '/admin/revenue' },
-    { icon: 'settings', label: 'Platform Settings', href: '/admin/settings' },
+    { icon: 'dashboard', label: 'Dashboard Overview', href: '/admin' },
+    { icon: 'group', label: 'Staff Management', href: '/admin/workers' },
+    { icon: 'receipt_long', label: 'Service Bookings', href: '/admin/bookings' },
+    { icon: 'account_balance', label: 'Finance & Revenue', href: '/admin/revenue' },
+    { icon: 'settings', label: 'Admin Settings', href: '/admin/settings' },
   ];
 
   const workerItems = [
     { icon: 'task_alt', label: 'My Tasks', href: '/worker' },
     { icon: 'account_balance_wallet', label: 'Earnings', href: '/worker/earnings' },
-    { icon: 'manage_accounts', label: 'Account Settings', href: '/worker/settings' },
+    { icon: 'manage_accounts', label: 'Settings', href: '/worker/settings' },
   ];
 
-  const menuItems = isAdmin ? adminItems : isWorker ? workerItems : customerItems;
+  const menuItems = isAdmin ? adminItems : workerItems;
 
   return (
     <>
@@ -43,7 +35,7 @@ const DashboardSidebar = () => {
         <Logo className="scale-[0.85] origin-left" />
         <button 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="w-10 h-10 flex items-center justify-center hover:bg-slate-50 rounded-xl transition-colors active:scale-95 border border-slate-100"
+          className="w-10 h-10 flex items-center justify-center hover:bg-slate-50 rounded-xl transition-colors active:scale-95 border border-slate-100 shadow-sm"
         >
           <span className="material-symbols-outlined text-slate-900 font-bold">menu</span>
         </button>
@@ -58,34 +50,42 @@ const DashboardSidebar = () => {
       )}
 
       {/* Sidebar */}
-      <aside className={`h-screen w-72 fixed left-0 top-0 overflow-y-auto bg-white flex flex-col gap-1 p-8 z-[60] border-r border-slate-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:translate-x-0 ${
+      <aside className={`h-screen w-80 fixed left-0 top-0 overflow-y-auto bg-white flex flex-col gap-0 p-0 z-[60] border-r border-slate-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:translate-x-0 font-body ${
         isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
-        <div className="flex items-center justify-between mb-12">
-          <Logo className="scale-90 origin-left" />
-          <button onClick={() => setIsMobileMenuOpen(false)} className="md:hidden w-10 h-10 flex items-center justify-center bg-slate-50 text-slate-400 hover:text-slate-900 rounded-2xl transition-all">
+        
+        {/* Sidebar Header */}
+        <div className="p-10 pb-12 flex items-center justify-between">
+          <Logo className="scale-100 origin-left" />
+          <button onClick={() => setIsMobileMenuOpen(false)} className="md:hidden w-12 h-12 flex items-center justify-center bg-slate-50 text-slate-400 hover:text-slate-900 rounded-2xl transition-all shadow-inner">
             <span className="material-symbols-outlined text-[20px]">close</span>
           </button>
         </div>
         
         {/* User Persona Card */}
-        <div className="mb-10 p-5 bg-slate-50 rounded-[2rem] border border-slate-100 space-y-4">
-          <div className="flex items-center gap-4">
-            <div className={`w-12 h-12 rounded-2xl ${isAdmin ? 'bg-slate-900' : 'bg-blue-600'} text-white flex items-center justify-center shadow-lg`}>
-              <span className="material-symbols-outlined text-xl font-bold" style={{ fontVariationSettings: "'FILL' 1" }}>
-                {isAdmin ? 'shield_person' : isWorker ? 'engineering' : 'account_circle'}
-              </span>
-            </div>
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 font-headline leading-none">Access Level</p>
-              <p className="font-headline text-sm font-black text-slate-900 mt-2 leading-none">
-                {isAdmin ? 'Operation Admin' : isWorker ? 'Verified Partner' : 'Premium Member'}
-              </p>
+        <div className="px-8 mb-12">
+          <div className="p-6 bg-slate-50 border border-slate-100 rounded-3xl space-y-4 group hover:shadow-md transition-all duration-500">
+            <div className="flex items-center gap-4">
+              <div className={`w-12 h-12 rounded-2xl ${isAdmin ? 'bg-slate-900' : 'bg-blue-600'} text-white flex items-center justify-center shadow-lg transition-transform duration-500`}>
+                <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  {isAdmin ? 'admin_panel_settings' : 'engineering'}
+                </span>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Account Access</p>
+                <p className="text-[13px] font-bold text-slate-900 leading-none">
+                  {isAdmin ? 'Administrator' : 'Specialist'}
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <nav className="flex-1 space-y-2">
+        {/* Navigation Items */}
+        <nav className="flex-1 px-6 space-y-2">
+           <div className="px-4 mb-4">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-300">Management</p>
+           </div>
           {menuItems.map((item) => {
             const active = pathname === item.href;
             return (
@@ -93,27 +93,32 @@ const DashboardSidebar = () => {
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex items-center gap-4 px-5 py-3.5 rounded-2xl font-headline text-[11px] font-black uppercase tracking-widest transition-all duration-300 group ${
+                className={`flex items-center gap-4 px-6 py-4 rounded-2xl font-bold text-[11px] uppercase tracking-widest transition-all duration-300 group relative ${
                   active 
                     ? 'bg-slate-900 text-white shadow-xl' 
-                    : 'text-slate-400 hover:text-blue-600 hover:bg-blue-50/50'
+                    : 'text-slate-500 hover:text-blue-600 hover:bg-slate-50'
                 }`}
               >
-                <span className="material-symbols-outlined text-lg opacity-70 group-hover:opacity-100" style={{ fontVariationSettings: active ? "'FILL' 1" : undefined }}>{item.icon}</span>
-                <span>{item.label}</span>
+                <span className="material-symbols-outlined text-lg opacity-70 group-hover:opacity-100 transition-all" style={{ fontVariationSettings: active ? "'FILL' 1" : undefined }}>{item.icon}</span>
+                <span className="mt-0.5">{item.label}</span>
+                
+                {active && (
+                   <div className="absolute right-6 w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_8px_#3b82f6]"></div>
+                )}
               </Link>
             );
           })}
         </nav>
 
         {/* Footer info */}
-        <div className="mt-8 pt-6 border-t border-slate-50 flex flex-col gap-4">
-           <div className="px-4">
-              <p className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-300">Hub Status: <span className="text-green-500 italic">Online</span></p>
+        <div className="mt-auto px-6 py-10 space-y-8">
+           <div className="px-4 space-y-1">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">StarDash Headquarters</p>
+              <p className="text-[9px] font-medium text-slate-300 uppercase tracking-widest">Nairobi, Kenya</p>
            </div>
            
            <form action="/api/auth/signout" method="post">
-             <button className="w-full flex items-center gap-4 px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest text-red-400 hover:bg-red-50 transition-all">
+             <button className="w-full flex items-center gap-4 px-6 py-4 rounded-2xl text-[11px] font-bold uppercase tracking-widest text-red-500 bg-red-50 hover:bg-red-100 border border-red-100 transition-all duration-300">
                 <span className="material-symbols-outlined text-lg">logout</span>
                 Sign Out
              </button>

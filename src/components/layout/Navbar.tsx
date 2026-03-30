@@ -1,207 +1,101 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { createSupabaseBrowserClient } from '@/utils/supabase/client';
-import { logout } from '@/app/actions/auth';
-import type { User } from '@supabase/supabase-js';
+import { usePathname } from 'next/navigation';
 import Logo from '@/components/ui/Logo';
 
 const Navbar = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const phoneNumber = "+254 723 531 085";
 
   useEffect(() => {
-    const supabase = createSupabaseBrowserClient();
-    supabase.auth.getUser().then(({ data: { user } }) => setUser(user));
-
-    const { data: authListener } = supabase.auth.onAuthStateChange((_, session) => {
-      setUser(session?.user || null);
-    });
-
-    const handleScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      authListener.subscription.unsubscribe();
-      window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
     };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { label: 'Services', href: '/services' },
-    { label: 'How It Works', href: '/#how-it-works' },
-    { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Pricing', href: '/pricing' },
+    { name: 'Gallery', href: '/gallery' },
+    { name: 'Reviews', href: '/reviews' },
+    { name: 'FAQ', href: '/faq' },
+    { name: 'Contact', href: '/contact' },
   ];
 
-  const dashboardHref = user?.user_metadata?.role === 'admin'
-    ? '/admin'
-    : user?.user_metadata?.role === 'worker'
-    ? '/worker'
-    : '/dashboard';
-
   return (
-    <>
-      {/* Announcement bar */}
-      <div className="bg-blue-600 text-white py-2.5 px-4 text-center text-xs font-semibold">
-        🌟 Serving Nairobi&apos;s premium neighborhoods — Fast, vetted, and fully managed.{' '}
-        <Link href="/signup" className="underline underline-offset-4 hover:text-blue-200 transition-colors">
-          Book your first service →
-        </Link>
+    <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 font-inter">
+      {/* Top Bar - Matching Screenshot */}
+      <div className={`bg-[#2563eb] py-2 px-6 md:px-10 flex flex-col sm:flex-row justify-between items-center text-white/90 text-[11px] font-bold tracking-widest uppercase transition-all duration-500 ${scrolled ? 'h-0 py-0 opacity-0 overflow-hidden' : 'opacity-100'}`}>
+         <div className="flex items-center gap-4">
+            <span className="hidden md:inline">Professional Cleaning & Fumigation Services in Nairobi</span>
+         </div>
+         <div className="flex items-center gap-8">
+            <a href={`tel:+254 723 531 085`} className="flex items-center gap-2 hover:text-white transition-colors">
+               <span className="material-symbols-outlined text-[14px]">call</span>
+               0723 531 085
+            </a>
+            <a href="https://wa.me/254723531085" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors">
+               <span className="material-symbols-outlined text-[14px]">chat</span>
+               WhatsApp Us
+            </a>
+         </div>
       </div>
 
-      <nav className={`sticky top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white shadow-md border-b border-slate-100'
-          : 'bg-white/95 backdrop-blur-2xl border-b border-slate-100'
-      }`}>
-        <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-16">
-
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
+      <div className={`w-full transition-all duration-500 px-6 md:px-10 ${scrolled ? 'bg-white/90 backdrop-blur-3xl py-4 shadow-xl border-b border-slate-100' : 'bg-white py-6'}`}>
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <Link href="/" className="scale-90 md:scale-100 origin-left">
             <Logo />
           </Link>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-8">
+          {/* Desktop Links */}
+          <div className="hidden lg:flex items-center gap-8 xl:gap-12">
             {navLinks.map((link) => (
-              <Link
-                key={link.label}
+              <Link 
+                key={link.name} 
                 href={link.href}
-                className="text-slate-600 hover:text-slate-900 transition-colors font-medium text-sm"
+                className={`text-[11px] font-black uppercase tracking-[0.2em] transition-all relative group h-10 flex items-center ${pathname === link.href ? 'text-[#2563eb]' : 'text-slate-400 hover:text-slate-900 underline-offset-8'}`}
               >
-                {link.label}
+                {link.name}
+                <span className={`absolute -bottom-0 left-0 w-full h-0.5 bg-[#2563eb] transition-all duration-500 origin-left ${pathname === link.href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100 opacity-30 shadow-2xl'}`} />
               </Link>
             ))}
           </div>
 
-          {/* Desktop Auth Buttons */}
-          <div className="hidden md:flex items-center gap-3">
-            {user ? (
-              <>
-                <Link
-                  href={dashboardHref}
-                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-blue-700 transition-all"
-                >
-                  <span className="material-symbols-outlined text-base" style={{ fontVariationSettings: "'FILL' 1" }}>dashboard</span>
-                  My Dashboard
-                </Link>
-                <button
-                  onClick={() => logout()}
-                  className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors px-3 py-2"
-                >
-                  Sign out
-                </button>
-              </>
-            ) : (
-              <>
-                <Link
-                  href="/login"
-                  className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors px-4 py-2.5"
-                >
-                  Log in
-                </Link>
-                <Link
-                  href="/signup"
-                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-blue-700 transition-all shadow-sm"
-                >
-                  Get Started
-                  <span className="material-symbols-outlined text-base">arrow_forward</span>
-                </Link>
-              </>
-            )}
+          <div className="flex items-center gap-4">
+            {/* WhatsApp CTA - Matching Screenshot */}
+            <a 
+              href="https://wa.me/254723531085" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex items-center gap-2 bg-[#22c55e] text-white px-6 py-3 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-green-600 shadow-lg shadow-green-200 transition-all hover:-translate-y-0.5 active:scale-95"
+            >
+              <span className="material-symbols-outlined text-sm">chat</span>
+              WhatsApp
+            </a>
+
+            {/* Book Now - Matching Screenshot Orange */}
+            <Link 
+              href="/contact" 
+              className="bg-[#f97316] text-white px-8 py-3 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-orange-600 shadow-lg shadow-orange-200 transition-all hover:-translate-y-0.5 active:scale-95 flex items-center gap-2"
+            >
+              Book Now
+            </Link>
+
+            {/* Mobile Menu Toggle */}
+            <button className="lg:hidden w-10 h-10 flex items-center justify-center text-slate-900">
+               <span className="material-symbols-outlined font-black">menu</span>
+            </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2.5 hover:bg-slate-100 rounded-xl transition-colors text-slate-700"
-            aria-label="Toggle menu"
-          >
-            <span className="material-symbols-outlined">
-              {isMobileMenuOpen ? 'close' : 'menu'}
-            </span>
-          </button>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <>
-            <div
-              className="lg:hidden fixed inset-0 bg-black/40 z-40 backdrop-blur-sm"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-            <div className="lg:hidden fixed top-0 right-0 h-screen w-72 bg-white z-50 shadow-2xl flex flex-col">
-              {/* Header */}
-              <div className="flex items-center justify-between px-6 h-16 border-b border-slate-100">
-                <Logo />
-                <button
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
-                >
-                  <span className="material-symbols-outlined text-slate-600">close</span>
-                </button>
-              </div>
-
-              {/* Nav Links */}
-              <div className="flex-1 overflow-y-auto px-4 py-6 space-y-1">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center px-4 py-3 rounded-xl text-slate-700 font-medium hover:bg-slate-50 hover:text-slate-900 transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-
-              {/* Auth Buttons */}
-              <div className="px-4 pb-8 pt-4 border-t border-slate-100 space-y-3">
-                {user ? (
-                  <>
-                    <Link
-                      href={dashboardHref}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center justify-center gap-2 w-full bg-blue-600 text-white py-3.5 rounded-xl font-bold text-sm hover:bg-blue-700 transition-all"
-                    >
-                      <span className="material-symbols-outlined text-base" style={{ fontVariationSettings: "'FILL' 1" }}>dashboard</span>
-                      My Dashboard
-                    </Link>
-                    <button
-                      onClick={() => { logout(); setIsMobileMenuOpen(false); }}
-                      className="w-full border border-slate-200 text-slate-600 py-3 rounded-xl font-semibold text-sm hover:bg-slate-50 transition-colors"
-                    >
-                      Sign out
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <Link
-                      href="/signup"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center justify-center w-full bg-blue-600 text-white py-3.5 rounded-xl font-bold text-sm hover:bg-blue-700 transition-all"
-                    >
-                      Get Started Free
-                    </Link>
-                    <Link
-                      href="/login"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center justify-center w-full border border-slate-200 text-slate-700 py-3 rounded-xl font-semibold text-sm hover:bg-slate-50 transition-colors"
-                    >
-                      Log in
-                    </Link>
-                  </>
-                )}
-              </div>
-            </div>
-          </>
-        )}
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 };
 

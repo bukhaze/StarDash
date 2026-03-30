@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
+import FloatingActions from "@/components/ui/FloatingActions";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -15,8 +16,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "StarDash | Premium Home Services",
-  description: "Experience the Digital Concierge. On-demand cleaning, laundry, and specialized home services from vetted local professionals in Nairobi.",
+  title: "StarDash | Professional Cleaning & Fumigation Nairobi",
+  description: "Nairobi's trusted provider for residential cleaning, office cleaning, and expert fumigation/pest control. Visit our BBS Mall office today.",
 };
 
 export default function RootLayout({
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${plusJakartaSans.variable} ${inter.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${inter.variable} h-full antialiased scroll-smooth`}
     >
       <head>
         <link
@@ -35,8 +36,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full flex flex-col font-inter">{children}</body>
+      <body className="min-h-full flex flex-col font-inter">
+        {children}
+        <FloatingActions />
+      </body>
     </html>
   );
 }
-

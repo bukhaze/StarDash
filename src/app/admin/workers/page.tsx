@@ -1,7 +1,6 @@
 import React from 'react';
 import { createSupabaseServerClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
-import DashboardSidebar from '@/components/layout/DashboardSidebar';
 import RegisterWorkerForm from './RegisterWorkerForm';
 
 export default async function WorkersAdministrationPage() {
@@ -32,112 +31,112 @@ export default async function WorkersAdministrationPage() {
     .order('created_at', { ascending: false });
 
   const stats = [
-    { label: 'Total Taskers', value: workers?.length || 0, icon: 'groups', color: 'bg-primary' },
-    { label: 'Dispatch Ready', value: workers?.filter(w => w.is_available).length || 0, icon: 'bolt', color: 'bg-amber-500' },
-    { label: 'Verified Experts', value: workers?.filter(w => w.verification_status === 'approved').length || 0, icon: 'verified', color: 'bg-secondary' },
-    { label: 'Platform Rating', value: '4.8', icon: 'star', color: 'bg-yellow-500' },
+    { label: 'Total Personnel', value: workers?.length || 0, icon: 'groups', color: 'text-slate-900' },
+    { label: 'Staff Online', value: workers?.filter(w => w.is_available).length || 0, icon: 'how_to_reg', color: 'text-emerald-600' },
+    { label: 'Verified Partners', value: workers?.filter(w => w.verification_status === 'approved').length || 0, icon: 'verified', color: 'text-blue-600' },
+    { label: 'Avg Rating', value: '4.8', icon: 'star', color: 'text-amber-500' },
   ];
 
   return (
-    <div className="flex bg-surface min-h-screen">
-      <DashboardSidebar />
-      <div className="flex-1 md:ml-72 flex flex-col">
-        <header className="w-full relative md:sticky top-0 z-30 bg-white/80 backdrop-blur-xl flex flex-col md:flex-row items-start md:items-center justify-between px-6 md:px-8 py-4 md:h-20 gap-4 md:gap-0 shadow-sm border-b border-outline-variant/5">
-          <div className="flex items-center gap-3">
-             <span className="material-symbols-outlined text-primary text-2xl font-bold">engineering</span>
-             <h1 className="font-headline font-semibold tracking-tight text-slate-900 text-xl">Service Partner Network</h1>
-          </div>
-          <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end">
-            <RegisterWorkerForm />
-          </div>
-        </header>
+    <div className="flex-1 flex flex-col font-body bg-slate-50 min-h-screen">
+         
+         <header className="w-full relative md:sticky top-0 z-30 bg-white border-b border-slate-100 flex flex-col md:flex-row items-start md:items-center justify-between px-10 py-8 md:h-28 animate-in fade-in duration-700">
+            <div className="space-y-1">
+               <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Staff Management</h1>
+               <p className="text-sm font-medium text-slate-400">Manage and oversee your specialist workforce in Nairobi.</p>
+            </div>
+            <div className="flex items-center gap-4">
+               <RegisterWorkerForm />
+            </div>
+         </header>
 
-        <main className="flex-1 p-8 max-w-7xl mx-auto w-full space-y-12">
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {stats.map(s => (
-               <div key={s.label} className="bg-white p-7 rounded-[2rem] shadow-premium border border-outline-variant/10 flex flex-col justify-between h-40 group hover:border-secondary/20 transition-all">
-                  <div className={`w-10 h-10 rounded-xl ${s.color}/10 flex items-center justify-center`}>
-                     <span className="material-symbols-outlined text-[20px]" style={{ color: s.color.includes('secondary') ? '#10b981' : s.color.includes('amber') ? '#d97706' : s.color.includes('yellow') ? '#eab308' : '#0f172a' }}>{s.icon}</span>
-                  </div>
-                  <div>
-                     <p className="text-3xl font-black text-primary font-headline tracking-tight leading-none">{s.value}</p>
-                     <p className="text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant font-headline mt-2 leading-none">{s.label}</p>
-                  </div>
-               </div>
-            ))}
-          </div>
+         <main className="flex-1 p-10 max-w-[1600px] mx-auto w-full space-y-12 animate-in slide-in-from-bottom-4 duration-1000">
+           
+           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+             {stats.map(s => (
+                <div key={s.label} className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col justify-between h-48 group hover:shadow-md transition-all relative overflow-hidden">
+                   <div className="space-y-5">
+                      <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                         <span className="material-symbols-outlined text-[18px]">{s.icon}</span>
+                      </div>
+                      <div>
+                         <p className={`text-4xl font-bold ${s.color} tracking-tight`}>{s.value}</p>
+                         <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mt-2">{s.label}</p>
+                      </div>
+                   </div>
+                </div>
+             ))}
+           </div>
 
-          <div className="bg-white rounded-[2.5rem] shadow-premium border border-outline-variant/5 overflow-hidden font-body">
-            <div className="p-8 border-b border-outline-variant/10 flex items-center justify-between bg-surface-container-low/10">
+           <div className="bg-white rounded-[3rem] shadow-sm border border-slate-100 overflow-hidden font-body relative">
+            <div className="p-10 border-b border-slate-50 flex items-center justify-between bg-slate-50/20">
                <div>
-                  <h3 className="font-headline text-xl font-bold text-primary">Deployed Professionals</h3>
-                  <p className="text-xs text-on-surface-variant mt-1 font-body">Management and verification of the artisan network.</p>
+                  <h3 className="text-xl font-bold text-slate-900 tracking-tight">Personnel Directory</h3>
+                  <p className="text-xs font-medium text-slate-400 mt-1">List of all registered service specialists</p>
                </div>
-               <div className="flex bg-slate-100 p-1 rounded-xl">
-                  <button className="px-4 py-2 bg-white rounded-lg shadow-sm text-xs font-bold text-primary">All Active</button>
-                  <button className="px-4 py-2 text-xs font-bold text-on-surface-variant border-none bg-transparent">Pending</button>
+               <div className="flex bg-slate-100 p-1.5 rounded-2xl">
+                  <button className="px-6 py-3 bg-white rounded-xl shadow-sm text-[10px] font-bold uppercase tracking-widest text-slate-900 border border-slate-50">All Staff</button>
+                  <button className="px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-slate-600 transition-all">Pending Verification</button>
                </div>
             </div>
 
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
+              <table className="w-full text-left">
                 <thead>
-                  <tr className="bg-surface-container-high/10 text-on-surface-variant text-[10px] uppercase tracking-widest font-extrabold font-headline">
-                    <th className="px-8 py-5">Professional Profile</th>
-                    <th className="px-8 py-5">Verified Status</th>
-                    <th className="px-8 py-5">Live Availability</th>
-                    <th className="px-8 py-5 text-right">Performance Metrics</th>
+                  <tr className="bg-slate-50 text-slate-400 text-[10px] uppercase tracking-widest font-bold">
+                    <th className="px-10 py-6 border-b border-slate-50">Staff Member</th>
+                    <th className="px-10 py-6 border-b border-slate-50">Status</th>
+                    <th className="px-10 py-6 border-b border-slate-50">Availability</th>
+                    <th className="px-10 py-6 border-b border-slate-50 text-right">Activity</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-surface-container-high/10">
+                <tbody className="divide-y divide-slate-50">
                   {workers && workers.length > 0 ? workers.map((worker: any) => (
-                    <tr key={worker.id} className="hover:bg-slate-50 transition-colors group">
-                      <td className="px-8 py-6">
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 bg-primary/5 rounded-2xl flex items-center justify-center text-primary font-headline font-bold text-lg shadow-inner group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                            {worker.profile?.first_name?.[0]}{worker.profile?.last_name?.[0]}
+                    <tr key={worker.id} className="hover:bg-slate-50/50 transition-all group">
+                      <td className="px-10 py-10">
+                        <div className="flex items-center gap-6">
+                          <div className="w-14 h-14 bg-slate-100 border border-slate-200 rounded-2xl flex items-center justify-center text-slate-500 font-bold text-lg group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                             {worker.profile?.first_name?.[0]}{worker.profile?.last_name?.[0]}
                           </div>
-                          <div>
-                            <p className="font-black text-primary font-headline group-hover:text-secondary transition-colors">
+                          <div className="space-y-1">
+                            <p className="font-bold text-slate-900 text-lg tracking-tight group-hover:text-blue-600 transition-colors">
                               {worker.profile?.first_name} {worker.profile?.last_name}
                             </p>
-                            <p className="text-[10px] text-on-surface-variant font-body uppercase font-bold tracking-tight">{worker.profile?.email}</p>
+                            <p className="text-[11px] text-slate-400 font-medium tracking-tight">{worker.profile?.email}</p>
                           </div>
                         </div>
                       </td>
-                      <td className="px-8 py-6">
-                        <span className={`inline-flex px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-current ${
-                          worker.verification_status === 'approved' ? 'bg-secondary/10 text-secondary' :
-                          worker.verification_status === 'rejected' ? 'bg-error/10 text-error' :
-                          'bg-amber-500/10 text-amber-600'
+                      <td className="px-10 py-10">
+                        <span className={`inline-flex px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border ${
+                          worker.verification_status === 'approved' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
+                          worker.verification_status === 'rejected' ? 'bg-red-50 text-red-600 border-red-100' :
+                          'bg-amber-50 text-amber-600 border-amber-100'
                         }`}>
-                          {worker.verification_status}
+                          {worker.verification_status || 'Unverified'}
                         </span>
                       </td>
-                      <td className="px-8 py-6 text-on-surface-variant font-medium">
-                        <div className="flex items-center gap-2">
-                           <div className={`w-2.5 h-2.5 rounded-full ${worker.is_available ? 'bg-secondary shadow-[0_0_10px_#10b981]' : 'bg-slate-300'}`}></div>
-                           <span className="text-[11px] font-bold font-headline uppercase tracking-tighter text-slate-700">{worker.is_available ? 'In Active Dispatch' : 'Signal Offline'}</span>
+                      <td className="px-10 py-10">
+                        <div className="flex items-center gap-4">
+                           <div className={`w-3 h-3 rounded-full ${worker.is_available ? 'bg-emerald-500 shadow-xl' : 'bg-slate-200'}`}></div>
+                           <span className="text-[10px] font-bold uppercase tracking-widest text-slate-900">{worker.is_available ? 'Ready for jobs' : 'Offline'}</span>
                         </div>
                       </td>
-                      <td className="px-8 py-6 text-right">
-                        <div className="flex flex-col items-end">
-                           <div className="flex items-center gap-1">
-                              <span className="material-symbols-outlined text-yellow-500 text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                              <span className="font-black text-primary font-headline text-sm">{worker.rating || '0.0'}</span>
+                      <td className="px-10 py-10 text-right">
+                        <div className="flex flex-col items-end gap-1">
+                           <div className="flex items-center gap-1.5">
+                              <span className="material-symbols-outlined text-amber-500 text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                              <span className="font-bold text-slate-900 text-lg tracking-tight leading-none">{worker.rating || '0.0'}</span>
                            </div>
-                           <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mt-1">{worker.total_jobs} Managed Jobs</p>
+                           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{worker.total_jobs} total jobs</p>
                         </div>
                       </td>
                     </tr>
                   )) : (
                     <tr>
-                      <td colSpan={4} className="px-8 py-24 text-center">
-                         <div className="max-w-xs mx-auto space-y-4">
-                           <span className="material-symbols-outlined text-5xl text-slate-100">person_search</span>
-                           <h4 className="font-headline font-bold text-primary">Platform Roster is Empty</h4>
-                           <p className="text-on-surface-variant text-xs font-body leading-relaxed">No professional taskers have been registered on the StarDash network yet. Begin by onboarding a new partner.</p>
+                      <td colSpan={4} className="px-10 py-32 text-center">
+                         <div className="max-w-xs mx-auto space-y-4 opacity-30">
+                            <span className="material-symbols-outlined text-4xl">person_search</span>
+                            <p className="text-sm font-bold uppercase tracking-widest">No staff members found</p>
                          </div>
                       </td>
                     </tr>
@@ -147,7 +146,6 @@ export default async function WorkersAdministrationPage() {
             </div>
           </div>
         </main>
-      </div>
     </div>
   );
 }

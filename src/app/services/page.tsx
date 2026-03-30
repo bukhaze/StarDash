@@ -1,128 +1,194 @@
 import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import ServiceCard from '@/components/ui/ServiceCard';
-import FilterSidebar from '@/components/ui/FilterSidebar';
 import Link from 'next/link';
 
-const SERVICES = [
+const SERVICES_DETAILED = [
   {
-    title: "Apartment Deep Clean",
-    description: "A complete top-to-bottom sanitization of your home. Includes kitchen, bathrooms, dusting, and floor mopping.",
-    price: "KSh 2,500",
-    rating: "4.9",
-    reviews: "1.2k",
-    category: "Cleaning & Hygiene",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBz9SEngPPSGdT-bNVfVL29xjYd49fGVb28iZJtkKd37eljC3dCw3aWyadT2V5a6wdaoBuJBv1Us4fDXforppwr0vkErB7PozaXsaKbkB8SEgbfmsP2E3PrxOIrUQAa7jfVTfqHCqKEqvaso7LnBv2PIrMW2jMSf8He7gNsR9UKFSoo8TPDhljqtroGaYENDcib8Tp06s54i8t5RrmQ5vaMoC8WSYWm43zkbBr1VulnA4_y43yocd1R7AnTQVaziEKAecwHJK2SrVU"
+    title: "Cockroach Control",
+    description: "Effective cockroach elimination using safe and eco-friendly treatment methods specialized for Nairobi homes and offices.",
+    icon: "bug_report",
+    image: "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?q=80&w=2670&auto=format&fit=crop",
+    checklist: ["Gel bait treatment", "Kitchen & cabinet treatment", "Safe for children & pets", "Follow-up inspection"]
   },
   {
-    title: "Executive Laundry Care",
-    description: "Professional wash, dry, and fold with expert stain treatment. Pickup and delivery included for your convenience.",
-    price: "KSh 1,200",
-    rating: "4.8",
-    reviews: "850",
-    category: "Laundry & Restoration",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBiJEmP3F9M6Hs7_A0X74dTI7S3yO-pqDOJoEjXbpjfxdhZsRTzB00HVRDDbJwJQmHQOMCxPSTd6ZPdrXCzWX3b20UtJYQCyE7Pmgkfj7xzXpeAm44PleyuGnHlOZgzJRveiJ8PaKEW7TNJz3gAc4WlKMBUaerr1alkWtmRtvDVl2XIzHWVYbA3UvqRapOI5_4c4iAz6Z6lLPXiWjhI4g3u40PCAp-zx-VaQr4JzpuZ1mynIivtN5YJvr6yqMuC4fafkgVzmtjiANY"
+    title: "Snake Control & Safe Removal",
+    description: "Professional snake removal and prevention services for residential and commercial properties. We ensure safe relocation.",
+    icon: "shield",
+    image: "https://images.unsplash.com/photo-1549443586-13d28f09072a?q=80&w=2670&auto=format&fit=crop",
+    checklist: ["Safe capture & relocation", "Compound inspection", "Entry point sealing", "Preventive treatment"]
   },
   {
-    title: "Upholstery Extraction",
-    description: "Deep steam cleaning for sofas, carpets, and mattresses. Removes deep-seated allergens and stubborn stains.",
-    price: "KSh 3,500",
-    rating: "5.0",
-    reviews: "420",
-    category: "Cleaning & Hygiene",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC-8tc6xli7rnLb4i65TqEOlZc74quvkJ3U5BAV4Yh7zFcTqhWlcPFNhvoIC4gDR7ywdj40s_R3CldmQM_MIH2dsQC2wT3wk0XGyzOnjtUkPiBVJULkBtAS8D98Nh1-WFEkVjHNq1OUnwA6r3zd7XSbZ3pDPBLglEDXSnvHPHGT-2PORRxdkP9zHiBy4TuRvhbRj_jD9EfzOMBsope6o-yebyV3ohSjh5CqrwXd0AxocxEHmYFwYQYPt18P7O9z5mzJ3nr9RiLuVkY"
+    title: "Bedbug Eradication",
+    description: "High-intensity heat and chemical treatments to completely eliminate bedbug infestations and their eggs permanently.",
+    icon: "pest_control",
+    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2670&auto=format&fit=crop",
+    checklist: ["Mattress treatment", "Wall & crack injection", "Egg elimination", "100% success rate"]
   },
   {
-    title: "Move In / Out Special",
-    description: "Total property preparation for new tenants or owners. Every corner, drawer, and appliance cleaned to perfection.",
-    price: "KSh 8,500",
-    rating: "4.7",
-    reviews: "630",
-    category: "Cleaning & Hygiene",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCBrPwjHl9zE5yBYW7qpYPMxq3hpSnoNeCWlyBg-nHQUs_hS1yNEfWSnQ3XgS_7t-K90evFk2WWnO7Al457fq070rruwsxGtmwyHaA0RFDYhLbuS5ec2MVecBGF-fiK35IyKE3VuL0uikkt2j7GzO6c8TbMCRJzSPiwC6cI_XlxYP2Ldiw071Iq8ONpq-UWKlVfWhrAz3D73402sG-wR_Fs58ZfnNO2w1GSb-boQv5bfN29f3wmn7gXKYeJEm-4NBTRhEglDOi6Yjg"
+    title: "Termite Control",
+    description: "Structural protection using specialized soil barriers and baiting systems to stop termite damage to your property.",
+    icon: "architecture",
+    image: "https://images.unsplash.com/photo-1513584684374-8bdb74838a0f?q=80&w=2670&auto=format&fit=crop",
+    checklist: ["Soil barrier treatment", "Foundation injection", "Baiting systems", "Structural audit"]
   },
   {
-    title: "Commercial Office Hygiene",
-    description: "Regular sanitation for corporate environments. Daily or weekly schedules available to maintain workplace wellness.",
-    price: "Request Quote",
-    rating: "4.8",
-    reviews: "210",
-    category: "Specialized Projects",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAOiax_FY_1Gkk4X4y9ukYaZLZVIuao1TJMmkPvablr-lZbsquRze4yZ_JPx6aPY5pV8F9xwb6PMen0Mpborl8n6rN_-uTepleZh5rkf9w_XogE92n0puQqwQXDUy9x5kHN9U5n9bHCbhaEEi1FmKFgCvnqvDkJLZCQ_6dZN6VW0M1GH3WJvaKI9bDev7YkW23NnKwExftUT6IysD69p8ovyS4a80WyNkBxaDcqidws0amJGc60bxosy9JreDSBZ3LHZv7MTG0E5Wc"
+    title: "Window Exterior Cleaning",
+    description: "Exterior window cleaning for high-rise residential and commercial buildings using specialized equipment and non-streak solutions.",
+    icon: "stat_minus_1",
+    image: "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?q=80&w=2574&auto=format&fit=crop",
+    checklist: ["High-reach cleaning", "Streak-free finish", "Frame & sill cleaning", "Commercial & residential"]
   },
   {
-    title: "Elite Property Watch",
-    description: "Professional property monitoring and concierge security for homes and residential estates. Vetted security nodes.",
-    price: "KSh 45,000",
-    rating: "5.0",
-    reviews: "45",
-    category: "Elite Security",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA9aO7Fi-w52Mn1jhnyuWgnhPijEDOPRX_C4DLtWeNrminanzFh501fgpvRKhdvGHjCeGFpUm96LquSTYOZlB319FT1eFtaYfImh0jtArIJ6m4FmR9NcyW-3DsXIqx6VG4OGmGKDvI2gB4yitBQRgBK3awmCHnwLXJa4NG13LcwGenwKGYJt0mQc-q-D1sClEtNi22CYo620vdhHpHH0O1aeyecFv3kuro6DUeDqJsGS-Au0AqaO4sgZaxwjKtMdA4_IZv4fyOMuns"
+    title: "Oven Deep Clean",
+    description: "Thorough oven degreasing and sanitization to restore hygiene and performance. Makes your appliances look and work like new.",
+    icon: "cleaning_services",
+    image: "https://images.unsplash.com/photo-1556911227-491958bca127?q=80&w=2670&auto=format&fit=crop",
+    checklist: ["Grease removal", "Interior scrubbing", "Odor elimination", "Food-safe products"]
+  },
+  {
+    title: "Sofa Set Cleaning",
+    description: "Deep upholstery extraction for all fabric types. We remove deep-seated dirt, stains, and allergens from your seating.",
+    icon: "weekend",
+    image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=2670&auto=format&fit=crop",
+    checklist: ["Stain removal", "Odor neutralization", "Fabric protection", "Rapid dry tech"]
+  },
+  {
+    title: "Carpet & Rug Restoration",
+    description: "Steam and extraction cleaning for luxury rugs and wall-to-wall carpets. Restores pile and vibrant color.",
+    icon: "mop",
+    image: "https://images.unsplash.com/photo-1558317374-067df5f15430?q=80&w=2670&auto=format&fit=crop",
+    checklist: ["Deep fiber cleaning", "Bacteria elimination", "Fringe detailing", "Industrial dry"]
+  },
+  {
+    title: "Move In / Move Out Cleaning",
+    description: "Comprehensive deep cleaning for transitions. We ensure every corner, shelf, and floor is sanitized for new occupants.",
+    icon: "vpn_key",
+    image: "https://images.unsplash.com/photo-1581578731522-aa0861173663?q=80&w=2670&auto=format&fit=crop",
+    checklist: ["Full sanitization", "Cabinet interior detail", "Window ledge clean", "Sanitary bin service"]
+  },
+  {
+    title: "Post-Construction Deep Clean",
+    description: "Heavy-duty cleaning for newly built or renovated spaces. We remove cement dust, paint splatters, and construction debris.",
+    icon: "construction",
+    image: "https://images.unsplash.com/photo-1505798577917-a65157d3320a?q=80&w=2670&auto=format&fit=crop",
+    checklist: ["Dust extraction", "Paint removal", "Floor polishing", "Ready-to-use finish"]
+  },
+  {
+    title: "Office Sanitization",
+    description: "Bespoke workspace hygiene protocols. We maintain professional environments with scheduled high-standard cleaning.",
+    icon: "apartment",
+    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2670&auto=format&fit=crop",
+    checklist: ["Keyboard sanitization", "Common area focus", "Waste management", "Flexible scheduling"]
+  },
+  {
+    title: "Mosque & Venue Cleaning",
+    description: "Specialized large-venue hygiene for community spaces. We handle high-traffic areas with precision and respect.",
+    icon: "mosque",
+    image: "https://images.unsplash.com/photo-1563245339-dfc201633f70?q=80&w=2670&auto=format&fit=crop",
+    checklist: ["Carpet disinfection", "Ablution area sanitization", "High-traffic protocol", "Managed teams"]
   }
+];
+
+const HOW_IT_WORKS = [
+  { id: 1, title: "Book Online or Call", desc: "Reach out via our form, WhatsApp, or phone call to our BBS Mall hub." },
+  { id: 2, title: "Get a Quote", desc: "We assess your needs and give a transparent, fixed-rate professional quote." },
+  { id: 3, title: "We Clean/Fumigate", desc: "Our trained team arrives fully equipped with specialized tools and eco-products." },
+  { id: 4, title: "Enjoy Your Space", desc: "Walk into a spotless, pest-free environment with our satisfaction guarantee." }
 ];
 
 const ServicesPage = () => {
   return (
-    <div className="flex flex-col min-h-screen text-slate-900 font-body items-stretch bg-white">
+    <div className="flex flex-col min-h-screen bg-white text-slate-900 font-body items-stretch">
       <Navbar />
       
-      <main className="flex-grow pt-24 pb-40 max-w-7xl mx-auto px-6 md:px-10 w-full animate-in fade-in duration-700">
+      <main className="flex-grow pt-40 md:pt-48 pb-40 w-full animate-in fade-in duration-700">
         
-        {/* Header */}
-        <header className="mb-20 space-y-6 flex flex-col items-center text-center max-w-3xl mx-auto">
-          <div className="space-y-4">
-             <span className="text-blue-600 font-black tracking-widest uppercase text-xs">Our Expert Services</span>
-             <h1 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tight leading-tight">Professional care for everything you own.</h1>
-          </div>
-          <p className="text-lg text-slate-500 leading-relaxed font-medium">
-            Browse our catalog of premium services. Every booking is managed by our central operations hub to ensure the highest standards in Nairobi.
-          </p>
-        </header>
+        {/* Header Section */}
+        <section className="max-w-7xl mx-auto px-6 md:px-10 mb-32 space-y-4">
+           <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter">Our Services</h1>
+           <p className="text-xl text-slate-500 font-medium leading-relaxed max-w-2xl">
+             Professional cleaning and pest control solutions tailored to your needs from our central StarDash dispatch at BBS Mall.
+           </p>
+        </section>
 
-        <div className="flex flex-col lg:flex-row gap-12 items-start">
-          {/* Sidebar */}
-          <FilterSidebar />
+        {/* Services Horizontal Rows */}
+        <section className="space-y-24 mb-40">
+           {SERVICES_DETAILED.map((service, index) => (
+             <div key={index} className="max-w-7xl mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className={`space-y-10 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                   <div className="w-16 h-16 bg-[#2563eb]/5 text-[#2563eb] rounded-2xl flex items-center justify-center shadow-sm border border-[#2563eb]/10">
+                      <span className="material-symbols-outlined text-3xl font-black">{service.icon}</span>
+                   </div>
+                   <div className="space-y-6">
+                      <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">{service.title}</h2>
+                      <p className="text-lg text-slate-500 leading-relaxed font-body font-medium">{service.description}</p>
+                   </div>
+                   
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
+                      {service.checklist.map((item, i) => (
+                        <div key={i} className="flex items-center gap-3 text-slate-600 font-bold text-sm tracking-tight italic">
+                           <div className="w-5 h-5 rounded-full bg-[#22c55e]/10 flex items-center justify-center text-[#22c55e]">
+                              <span className="material-symbols-outlined text-[14px]">check</span>
+                           </div>
+                           {item}
+                        </div>
+                      ))}
+                   </div>
 
-          {/* Service Grid */}
-          <div className="flex-1 space-y-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-8">
-              {SERVICES.map((service, index) => (
-                <ServiceCard key={index} {...service} />
-              ))}
-            </div>
-
-            {/* Empty State / Pagination Placeholder */}
-            {SERVICES.length > 0 && (
-              <div className="mt-24 flex items-center justify-center space-x-4">
-                <button className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white border border-slate-200 text-slate-400 hover:text-slate-900 hover:border-slate-900 transition-all">
-                  <span className="material-symbols-outlined text-sm">west</span>
-                </button>
-                <div className="flex items-center gap-2">
-                   {[1, 2, 3].map(p => (
-                      <button key={p} className={`w-12 h-12 flex items-center justify-center rounded-2xl font-black text-sm transition-all ${p === 1 ? 'bg-slate-900 text-white shadow-lg' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>{p}</button>
-                   ))}
+                   <div className="flex flex-wrap gap-4 pt-6">
+                      <Link href="/contact" className="bg-[#f97316] text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-orange-600 shadow-xl shadow-orange-100 transition-all active:scale-95">
+                         Book This Service
+                      </Link>
+                      <Link href="/contact" className="border-2 border-slate-200 text-slate-500 px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-50 transition-all">
+                         Get a Quote
+                      </Link>
+                   </div>
                 </div>
-                <button className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white border border-slate-200 text-slate-400 hover:text-slate-900 hover:border-slate-900 transition-all">
-                  <span className="material-symbols-outlined text-sm">east</span>
-                </button>
+
+                <div className={`aspect-[16/10] bg-slate-50 rounded-[4rem] overflow-hidden shadow-2xl relative border border-slate-100 group ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                   <img src={service.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-80" alt={service.title} />
+                   <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-24 h-24 bg-white/60 backdrop-blur-xl rounded-full flex items-center justify-center text-[#2563eb] shadow-2xl border border-white/20">
+                         <span className="material-symbols-outlined text-4xl">{service.icon}</span>
+                      </div>
+                   </div>
+                </div>
+             </div>
+           ))}
+        </section>
+
+        {/* How It Works Section */}
+        <section className="bg-slate-50 py-40 border-y border-slate-100">
+           <div className="max-w-7xl mx-auto px-6 md:px-10 text-center space-y-24">
+              <div className="space-y-6 max-w-2xl mx-auto">
+                 <h2 className="text-5xl font-black text-slate-900 tracking-tighter">How It Works</h2>
+                 <p className="text-lg text-slate-500 font-medium leading-relaxed font-body">Getting your space cleaned or fumigated is easy with our simple 4-step process ritual.</p>
               </div>
-            )}
-            
-            {/* Help Block */}
-            <div className="bg-slate-50 rounded-[2.5rem] p-12 text-center space-y-6 border border-slate-100 mt-12">
-              <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-4">
-                <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>help_center</span>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                 {HOW_IT_WORKS.map((step, i) => (
+                   <div key={i} className="relative group">
+                      <div className="bg-white p-12 rounded-[3.5rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 h-full flex flex-col items-center text-center space-y-6">
+                         <div className="w-14 h-14 bg-[#2563eb] text-white rounded-full flex items-center justify-center font-black text-xl shadow-xl shadow-blue-100 italic">
+                            {step.id}
+                         </div>
+                         <div className="space-y-4">
+                            <h4 className="text-xl font-black text-slate-900 tracking-tight">{step.title}</h4>
+                            <p className="text-sm text-slate-500 font-medium leading-relaxed">{step.desc}</p>
+                         </div>
+                      </div>
+                      {i < 3 && (
+                        <div className="hidden lg:block absolute top-1/2 -right-4 -translate-y-1/2 z-10 text-slate-300">
+                           <span className="material-symbols-outlined text-3xl">arrow_forward</span>
+                        </div>
+                      )}
+                   </div>
+                 ))}
               </div>
-              <h3 className="text-3xl font-black text-slate-900 tracking-tight">Don&apos;t see what you need?</h3>
-              <p className="text-slate-500 text-lg max-w-lg mx-auto">Tell us about your custom project and our team will provide a tailored solution managed by StarDash.</p>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-3 bg-slate-900 text-white px-10 py-4 rounded-2xl font-black transition-all hover:bg-blue-600 shadow-xl shadow-slate-200">
-                Contact Ops Hub
-                <span className="material-symbols-outlined text-base">arrow_forward</span>
-              </Link>
-            </div>
-          </div>
-        </div>
+           </div>
+        </section>
+
       </main>
 
       <Footer />

@@ -13,42 +13,42 @@ interface ServiceCardProps {
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, price, rating, reviews, image, category }) => {
   return (
-    <div className="group bg-white rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-slate-100 flex flex-col h-full">
+    <div className="group bg-white rounded-[3rem] overflow-hidden hover:shadow-2xl transition-all duration-700 border border-slate-100 flex flex-col h-full relative">
       {/* Image Container */}
-      <div className="h-56 overflow-hidden relative">
+      <div className="h-64 overflow-hidden relative">
         <img 
           src={image} 
           alt={title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
         />
         {category && (
-          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl text-[10px] font-bold tracking-wider text-slate-800 shadow-sm border border-white/20 uppercase">
+          <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-xl px-4 py-2 rounded-2xl text-[10px] font-black tracking-widest text-[#2563eb] shadow-xl border border-white/20 uppercase">
             {category}
           </div>
         )}
-        <div className="absolute bottom-4 right-4 bg-blue-600 text-white px-3 py-1.5 rounded-xl text-[10px] font-bold flex items-center shadow-lg uppercase tracking-wider">
-          <span className="material-symbols-outlined text-xs mr-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+        <div className="absolute bottom-6 right-6 bg-[#f97316] text-white px-4 py-2 rounded-2xl text-[10px] font-black flex items-center shadow-2xl uppercase tracking-widest">
+          <span className="material-symbols-outlined text-xs mr-1.5" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
           {rating} ({reviews})
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-6 flex flex-col flex-1">
-        <div className="space-y-2 flex-1">
-          <h3 className="text-xl font-black text-slate-900 leading-tight group-hover:text-blue-600 transition-colors">{title}</h3>
-          <p className="text-slate-500 text-sm leading-relaxed line-clamp-2">{description}</p>
+      <div className="p-10 flex flex-col flex-1 space-y-8">
+        <div className="space-y-4 flex-1">
+          <h3 className="text-2xl font-black text-slate-900 leading-tight group-hover:text-[#2563eb] transition-colors tracking-tight">{title}</h3>
+          <p className="text-slate-500 text-base font-medium leading-relaxed font-body">{description}</p>
         </div>
         
-        <div className="pt-5 border-t border-slate-50 mt-4 flex justify-between items-center">
-          <div className="space-y-0.5">
-             <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Starting from</p>
-             <span className="font-black text-slate-900 text-xl tracking-tight">{price}</span>
+        <div className="pt-8 border-t border-slate-50 flex justify-between items-center bg-white">
+          <div className="space-y-1">
+             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Professional Rate</p>
+             <span className="font-black text-slate-900 text-3xl tracking-tighter">{price}</span>
           </div>
           <Link 
-            href="/signup" 
-            className="w-12 h-12 rounded-2xl bg-slate-900 text-white hover:bg-blue-600 transition-all duration-300 flex items-center justify-center shadow-md active:scale-95"
+            href="#request-form" 
+            className="w-16 h-16 rounded-2xl bg-slate-900 text-white hover:bg-[#2563eb] transition-all duration-500 flex items-center justify-center shadow-xl active:scale-95 group-hover:shadow-[#2563eb]/10"
           >
-            <span className="material-symbols-outlined font-bold text-lg">arrow_forward</span>
+            <span className="material-symbols-outlined font-black text-xl">arrow_forward</span>
           </Link>
         </div>
       </div>
